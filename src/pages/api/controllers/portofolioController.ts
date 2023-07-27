@@ -1,5 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { portofolioModel } from "../models/portofolioModel";
+
+import type { portofolioModelProps } from "../models/portofolioModel";
+import type { paginationQueyrProps } from "../libs/paginationType";
 
 export class PortofolioController {
   name;
@@ -17,31 +19,42 @@ export class PortofolioController {
     };
   }
 
-  static async get(req?: NextApiRequest, res?: NextApiResponse) {
-    const data = await portofolioModel.find({})
+  static async getAll(query: paginationQueyrProps) {
+    const totalData = await portofolioModel.count();
+    const skip = Number(Number(query?.page) - 1) * Number(query?.limit);
+    const data = await portofolioModel
+      .find()
+      .sort({ updatedAt: "desc" })
+      .limit(Number(query?.limit || 10))
+      .skip(skip || 0);
 
     return {
       status: true,
-      data
+      data,
+      metadata: {
+        page: query?.page || 1,
+        totalPage: Math.ceil(totalData / Number(query?.limit)) || 1,
+        totalData: totalData || 1,
+      },
     };
   }
 
-  static async post(req?: NextApiRequest, res?: NextApiResponse) {
-    const test = await portofolioModel.create({})
+  static async post({ title, description, skills, banner }: portofolioModelProps) {
+    const data = await portofolioModel.create({ title, description, skills, banner });
 
     return {
       status: true,
-      test
+      data,
     };
   }
 
-  static async update(req?: NextApiRequest, res?: NextApiResponse) {
+  static async update() {
     return {
       status: true,
     };
   }
 
-  static async delete(req?: NextApiRequest, res?: NextApiResponse) {
+  static async delete() {
     return {
       status: true,
     };
