@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { testModel } from "../models/testModel";
+import { portofolioModel } from "../models/portofolioModel";
 
 export class ResetController {
   name;
@@ -17,28 +17,36 @@ export class ResetController {
     };
   }
 
-  static async get(req?: NextApiRequest, res?: NextApiResponse) {
-    const testCollection = await testModel.deleteMany();
+  static async getAll() {
+    const testData = await testModel.deleteMany();
+    const portofolioData = await portofolioModel.deleteMany();
 
     return {
       status: true,
-      testCollection,
+      testData,
+      portofolioData,
     };
   }
 
-  static async post(req?: NextApiRequest, res?: NextApiResponse) {
-    return {
-      status: true,
-    };
-  }
-
-  static async update(req?: NextApiRequest, res?: NextApiResponse) {
+  static async getOne() {
     return {
       status: true,
     };
   }
 
-  static async delete(req?: NextApiRequest, res?: NextApiResponse) {
+  static async post() {
+    return {
+      status: true,
+    };
+  }
+
+  static async update() {
+    return {
+      status: true,
+    };
+  }
+
+  static async delete() {
     return {
       status: true,
     };

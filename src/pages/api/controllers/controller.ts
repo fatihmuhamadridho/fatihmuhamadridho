@@ -1,5 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
-
 export class BaseController {
   name;
 
@@ -16,25 +14,31 @@ export class BaseController {
     };
   }
 
-  static async get(req?: NextApiRequest, res?: NextApiResponse) {
+  static async getAll() {
     return {
       status: true,
     };
   }
 
-  static async post(req?: NextApiRequest, res?: NextApiResponse) {
+  static async getOne() {
     return {
       status: true,
     };
   }
 
-  static async update(req?: NextApiRequest, res?: NextApiResponse) {
+  static async post() {
     return {
       status: true,
     };
   }
 
-  static async delete(req?: NextApiRequest, res?: NextApiResponse) {
+  static async update() {
+    return {
+      status: true,
+    };
+  }
+
+  static async delete() {
     return {
       status: true,
     };
