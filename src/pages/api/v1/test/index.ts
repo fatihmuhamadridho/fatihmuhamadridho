@@ -5,12 +5,12 @@ import { mongooseMiddleware } from "../../middleware/mongooseMiddleware";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
-router.use(async (req, res, next) => {
+router.use(async (req: NextApiRequest, res: NextApiResponse, next) => {
   await mongooseMiddleware();
   await next();
 })
 
-router.get(async (req, res) => {
+router.get(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await testModel.create({ name: "awda" })
     const data = await testModel.find();
@@ -21,7 +21,7 @@ router.get(async (req, res) => {
 });
 
 export default router.handler({
-  onError: (err: any, req, res) => {
+  onError: (err: any, req: NextApiRequest, res: NextApiResponse) => {
     res.status(500).json({ error: err.stack });
   },
 });
