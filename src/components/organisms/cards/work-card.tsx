@@ -1,16 +1,24 @@
-import { Text } from "@mantine/core";
+import { Flex, Image, Text } from "@mantine/core";
 import React from "react";
 
-const WorkCard = () => {
+type WorkCardProps = {
+  reverse?: boolean,
+  title?: string | any;
+  description?: string | any;
+  banner?: string | any;
+}
+
+const WorkCard = (props: WorkCardProps) => {
+  const { reverse, title, description, banner } = props;
+
   return (
-    <div>
-      <Text>Fiskill</Text>
-      <Text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec urna ac tellus
-        volutpat viverra. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-        cubilia curae.
-      </Text>
-    </div>
+    <Flex direction={reverse ? "row-reverse" : "row"}>
+      <Image src={banner || "https://dummyimage.com/250/ffffff/000000"} alt="work-image" />
+      <div>
+        <Text>{title || "<title>"}</Text>
+        <Text>{description || "<description>"}</Text>
+      </div>
+    </Flex>
   );
 };
 
