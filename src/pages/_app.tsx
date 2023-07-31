@@ -4,13 +4,14 @@ import { MantineProvider } from "@mantine/core";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useState } from "react";
 import Splash from "@/components/atoms/splash";
+import { SectionProvider } from "@/contexts/section/SectionProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState<boolean>(true);
 
   setTimeout(() => {
     setLoading(false);
-  }, 500);
+  }, 250);
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -24,8 +25,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <MantineProvider>
-        {loading && <Splash />}
-        {!loading && <Component {...pageProps} />}
+        <SectionProvider>
+          {loading && <Splash />}
+          {!loading && <Component {...pageProps} />}
+        </SectionProvider>
       </MantineProvider>
     </QueryClientProvider>
   );
