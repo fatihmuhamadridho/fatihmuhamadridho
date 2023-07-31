@@ -10,8 +10,12 @@ const WorkSection = () => {
   return (
     <Flex direction={"column"} py={96} px={80 + 32} gap={48}>
       <Center className="flex-col gap-4">
-        <Badge>work</Badge>
-        <Text>Some of the noteworthy projects I have built:</Text>
+        <Badge w={"auto"} py={4} px={20} className="text-[#D1D5DB] normal-case" bg={"#374151"}>
+          Work
+        </Badge>
+        <Text fz={20} fw={400} lh={"28px"} color="#D1D5DB">
+          Some of the noteworthy projects I have built:
+        </Text>
         {portofolioData?.map((portoData, portoIndex: number) => (
           <WorkCard
             key={portoIndex}
