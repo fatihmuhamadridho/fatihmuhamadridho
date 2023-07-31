@@ -1,0 +1,19 @@
+###
+GET http://localhost:3000/api/v1/portofolio?page=1&limit=5
+
+###
+POST http://localhost:3000/api/v1/portofolio
+Content-Type: application/json
+
+{
+  "title": "title",
+  "description": "description",
+  "banner": "https://dummyimage.com/250/ffffff/000000",
+  "skills": ["reactjs", "nextjs"]
+}
+
+###
+GET http://localhost:3000/api/v1/test
+
+###
+GET http://localhost:3000/api/v1/reset
