@@ -23,7 +23,12 @@ const HeroSection = () => {
           </Text>
         </Flex>
         <Flex direction={"column"} gap={8}>
-          <Flex align={"center"} gap={8}>
+          <Flex
+            className="cursor-pointer"
+            align={"center"}
+            gap={8}
+            onClick={() => window.open("https://goo.gl/maps/9YfyXhUN7g5YDyYW9", "_blank")}
+          >
             <IconMapPinFilled />
             <Text fz={16} fw={400} lh={"24px"} color="#D1D5DB">
               Tangerang, Indonesia
