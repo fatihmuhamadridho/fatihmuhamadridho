@@ -1,8 +1,17 @@
-import { Badge, Center, Flex, Paper, Text, TypographyStylesProvider } from "@mantine/core";
+import {
+  Badge,
+  Center,
+  CopyButton,
+  Flex,
+  Paper,
+  Text,
+  TypographyStylesProvider,
+} from "@mantine/core";
 import {
   IconBrandFigma,
   IconBrandGithub,
   IconBrandTwitter,
+  IconCheck,
   IconCopy,
   IconMail,
   IconPhone,
@@ -23,20 +32,39 @@ const ContactSection = () => {
               have a query, or simply want to connect.
             </Text>
             <Flex direction={"column"} align={"center"} gap={16}>
-              <Flex align={"center"} gap={20}>
-                <IconMail size={32} />
-                <Text fz={36} fw={600} lh={"40px"}>
-                  fatihmuhamadridho1@gmail.com
-                </Text>
-                <IconCopy size={32} />
-              </Flex>
-              <Flex align={"center"} gap={20}>
-                <IconPhone size={32} />
-                <Text fz={36} fw={600} lh={"40px"}>
-                  +62 82110797472
-                </Text>
-                <IconCopy size={32} />
-              </Flex>
+              <CopyButton value="fatihmuhamadridho1@gmail.com">
+                {({ copy, copied }) => (
+                  <Flex
+                    className={`cursor-pointer ${copied && "text-[#D1D5DB]"} active:text-[#D1D5DB]`}
+                    align={"center"}
+                    justify={"center"}
+                    gap={20}
+                    onClick={copy}
+                  >
+                    <IconMail size={32} />
+                    <Text fz={36} fw={600} lh={"40px"}>
+                      fatihmuhamadridho1@gmail.com
+                    </Text>
+                    {copied ? <IconCheck size={32} /> : <IconCopy size={32} />}
+                  </Flex>
+                )}
+              </CopyButton>
+              <CopyButton value="+6282110797472">
+                {({ copy, copied }) => (
+                  <Flex
+                    className={`cursor-pointer ${copied && "text-[#D1D5DB]"} active:text-[#D1D5DB]`}
+                    align={"center"}
+                    gap={20}
+                    onClick={copy}
+                  >
+                    <IconPhone size={32} />
+                    <Text fz={36} fw={600} lh={"40px"}>
+                      +62 82110797472
+                    </Text>
+                    {copied ? <IconCheck size={32} /> : <IconCopy size={32} />}
+                  </Flex>
+                )}
+              </CopyButton>
             </Flex>
             <Flex direction={"column"} align={"center"} gap={8}>
               <Text fz={16} fw={400} lh={"24px"}>
