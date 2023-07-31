@@ -12,13 +12,31 @@ import { useEffect, useRef } from "react";
 
 export default function Home() {
   const { setSections } = useSectionContext();
-  const { scrollIntoView: scrollIntoHero, targetRef: heroTargetRef } = useScrollIntoView();
-  const { scrollIntoView: scrollIntoAbout, targetRef: aboutTargetRef } = useScrollIntoView();
-  const { scrollIntoView: scrollIntoSkill, targetRef: skillTargetRef } = useScrollIntoView();
+  const { scrollIntoView: scrollIntoHero, targetRef: heroTargetRef } = useScrollIntoView({
+    offset: 60,
+    duration: 750,
+  });
+  const { scrollIntoView: scrollIntoAbout, targetRef: aboutTargetRef } = useScrollIntoView({
+    offset: 120,
+    duration: 750,
+  });
+  const { scrollIntoView: scrollIntoSkill, targetRef: skillTargetRef } = useScrollIntoView({
+    offset: 60,
+    duration: 750,
+  });
   const { scrollIntoView: scrollIntoExperience, targetRef: experienceTargetRef } =
-    useScrollIntoView();
-  const { scrollIntoView: scrollIntoWork, targetRef: workTargetRef } = useScrollIntoView();
-  const { scrollIntoView: scrollIntoContact, targetRef: contactTargetRef } = useScrollIntoView();
+    useScrollIntoView({
+      // offset: 60,
+      duration: 750,
+    });
+  const { scrollIntoView: scrollIntoWork, targetRef: workTargetRef } = useScrollIntoView({
+    // offset: 60,
+    duration: 750,
+  });
+  const { scrollIntoView: scrollIntoContact, targetRef: contactTargetRef } = useScrollIntoView({
+    offset: 60,
+    duration: 750,
+  });
 
   useEffect(() => {
     setSections({
