@@ -41,11 +41,11 @@ const ContactSection = () => {
                     gap={20}
                     onClick={copy}
                   >
-                    <IconMail size={32} />
-                    <Text fz={36} fw={600} lh={"40px"}>
+                    <IconMail size={32} color={copied ? "green" : "white"} />
+                    <Text fz={36} fw={600} lh={"40px"} color={copied ? "green" : "white"}>
                       fatihmuhamadridho1@gmail.com
                     </Text>
-                    {copied ? <IconCheck size={32} /> : <IconCopy size={32} />}
+                    {copied ? <IconCheck size={32} color="green" /> : <IconCopy size={32} />}
                   </Flex>
                 )}
               </CopyButton>
@@ -57,11 +57,11 @@ const ContactSection = () => {
                     gap={20}
                     onClick={copy}
                   >
-                    <IconPhone size={32} />
-                    <Text fz={36} fw={600} lh={"40px"}>
+                    <IconPhone size={32} color={copied ? "green" : "white"} />
+                    <Text fz={36} fw={600} lh={"40px"} color={copied ? "green" : "white"}>
                       +62 82110797472
                     </Text>
-                    {copied ? <IconCheck size={32} /> : <IconCopy size={32} />}
+                    {copied ? <IconCheck size={32} color="green" /> : <IconCopy size={32} />}
                   </Flex>
                 )}
               </CopyButton>
