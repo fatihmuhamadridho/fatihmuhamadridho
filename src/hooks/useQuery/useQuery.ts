@@ -1,9 +1,4 @@
-import {
-  QueryFunction,
-  QueryKey,
-  useQuery as useQueryWrapper,
-  UseQueryOptions,
-} from 'react-query';
+import { QueryFunction, QueryKey, useQuery as useQueryWrapper, UseQueryOptions } from "react-query";
 
 interface QueryArg extends UseQueryOptions {
   key: QueryKey;
@@ -11,7 +6,7 @@ interface QueryArg extends UseQueryOptions {
   select?: (data: any) => any;
 }
 
-export default function useQuery({key, fetchAction, ...options}: QueryArg) {
+export default function useQuery({ key, fetchAction, ...options }: QueryArg) {
   return useQueryWrapper(key, fetchAction, {
     enabled: true,
     ...options,
