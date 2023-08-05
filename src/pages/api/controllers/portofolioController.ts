@@ -1,7 +1,7 @@
 import { portofolioModel } from "../models/portofolioModel";
 
 import type { portofolioModelProps } from "../models/portofolioModel";
-import type { paginationQueyrProps } from "../libs/paginationType";
+import type { paginationQueryProps } from "../libs/paginationType";
 
 export class PortofolioController {
   name;
@@ -19,7 +19,7 @@ export class PortofolioController {
     };
   }
 
-  static async getAll(query: paginationQueyrProps) {
+  static async getAll(query: paginationQueryProps) {
     const totalData = await portofolioModel.count();
     const skip = Number(Number(query?.page) - 1) * Number(query?.limit);
     const data = await portofolioModel

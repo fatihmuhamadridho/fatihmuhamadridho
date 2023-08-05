@@ -1,4 +1,4 @@
-export type paginationQueyrProps = {
+export type paginationQueryProps = {
     page?: number;
     limit?: number
 }

@@ -4,7 +4,7 @@ import { PortofolioController } from "../../controllers/portofolioController";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { portofolioModelProps } from "../../models/portofolioModel";
-import type { paginationQueyrProps } from "../../libs/paginationType";
+import type { paginationQueryProps } from "../../libs/paginationType";
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
@@ -14,7 +14,7 @@ router.use(async (req: NextApiRequest, res: NextApiResponse, next) => {
 });
 
 router.get(async (req: NextApiRequest, res: NextApiResponse) => {
-  const { page, limit }: paginationQueyrProps = req.query;
+  const { page, limit }: paginationQueryProps = req.query;
   try {
     const getAllData = await PortofolioController.getAll({
       page: Number(page),
