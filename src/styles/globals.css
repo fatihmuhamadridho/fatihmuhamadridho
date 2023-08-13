@@ -7,8 +7,10 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Inter", sans-serif;
-  background-color: #030712;
-  color: white;
+}
+
+body {
+  background-color: #f6f6f6;
 }
 
 a {
