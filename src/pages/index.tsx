@@ -82,85 +82,88 @@ const HomePage = () => {
 
   return (
     <Default title="Fatih Muhamad Ridho">
-      <Container className="relative" mih={700} fluid p={0}>
-        <Container className="absolute overflow-hidden" w={"100%"} h={"100%"} fluid p={0}>
+      <Container
+        className="relative overflow-hidden flex flex-col items-center justify-center"
+        mih={700}
+        fluid
+        p={0}
+      >
+        <motion.div
+          className={clsx(styles.wrapper, "-z-[75] w-[650px] h-full absolute top-[35%]")}
+          style={{
+            scaleX: 1.5 + scrollYProgress.get() * 5,
+            scaleY: 1.5 + scrollYProgress.get() * 5,
+            y: 0 + scrollYProgress.get() * 1500,
+            opacity: 1 - scrollYProgress.get() * 4,
+          }}
+        >
           <motion.div
-            className={clsx(styles.wrapper, "-z-[75] w-[980px] h-[700px] absolute top-[258px]")}
+            className={clsx(
+              styles.motion,
+              styles.particle1,
+              "text-lg font-normal leading-[140%] box-border w-5 h-5 opacity-40 !bg-[#323235] absolute rounded-md right-[159px] top-[90px]"
+            )}
             style={{
-              scaleX: 1.5 + scrollYProgress.get() * 5,
-              scaleY: 1.5 + scrollYProgress.get() * 5,
-              y: 0 + scrollYProgress.get() * 1500,
-              opacity: 1 - scrollYProgress.get() * 4,
+              rotateZ: 100,
             }}
-          >
-            <motion.div
-              className={clsx(
-                styles.motion,
-                styles.particle1,
-                "text-lg font-normal leading-[140%] box-border w-5 h-5 opacity-40 !bg-[#323235] absolute rounded-md right-[159px] top-[90px]"
-              )}
-              style={{
-                rotateZ: 100,
-              }}
-            ></motion.div>
-            <motion.div
-              className={clsx(
-                styles.motion,
-                styles.particle2,
-                "text-[#323235] text-lg font-normal leading-[140%] box-border w-6 h-6 opacity-30 !bg-[#323235] absolute rounded-md right-[600px] top-[200px]"
-              )}
-              animate={{}}
-            ></motion.div>
-            <motion.div
-              className={clsx(
-                styles.motion,
-                styles.particle3,
-                "text-[#323235] text-lg font-normal leading-[140%] box-border w-[9px] h-[9px] opacity-40 !bg-[#323235] absolute rounded-sm right-[624px] top-[94px]"
-              )}
-              animate={{}}
-            ></motion.div>
-            <motion.div
-              className={clsx(
-                styles.motion,
-                styles.particle4,
-                "text-[#323235] text-lg font-normal leading-[140%] box-border w-[15px] h-[15px] opacity-20 !bg-black absolute rounded-[5px] right-[428px] top-16"
-              )}
-              animate={{}}
-            ></motion.div>
-            <motion.div
-              className={clsx(
-                styles.motion,
-                styles.particle5,
-                "text-[#323235] text-lg font-normal leading-[140%] box-border w-3 h-3 opacity-20 !bg-[#323235] rounded absolute right-[448px] top-[203px]"
-              )}
-              animate={{}}
-            ></motion.div>
-            <motion.div
-              className={clsx(
-                styles.motion,
-                styles.particle6,
-                "text-[#323235] text-lg font-normal leading-[140%] box-border w-3 h-3 opacity-20 !bg-[#323235] rounded absolute right-[262px] top-[251px]"
-              )}
-              animate={{}}
-            ></motion.div>
-            <motion.div
-              className={clsx(
-                styles.motion,
-                styles.particle7,
-                "text-[#323235] text-lg font-normal leading-[140%] box-border w-[9px] h-[9px] opacity-20 !bg-[#323235] absolute rounded-sm right-[104px] top-[213px]"
-              )}
-              animate={{}}
-            ></motion.div>
-            <motion.div
-              className={clsx(
-                styles.motion,
-                styles.particle8,
-                "text-[#323235] text-lg font-normal leading-[140%] box-border w-[11px] h-[11px] opacity-[0.15] !bg-[#323235] absolute rounded-[3px] right-16 top-[111px]"
-              )}
-              animate={{}}
-            ></motion.div>
-          </motion.div>
-        </Container>
+          ></motion.div>
+          <motion.div
+            className={clsx(
+              styles.motion,
+              styles.particle2,
+              "text-[#323235] text-lg font-normal leading-[140%] box-border w-6 h-6 opacity-30 !bg-[#323235] absolute rounded-md right-[600px] top-[200px]"
+            )}
+            animate={{}}
+          ></motion.div>
+          <motion.div
+            className={clsx(
+              styles.motion,
+              styles.particle3,
+              "text-[#323235] text-lg font-normal leading-[140%] box-border w-[9px] h-[9px] opacity-40 !bg-[#323235] absolute rounded-sm right-[624px] top-[94px]"
+            )}
+            animate={{}}
+          ></motion.div>
+          <motion.div
+            className={clsx(
+              styles.motion,
+              styles.particle4,
+              "text-[#323235] text-lg font-normal leading-[140%] box-border w-[15px] h-[15px] opacity-20 !bg-black absolute rounded-[5px] right-[428px] top-16"
+            )}
+            animate={{}}
+          ></motion.div>
+          <motion.div
+            className={clsx(
+              styles.motion,
+              styles.particle5,
+              "text-[#323235] text-lg font-normal leading-[140%] box-border w-3 h-3 opacity-20 !bg-[#323235] rounded absolute right-[448px] top-[203px]"
+            )}
+            animate={{}}
+          ></motion.div>
+          <motion.div
+            className={clsx(
+              styles.motion,
+              styles.particle6,
+              "text-[#323235] text-lg font-normal leading-[140%] box-border w-3 h-3 opacity-20 !bg-[#323235] rounded absolute right-[262px] top-[251px]"
+            )}
+            animate={{}}
+          ></motion.div>
+          <motion.div
+            className={clsx(
+              styles.motion,
+              styles.particle7,
+              "text-[#323235] text-lg font-normal leading-[140%] box-border w-[9px] h-[9px] opacity-20 !bg-[#323235] absolute rounded-sm right-[104px] top-[213px]"
+            )}
+            animate={{}}
+          ></motion.div>
+          <motion.div
+            className={clsx(
+              styles.motion,
+              styles.particle8,
+              "text-[#323235] text-lg font-normal leading-[140%] box-border w-[11px] h-[11px] opacity-[0.15] !bg-[#323235] absolute rounded-[3px] right-16 top-[111px]"
+            )}
+            animate={{}}
+          ></motion.div>
+        </motion.div>
 
         <Center pb={100} h={700}>
           <Flex maw={500} direction={"column"} align={"center"} gap={12}>
