@@ -17,7 +17,7 @@ const Default = ({ title, children }: DefaultProps) => {
       </Head>
       <Container fluid p={0}>
         <Navbar />
-        <Container mih={"84vh"} maw={1024}>
+        <Container mih={"84vh"} fluid>
           {children}
         </Container>
         <Footer />
