@@ -1,21 +1,36 @@
-import { Flex, Footer as FooterCore, Text } from "@mantine/core";
-import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react";
+import { Footer as FooterCore, Container, Center, Flex, Text } from "@mantine/core";
+import { IconBrandGithub, IconBrandLinkedin, IconBrandTwitter } from "@tabler/icons-react";
 import React from "react";
 
 const Footer = () => {
   return (
-    <FooterCore className="flex items-center justify-center" height={60}>
-      <Flex maw={1024} px={12} w={"100%"} h={"100%"} align={"center"} justify={"space-between"}>
-        <Text fz={14} fw={600}>
-          Fatih Muhamad Ridho
-        </Text>
-        <Text fz={14}>Copyright © 2023 Fatih Muhamad Ridho. All rights reserved.</Text>
-        <Flex gap={12}>
-          <IconBrandGithub />
-          <IconBrandLinkedin />
+    <Container fluid p={16}>
+      <Flex align={"center"} justify={"space-between"}>
+        <Text>fatihmuhamadridho</Text>
+        <Flex gap={16}>
+          <Text>+62 82110797472</Text>
+          {/* <Text>fatihmuhamadridho1@gmail.com</Text> */}
+          <Flex gap={12}>
+            <IconBrandGithub />
+            <IconBrandTwitter />
+            <IconBrandLinkedin />
+          </Flex>
         </Flex>
       </Flex>
-    </FooterCore>
+      <FooterCore height={60}>
+        <Center w={"100%"} h={"100%"}>
+          <Flex>
+            <Flex>
+              <Text>About Me</Text>
+              <Text>About Me</Text>
+              <Text>About Me</Text>
+              <Text>About Me</Text>
+              <Text>About Me</Text>
+            </Flex>
+          </Flex>
+        </Center>
+      </FooterCore>
+    </Container>
   );
 };
 
