@@ -11,18 +11,18 @@ const Cursor = ({ animate }: CursorProps) => {
   return (
     <motion.div
       style={{
-        width: 32,
-        height: 32,
+        width: 24,
+        height: 24,
         position: "fixed",
         display: viewWidth < 500 ? "none" : "flex",
-        backgroundColor: "black",
+        backgroundColor: "white",
         borderRadius: 9999,
-        zIndex: 9999999,
+        zIndex: 9999999999999999,
         pointerEvents: "none",
       }}
       animate={{
-        x: animate ? mouseX - 50 : mouseX - 16,
-        y: animate ? mouseY - 50 : mouseY - 16,
+        x: mouseX - 12,
+        y: mouseY - 72,
         ...animationProps,
       }}
       transition={{ type: "keyframes", duration: 0.05 }}
