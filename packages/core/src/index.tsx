@@ -1,8 +1,12 @@
 import React from "react";
-import { Text as TextCore } from "@mantine/core";
+import { MantineProvider, Text } from "@mantine/core";
 
-export const Text: React.FC = () => (
-  <TextCore p={16} bg={"black"} c={"white"}>
-    test
-  </TextCore>
+const TextCore: React.FC = () => (
+  <MantineProvider>
+    <Text p={16} bg={"black"} c={"white"}>
+      test
+    </Text>
+  </MantineProvider>
 );
+
+export { TextCore };
