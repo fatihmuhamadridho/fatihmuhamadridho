@@ -6,12 +6,20 @@ import React from "react";
 const HomePage = () => {
   return (
     <>
-      <MediaQuery className="dekstop" smallerThan={760} styles={{ display: "none" }}>
+      <MediaQuery
+        className="dekstop"
+        smallerThan={760}
+        styles={{ display: "none" }}
+      >
         <div>
           <HomePageDekstop />
         </div>
       </MediaQuery>
-      <MediaQuery className="mobile" largerThan={760} styles={{ display: "none" }}>
+      <MediaQuery
+        className="mobile"
+        largerThan={760}
+        styles={{ display: "none" }}
+      >
         <div>
           <HomePageMobile />
         </div>
