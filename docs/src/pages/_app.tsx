@@ -1,8 +1,8 @@
-import "@/styles/globals.css";
-import "@mantine/core/styles.css";
+import '@/styles/globals.css';
+import '@mantine/core/styles.css';
 
-import type { AppProps } from "next/app";
-import { createTheme, MantineProvider } from "@mantine/core";
+import type { AppProps } from 'next/app';
+import { createTheme, MantineProvider } from '@mantine/core';
 
 const theme = createTheme({});
 
