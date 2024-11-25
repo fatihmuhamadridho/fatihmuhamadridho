@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Fatih Muhamad Ridho Packages",
   "license": "ISC",
-  "private": "true",
   "author": "Fatih Muhamad Ridho <fatihmuhamadridho1@gmail.com>",
   "repository": "https://github.com/fatihmuhamadridho/fatihmuhamadridho.git",
   "workspaces": [
@@ -15,5 +14,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ."
   },
-  "keywords": []
+  "keywords": [],
+  "packageManager": "yarn@4.5.3"
 }

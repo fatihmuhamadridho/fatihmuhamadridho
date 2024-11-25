@@ -5,7 +5,7 @@ I am an avid learner and am taking the next step by implementing my learnings.**
 
 ![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/blue?icon=github)
 
-![Github stats](https://github-readme-stats.vercel.app/api?username=fatihmuhamadridho)
+![Github stats](https://github-readme-stats.vercel.app/api?username=fatihmuhamadridho&include_all_commits=true&rank_icon=github)
 
 **My Itinerary**
 
