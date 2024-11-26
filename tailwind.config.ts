@@ -10,7 +10,8 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        "ui-primary": "#94a3b8",
+        "ui-primary": "#0f172a",
+        "ui-secondary": "#94a3b8",
         "ui-gray": "#e5e7eb",
       },
     },
