@@ -28,7 +28,7 @@ const HomePage = () => {
                 </Text>
               </Box>
               <Box>
-                <Group className="group cursor-pointer" py={12}>
+                <Group className="max-w-max group cursor-pointer" py={12}>
                   <Divider
                     className="w-[32px] transition-all group-hover:!w-[64px] group-hover:!border-[white]"
                     color="#94a3b8"
@@ -42,7 +42,7 @@ const HomePage = () => {
                     ABOUT
                   </Text>
                 </Group>
-                <Group className="group cursor-pointer" py={12}>
+                <Group className="max-w-max group cursor-pointer" py={12}>
                   <Divider
                     className="w-[32px] transition-all group-hover:!w-[64px] group-hover:!border-[white]"
                     color="#94a3b8"
@@ -56,7 +56,7 @@ const HomePage = () => {
                     EXPERIENCE
                   </Text>
                 </Group>
-                <Group className="group cursor-pointer" py={12}>
+                <Group className="max-w-max group cursor-pointer" py={12}>
                   <Divider
                     className="w-[32px] transition-all group-hover:!w-[64px] group-hover:!border-[white]"
                     color="#94a3b8"
