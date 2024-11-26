@@ -1,20 +1,92 @@
 import { Layout } from "@/components";
-import { Box, Flex, Stack, Text } from "@mantine/core";
+import { Box, Divider, Flex, Group, Stack, Text } from "@mantine/core";
+import {
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
 import React from "react";
 
 const HomePage = () => {
   return (
-    <Layout>
-      <Flex>
+    <Layout title="Fatih Muhamad Ridho">
+      <Flex gap={16}>
         <Stack className="sticky top-0 py-[96px] w-1/2 max-h-screen" gap={4}>
-          <Box>Fatih Muhamad Ridho</Box>
-          <Box>Front End Engineer</Box>
-          <Box>
-            I build accessible, pixel-perfect digital experiences for the web.
-          </Box>
-          <Box>ABOUT</Box>
-          <Box>EXPERIENCE</Box>
-          <Box>PROJECTS</Box>
+          <Flex h={"100%"} direction={"column"} justify={"space-between"}>
+            <Stack gap={64}>
+              <Box>
+                <Text fz={48} fw={700} lh={1}>
+                  Fatih M. Ridho
+                </Text>
+
+                <Text mt={12} fz={20}>
+                  Front End Engineer
+                </Text>
+                <Text className="!text-ui-primary" mt={16} maw={320} fz={16}>
+                  I build accessible, pixel-perfect digital experiences for the
+                  web.
+                </Text>
+              </Box>
+              <Box>
+                <Group className="group cursor-pointer" py={12}>
+                  <Divider
+                    className="w-[32px] transition-all group-hover:!w-[64px] group-hover:!border-[white]"
+                    color="#94a3b8"
+                    size={1}
+                  />
+                  <Text
+                    fz={12}
+                    fw={700}
+                    className="!text-ui-primary group-hover:!text-white"
+                  >
+                    ABOUT
+                  </Text>
+                </Group>
+                <Group className="group cursor-pointer" py={12}>
+                  <Divider
+                    className="w-[32px] transition-all group-hover:!w-[64px] group-hover:!border-[white]"
+                    color="#94a3b8"
+                    size={1}
+                  />
+                  <Text
+                    fz={12}
+                    fw={700}
+                    className="!text-ui-primary group-hover:!text-white"
+                  >
+                    EXPERIENCE
+                  </Text>
+                </Group>
+                <Group className="group cursor-pointer" py={12}>
+                  <Divider
+                    className="w-[32px] transition-all group-hover:!w-[64px] group-hover:!border-[white]"
+                    color="#94a3b8"
+                    size={1}
+                  />
+                  <Text
+                    fz={12}
+                    fw={700}
+                    className="!text-ui-primary group-hover:!text-white"
+                  >
+                    PROJECTS
+                  </Text>
+                </Group>
+              </Box>
+            </Stack>
+            <Group gap={20}>
+              <IconBrandGithub
+                className="transition-all stroke-[gray] cursor-pointer hover:stroke-white"
+                size={28}
+              />
+              <IconBrandLinkedin
+                className="transition-all stroke-[gray] cursor-pointer hover:stroke-white"
+                size={28}
+              />
+              <IconBrandInstagram
+                className="transition-all stroke-[gray] cursor-pointer hover:stroke-white"
+                size={28}
+              />
+            </Group>
+          </Flex>
         </Stack>
         <Stack className="py-[96px] w-1/2">
           <Text>
