@@ -27,3 +27,7 @@ I am an avid learner and am taking the next step by implementing my learnings.**
 **FIND ME ON ⬇️**
 
 <a href="https://github.com/fatihmuhamadridho"><img alt="GitHub" src="https://img.shields.io/badge/github%20-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a>
+
+# REFERENCE
+
+https://brittanychiang.com/
