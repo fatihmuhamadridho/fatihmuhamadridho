@@ -14,7 +14,7 @@ interface ProfileSectionProps {
 }
 
 interface listMediaSocialProps {
-  url: string;
+  href: string;
   icon: any;
 }
 
@@ -23,20 +23,18 @@ const ProfileSection = (props: ProfileSectionProps) => {
   const menuItems = ["about", "experience", "project"];
   const listMediaSocial: listMediaSocialProps[] = [
     {
-      url: "https://github.com/fatihmuhamadridho",
+      href: "https://github.com/fatihmuhamadridho",
       icon: IconBrandGithub,
     },
     {
-      url: "https://www.linkedin.com/in/fatihmuhamadridho/",
+      href: "https://www.linkedin.com/in/fatihmuhamadridho/",
       icon: IconBrandLinkedin,
     },
     {
-      url: "https://www.instagram.com/fatihmuhamadridho/",
+      href: "https://www.instagram.com/fatihmuhamadridho/",
       icon: IconBrandInstagram,
     },
   ];
-
-  console.log({ activeSection });
 
   return (
     <Stack className="sticky top-0 py-[96px] w-1/2 max-h-screen" gap={4}>
@@ -86,11 +84,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
         </Stack>
         <Group gap={20}>
           {listMediaSocial.map((item) => (
-            <Link
-              key={item.url}
-              href={"https://github.com/fatihmuhamadridho"}
-              target="__blank"
-            >
+            <Link key={item.href} href={item.href} target="__blank">
               <item.icon
                 className="transition-all stroke-[gray] cursor-pointer hover:stroke-white"
                 size={28}
