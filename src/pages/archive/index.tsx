@@ -4,6 +4,8 @@ import { IconArrowLeft } from "@tabler/icons-react";
 import { useRouter } from "next/router";
 import React from "react";
 import { motion } from "motion/react";
+import { CONST_PROJECTS } from "@/constant";
+import Link from "next/link";
 
 const pageVariants = {
   hidden: { opacity: 0, x: 50 },
@@ -13,118 +15,6 @@ const pageVariants = {
 
 const ArchivePage = () => {
   const router = useRouter();
-  const data = [
-    {
-      year: 2024,
-      project: "CCPL POJK Phrase 2",
-      madeAt: "CIMB Niaga",
-      buildWith: [
-        "ReactJs",
-        "React Native",
-        "TypeScript",
-        "HTML",
-        "CSS",
-        "Redux",
-      ],
-      link: {
-        alias: "Octo Smart",
-        href: "https://alphasft.cimbniaga.co.id/",
-      },
-    },
-    {
-      year: 2024,
-      project: "CCPL POJK Phrase 1",
-      madeAt: "CIMB Niaga",
-      buildWith: [
-        "ReactJs",
-        "React Native",
-        "TypeScript",
-        "HTML",
-        "CSS",
-        "Redux",
-      ],
-      link: {
-        alias: "Octo Smart",
-        href: "https://alphasft.cimbniaga.co.id/",
-      },
-    },
-    {
-      year: 2024,
-      project: "Revamp FMC Dashboard 3",
-      madeAt: "SALT",
-      buildWith: [
-        "AngularJs",
-        "TypeScript",
-        "SCSS",
-        "NPM",
-        "Bit Cloud",
-        "Material Angular",
-      ],
-    },
-    {
-      year: 2024,
-      project: "Revamp FMC Dashboard 2",
-      madeAt: "SALT",
-      buildWith: [
-        "AngularJs",
-        "TypeScript",
-        "SCSS",
-        "NPM",
-        "Bit Cloud",
-        "Material Angular",
-      ],
-    },
-    {
-      year: 2024,
-      project: "Generate AI Response Summary TSurvey",
-      madeAt: "SALT",
-      buildWith: ["AngularJs", "TypeScript", "SCSS"],
-      link: {
-        alias: "TSurvey",
-        href: "https://tsurvey.id/",
-      },
-    },
-    {
-      year: 2024,
-      project: "Revamp Target Respondent TSurvey",
-      madeAt: "SALT",
-      buildWith: ["AngularJs", "TypeScript", "SCSS"],
-      link: {
-        alias: "TSurvey",
-        href: "https://tsurvey.id/",
-      },
-    },
-    {
-      year: 2024,
-      project: "Cimb Niaga Auto Finance Octo Smart",
-      madeAt: "SALT",
-      buildWith: ["AngularJs", "TypeScript", "SCSS"],
-      link: {
-        alias: "CIMB Niaga",
-        href: "https://tsurvey.id/",
-      },
-    },
-    {
-      year: 2024,
-      project: "CR Lending Octo Smart",
-      madeAt: "Cimb Niaga",
-      buildWith: ["AngularJs", "TypeScript", "SCSS"],
-      link: {
-        alias: "OCTO Smart by CIMB Niaga",
-        href: "https://tsurvey.id/",
-      },
-    },
-    {
-      year: 2024,
-      project: "Sun Linfe Octo Smart",
-      madeAt: "CIMB Niaga",
-      buildWith: ["AngularJs", "TypeScript", "SCSS"],
-      link: {
-        alias: "OCTO Smart by CIMB Niaga",
-        href: "https://play.google.com/store/apps/details?id=com.rm_tools&hl=id",
-      },
-    },
-  ];
 
   return (
     <Layout title="Archive | Fatih Muhamad Ridho">
@@ -172,7 +62,7 @@ const ArchivePage = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {CONST_PROJECTS.map((item, index) => (
               <tr
                 key={index}
                 className="border-b border-slate-300/10 last:border-none"
@@ -195,7 +85,13 @@ const ArchivePage = () => {
                     ))}
                   </ul>
                 </td>
-                <td className="py-4 pr-8 lg:table-cell">{item.link?.alias}</td>
+                {item?.link && (
+                  <td className="py-4 pr-8 lg:table-cell">
+                    <Link href={item.link.href} target="__blank">
+                      {item.link?.alias}
+                    </Link>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
