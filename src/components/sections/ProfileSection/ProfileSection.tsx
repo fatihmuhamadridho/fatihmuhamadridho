@@ -49,7 +49,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
             </Text>
 
             <Text mt={12} fz={20}>
-              Front End Engineer
+              Software Engineer
             </Text>
             <Text className="!text-ui-secondary" mt={16} maw={320} fz={16}>
               I build accessible, pixel-perfect digital experiences for the web.
