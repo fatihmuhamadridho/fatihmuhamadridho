@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { CONST_EXPERIENCES } from "@/constant";
+import { CONST_EXPERIENCES, CONST_PROJECTS } from "@/constant";
 
 const pageVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -159,48 +159,49 @@ const HomePage = () => {
               </Link>
             </section>
             <section ref={projectRef} className="mb-[144px]">
-              {[1, 2, 3, 4, 5].map((item) => (
-                <Box
-                  key={item}
-                  className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group"
-                >
-                  <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
-                  <Image
-                    className="col-span-2 z-10 rounded"
-                    src={"/images/tsurvey.png"}
-                    alt=""
-                    width={200}
-                    height={48}
-                    loading="lazy"
-                  />
-                  <Stack className="col-span-6 z-10" gap={12}>
-                    <Text className="!leading-tight">
-                      Frontend Engineer - CIMB Niaga
-                    </Text>
-                    <Text className="!text-ui-secondary" fz={14}>
-                      In the past, I&apos;ve had the opportunity to develop
-                      software across a variety of settings — from advertising
-                      agencies and large corporations to start-ups and small
-                      digital product studios. Additionally, I also released a
-                      comprehensive video course a few years ago, guiding
-                      learners through building a web app with the Spotify API.
-                    </Text>
-                    <Group>
-                      {[1, 2, 3, 4].map((badge) => (
-                        <Box
-                          key={badge}
-                          className="text-[#5eead4] bg-[#2dd4bf1a] rounded-full"
-                          py={2}
-                          px={12}
-                          fz={12}
-                        >
-                          JavaScript
-                        </Box>
-                      ))}
-                    </Group>
-                  </Stack>
-                </Box>
-              ))}
+              {CONST_PROJECTS.filter((data) => data.isFavorite)
+                .slice(0, 4)
+                .map((item, index) => {
+                  if (index < 4 && item.isFavorite)
+                    return (
+                      <Box
+                        key={index}
+                        className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group"
+                      >
+                        <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
+                        <Image
+                          className="col-span-2 z-10 rounded"
+                          src={item.image}
+                          alt={item.project}
+                          width={200}
+                          height={48}
+                          loading="lazy"
+                        />
+                        <Stack className="col-span-6 z-10" gap={12}>
+                          <Text className="!leading-tight">
+                            {item.role} - {item.madeAt}
+                          </Text>
+                          <Text className="!text-ui-secondary" fz={14}>
+                            {item.description}
+                          </Text>
+                          <Group>
+                            {item.buildWith.map((badge) => (
+                              <Box
+                                key={badge}
+                                className="text-[#5eead4] bg-[#2dd4bf1a] rounded-full"
+                                py={2}
+                                px={12}
+                                fz={12}
+                              >
+                                {badge}
+                              </Box>
+                            ))}
+                          </Group>
+                        </Stack>
+                      </Box>
+                    );
+                  return null;
+                })}
               <Link href={"/archive"}>
                 <Box className="cursor-pointer hover:text-[#5eead4]">
                   View Full Project Archive

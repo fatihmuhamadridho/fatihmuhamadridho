@@ -6,6 +6,16 @@ const nextConfig: NextConfig = {
   sassOptions: {
     silenceDeprecations: ["legacy-js-api"],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "dummyimage.com",
+        port: "",
+        pathname: "**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
