@@ -160,10 +160,10 @@ const ArchivePage = () => {
               <th className="py-4 pr-8 text-sm font-semibold table-cell">
                 Project
               </th>
-              <th className="py-4 pr-8 text-sm font-semibold table-cell">
+              <th className="hidden py-4 pr-8 text-sm font-semibold lg:table-cell">
                 Made at
               </th>
-              <th className="py-4 pr-8 text-sm font-semibold table-cell">
+              <th className="hidden py-4 pr-8 text-sm font-semibold lg:table-cell">
                 Build with
               </th>
               <th className="py-4 pr-8 text-sm font-semibold table-cell">
@@ -181,8 +181,10 @@ const ArchivePage = () => {
                 <td className="py-4 pr-8 leading-snug table-cell">
                   {item.project}
                 </td>
-                <td className="py-4 pr-8 table-cell">{item.madeAt}</td>
-                <td className="py-4 pr-8 table-cell">
+                <td className="hidden py-4 pr-8 lg:table-cell">
+                  {item.madeAt}
+                </td>
+                <td className="hidden py-4 pr-8 lg:table-cell">
                   <ul className="w-full flex flex-wrap -translate-y-1.5">
                     {item.buildWith.map((badge, index) => (
                       <li key={index} className="my-1 mr-1.5">
@@ -193,7 +195,7 @@ const ArchivePage = () => {
                     ))}
                   </ul>
                 </td>
-                <td className="py-4 pr-8 table-cell">{item.link?.alias}</td>
+                <td className="py-4 pr-8 lg:table-cell">{item.link?.alias}</td>
               </tr>
             ))}
           </tbody>

@@ -37,7 +37,10 @@ const ProfileSection = (props: ProfileSectionProps) => {
   ];
 
   return (
-    <Stack className="sticky top-0 py-[96px] w-1/2 max-h-screen" gap={4}>
+    <Stack
+      className="relative top-0 pt-[96px] w-full max-h-screen lg:sticky lg:w-1/2 lg:py-[96px]"
+      gap={4}
+    >
       <Flex h={"100%"} direction={"column"} justify={"space-between"}>
         <Stack gap={64}>
           <Box>
@@ -52,7 +55,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
               I build accessible, pixel-perfect digital experiences for the web.
             </Text>
           </Box>
-          <Box>
+          <Box visibleFrom="md">
             {menuItems.map((item) => (
               <Group
                 key={item}
@@ -82,7 +85,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
             ))}
           </Box>
         </Stack>
-        <Group gap={20}>
+        <Group mt={{ base: 20, md: 0 }} gap={20}>
           {listMediaSocial.map((item) => (
             <Link key={item.href} href={item.href} target="__blank">
               <item.icon

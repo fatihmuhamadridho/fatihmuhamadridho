@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "motion/react";
+import { CONST_EXPERIENCES } from "@/constant";
 
 const pageVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -77,65 +78,66 @@ const HomePage = () => {
         variants={pageVariants}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <Flex gap={16}>
+        <Flex gap={16} direction={{ base: "column", md: "row" }}>
           <ProfileSection
             activeSection={activeSection}
             scrollToSection={scrollToSection}
           />
-          <Stack className="py-[96px] w-1/2">
+          <Stack className="pt-[30px] pb-[96px] w-full lg:w-1/2 lg:py-[96px]">
             <section ref={aboutRef} className="mb-[144px]">
               <Text>
-                I’m a developer passionate about crafting accessible,
-                pixel-perfect user interfaces that blend thoughtful design with
-                robust engineering. My favorite work lies at the intersection of
-                design and development, creating experiences that not only look
-                great but are meticulously built for performance and usability.
+                I’m a Frontend Developer passionate about creating responsive
+                and dynamic applications that provide seamless user experiences.
+                With expertise in modern technologies like React.js, Next.js,
+                and React Native, I enjoy building digital solutions that
+                combine thoughtful design with robust functionality. My
+                commitment to clean and maintainable code ensures every project
+                is both scalable and high-performing.
                 <br />
                 <br />
-                Currently, I&apos;m a Senior Front-End Engineer at Klaviyo,
-                specializing in accessibility. I contribute to the creation and
-                maintenance of UI components that power Klaviyo’s frontend,
-                ensuring our platform meets web accessibility standards and best
-                practices to deliver an inclusive user experience.
+                Throughout my career, I have worked on diverse projects ranging
+                from mobile applications to content management systems and
+                marketplace platforms. Collaborating with cross-functional
+                teams, I’ve delivered innovative features that meet user needs
+                while adhering to industry best practices. My experience
+                includes integrating REST APIs, implementing clean architecture
+                principles, and optimizing application performance for both web
+                and mobile environments.
                 <br />
                 <br />
-                In the past, I&apos;ve had the opportunity to develop software
-                across a variety of settings — from advertising agencies and
-                large corporations to start-ups and small digital product
-                studios. Additionally, I also released a comprehensive video
-                course a few years ago, guiding learners through building a web
-                app with the Spotify API.
+                I take pride in continuously developing my skills through
+                certifications and practical projects. By staying up-to-date
+                with the latest technologies, I ensure that my work reflects
+                modern development standards and trends. My expertise spans not
+                only technical implementation but also effective collaboration
+                and problem-solving, which are crucial for delivering impactful
+                results.
                 <br />
                 <br />
-                In my spare time, I’m usually climbing, reading, hanging out
-                with my wife and two cats, or running around Hyrule searching
-                for Korok seeds K o r o k s e e d s .
+                In my free time, I enjoy exploring new technologies and
+                contributing to open-source projects. I strive to create digital
+                experiences that are both functional and meaningful for users.
               </Text>
             </section>
             <section ref={experienceRef} className="mb-[144px]">
-              {[1, 2, 3, 4, 5].map((item) => (
+              {CONST_EXPERIENCES.map((item, index) => (
                 <Box
-                  key={item}
+                  key={index}
                   className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group"
                 >
                   <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
                   <Text className="col-span-2 !text-xs z-10" fw={500}>
-                    2024 - PRESENT
+                    {item.from} - {item.to}
                   </Text>
                   <Stack className="col-span-6 z-10" gap={12}>
                     <Text className="!leading-tight">
-                      Frontend Engineer - CIMB Niaga
+                      {item.role} - {item.company}
                     </Text>
                     <Text className="!text-ui-secondary" fz={14}>
-                      In the past, I&apos;ve had the opportunity to develop
-                      software across a variety of settings — from advertising
-                      agencies and large corporations to start-ups and small
-                      digital product studios. Additionally, I also released a
-                      comprehensive video course a few years ago, guiding
-                      learners through building a web app with the Spotify API.
+                      {item.description}
                     </Text>
                     <Group>
-                      {[1, 2, 3, 4].map((badge) => (
+                      {item.tools.map((badge) => (
                         <Box
                           key={badge}
                           className="text-[#5eead4] bg-[#2dd4bf1a] rounded-full"
@@ -143,7 +145,7 @@ const HomePage = () => {
                           px={12}
                           fz={12}
                         >
-                          JavaScript
+                          {badge}
                         </Box>
                       ))}
                     </Group>
@@ -206,7 +208,7 @@ const HomePage = () => {
               </Link>
             </section>
             <section>
-              <Text className="!text-ui-secondary" fz={14} maw={448}>
+              <Text className="!text-ui-secondary" fz={14} maw={{ lg: 448 }}>
                 Loosely designed in Figma and coded in Visual Studio Code by
                 yours truly. Built with Next.js and Tailwind CSS, deployed with
                 Vercel. All text is set in the Inter typeface.
