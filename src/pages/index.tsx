@@ -78,7 +78,7 @@ const HomePage = () => {
         variants={pageVariants}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <Flex gap={16} direction={{ base: "column", md: "row" }}>
+        <Flex gap={16} direction={{ base: "column", lg: "row" }}>
           <ProfileSection
             activeSection={activeSection}
             scrollToSection={scrollToSection}
