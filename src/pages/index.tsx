@@ -119,7 +119,7 @@ const HomePage = () => {
                   </Stack>
                 </Box>
               ))}
-              <Link href={'/resume.pdf'} target="__blank">
+              <Link href={'/Fatih Muhamad Ridho-resume.pdf'} target="__blank">
                 <Box className="cursor-pointer hover:text-[#5eead4]">View Full Resume</Box>
               </Link>
             </section>

@@ -1,5 +1,20 @@
 export const CONST_PROJECTS = [
   {
+    year: 2025,
+    project: 'Undangan Nikah Ku',
+    madeAt: 'SELF',
+    buildWith: ['NextJs', 'SWR', 'Motion', 'Tailwind CSS', 'MantineUI', 'TypeScript'],
+    link: {
+      alias: 'Undangan Nikah Ku',
+      href: 'https://undangan-nikah-ku.vercel.app/',
+    },
+    isFavorite: false,
+    role: 'Middle Frontend Engineer',
+    description:
+      'Contributed to the development and improvement of the FMC Dashboard user interface, including features such as reward management and broadcast management. This project utilized AngularJs, TypeScript, SCSS, and Tailwind CSS to ensure optimal performance and responsive design. Unit testing was conducted with Jest to maintain code quality.',
+    image: 'https://dummyimage.com/600x400/000/fff.png',
+  },
+  {
     year: 2024,
     project: 'FMC Dashboard',
     madeAt: 'SALT',
