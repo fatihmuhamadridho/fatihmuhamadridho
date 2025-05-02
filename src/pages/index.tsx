@@ -5,6 +5,8 @@ import Link from 'next/link';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { CONST_EXPERIENCES, CONST_PROJECTS } from '@/shared/constants';
+import { GetServerSidePropsContext } from 'next';
+import { useTranslations } from 'next-intl';
 
 const pageVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -12,7 +14,19 @@ const pageVariants = {
   exit: { opacity: 0, x: 50 },
 };
 
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  return {
+    props: {
+      messages: (await import(`../../public/locales/${context.locale}.json`)).default,
+    },
+  };
+}
+
 const HomePage = () => {
+  const tAbout = useTranslations('about');
+  const tResume = useTranslations('resume');
+  const tProject = useTranslations('project');
+  const tFooter = useTranslations('footer');
   const [activeSection, setActiveSection] = useState<string>('about');
   const aboutRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);
@@ -73,27 +87,7 @@ const HomePage = () => {
           <ProfileSection activeSection={activeSection} scrollToSection={scrollToSection} />
           <Stack className="pt-[30px] pb-[96px] w-full lg:w-1/2 lg:py-[96px]">
             <section ref={aboutRef} className="mb-[144px]">
-              <Text>
-                I’m a Frontend Developer passionate about creating responsive and dynamic applications that provide seamless user experiences. With
-                expertise in modern technologies like React.js, Next.js, and React Native, I enjoy building digital solutions that combine thoughtful
-                design with robust functionality. My commitment to clean and maintainable code ensures every project is both scalable and
-                high-performing.
-                <br />
-                <br />
-                Throughout my career, I have worked on diverse projects ranging from mobile applications to content management systems and marketplace
-                platforms. Collaborating with cross-functional teams, I’ve delivered innovative features that meet user needs while adhering to
-                industry best practices. My experience includes integrating REST APIs, implementing clean architecture principles, and optimizing
-                application performance for both web and mobile environments.
-                <br />
-                <br />
-                I take pride in continuously developing my skills through certifications and practical projects. By staying up-to-date with the latest
-                technologies, I ensure that my work reflects modern development standards and trends. My expertise spans not only technical
-                implementation but also effective collaboration and problem-solving, which are crucial for delivering impactful results.
-                <br />
-                <br />
-                In my free time, I enjoy exploring new technologies and contributing to open-source projects. I strive to create digital experiences
-                that are both functional and meaningful for users.
-              </Text>
+              <div dangerouslySetInnerHTML={{ __html: tAbout.raw('biodata') }} />
             </section>
             <section ref={experienceRef} className="mb-[144px]">
               {CONST_EXPERIENCES.map((item, index) => (
@@ -120,7 +114,7 @@ const HomePage = () => {
                 </Box>
               ))}
               <Link href={'/Fatih Muhamad Ridho-resume.pdf'} target="__blank">
-                <Box className="cursor-pointer hover:text-[#5eead4]">View Full Resume</Box>
+                <Box className="cursor-pointer hover:text-[#5eead4]">{tResume('button')}</Box>
               </Link>
             </section>
             <section ref={projectRef} className="mb-[144px]">
@@ -152,13 +146,12 @@ const HomePage = () => {
                   return null;
                 })}
               <Link href={'/archive'}>
-                <Box className="cursor-pointer hover:text-[#5eead4]">View Full Project Archive</Box>
+                <Box className="cursor-pointer hover:text-[#5eead4]">{tProject('button')}</Box>
               </Link>
             </section>
             <section>
               <Text className="!text-ui-secondary" fz={14} maw={{ lg: 448 }}>
-                Loosely designed in Figma and coded in Visual Studio Code by yours truly. Built with Next.js and Tailwind CSS, deployed with Vercel.
-                All text is set in the Inter typeface.
+                {tFooter('description')}
               </Text>
             </section>
           </Stack>

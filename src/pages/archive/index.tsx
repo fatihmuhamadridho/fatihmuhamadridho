@@ -31,7 +31,7 @@ const ArchivePage = () => {
           <Text>Fatih Muhamad Ridho</Text>
         </Group>
         <Text fz={48} fw={700}>
-          ArchivePage
+          Archive
         </Text>
         <table className="mt-12 w-full border-collapse text-left">
           <thead className="sticky top-0 backdrop-blur border-b border-slate-300/10 bg-slate-900/75">

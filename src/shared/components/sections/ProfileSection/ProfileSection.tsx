@@ -1,6 +1,8 @@
-import { Box, Divider, Flex, Group, Stack, Text } from '@mantine/core';
+import { Box, Divider, Flex, Group, Stack, Text, UnstyledButton } from '@mantine/core';
 import { Icon, IconBrandGithub, IconBrandInstagram, IconBrandLinkedin, IconProps } from '@tabler/icons-react';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 interface ProfileSectionProps {
@@ -15,6 +17,8 @@ interface listMediaSocialProps {
 
 const ProfileSection = (props: ProfileSectionProps) => {
   const { activeSection, scrollToSection } = props;
+  const router = useRouter();
+  const tData = useTranslations('profile');
   const menuItems = ['about', 'experience', 'project'];
   const listMediaSocial: listMediaSocialProps[] = [
     {
@@ -31,6 +35,11 @@ const ProfileSection = (props: ProfileSectionProps) => {
     },
   ];
 
+  const handleChangeLocale = (locale: 'id' | 'en') => {
+    document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000`;
+    router.push('/', undefined, { locale: locale, scroll: false });
+  };
+
   return (
     <Stack className="relative top-0 pt-[96px] w-full max-h-screen lg:sticky lg:w-1/2 lg:py-[96px]" gap={4}>
       <Flex h={'100%'} direction={'column'} justify={'space-between'}>
@@ -44,7 +53,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
               Software Engineer
             </Text>
             <Text className="!text-ui-secondary" mt={16} maw={320} fz={16}>
-              I build accessible, pixel-perfect digital experiences for the web.
+              {tData('short_about')}
             </Text>
           </Box>
           <Box visibleFrom="md">
@@ -60,19 +69,33 @@ const ProfileSection = (props: ProfileSectionProps) => {
                   fw={700}
                   className={`${activeSection === item ? '!text-white' : '!text-ui-secondary'} uppercase group-hover:!text-white`}
                 >
-                  {item}
+                  {tData('tabs.' + item)}
                 </Text>
               </Group>
             ))}
           </Box>
         </Stack>
-        <Group mt={{ base: 20, md: 0 }} gap={20}>
-          {listMediaSocial.map((item) => (
-            <Link key={item.href} href={item.href} target="__blank">
-              <item.icon className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
-            </Link>
-          ))}
-        </Group>
+        <Flex mt={{ base: 20, md: 0 }} gap={16} maw={270} justify={'space-between'}>
+          <Group gap={20}>
+            {listMediaSocial.map((item) => (
+              <Link key={item.href} href={item.href} target="__blank">
+                <item.icon className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
+              </Link>
+            ))}
+          </Group>
+          <Flex gap={16} align={'center'}>
+            {router?.locales?.map((item) => (
+              <React.Fragment key={item}>
+                <UnstyledButton
+                  className={`uppercase ${router.locale === item ? '!text-white' : '!text-gray-400'} hover:!text-white`}
+                  onClick={() => handleChangeLocale(item as 'id' | 'en')}
+                >
+                  {item}
+                </UnstyledButton>
+              </React.Fragment>
+            ))}
+          </Flex>
+        </Flex>
       </Flex>
     </Stack>
   );
