@@ -10,16 +10,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { createTheme, MantineProvider } from '@mantine/core';
 import localesEn from '../../public/locales/en.json';
 
-const theme = createTheme({
-  breakpoints: {
-    xs: '36em',
-    sm: '40em',
-    md: '48em',
-    lg: '64em',
-    xl: '80em',
-    '2xl': '96em',
-  },
-});
+const theme = createTheme({ breakpoints: { xs: '36em', sm: '40em', md: '48em', lg: '64em', xl: '80em', '2xl': '96em' } });
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
