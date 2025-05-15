@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { CONST_EXPERIENCES, CONST_PROJECTS } from '@/shared/constants';
-import { GetServerSidePropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
 import { useTranslations } from 'next-intl';
 
 const pageVariants = {
@@ -14,10 +14,10 @@ const pageVariants = {
   exit: { opacity: 0, x: 50 },
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
-      messages: (await import(`../../public/locales/${context.locale}.json`)).default,
+      messages: (await import(`@/locales/${locale}.json`)).default,
     },
   };
 }
