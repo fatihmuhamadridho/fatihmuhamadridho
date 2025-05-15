@@ -7,11 +7,7 @@ import { motion } from 'motion/react';
 import { CONST_PROJECTS } from '@/shared/constants';
 import Link from 'next/link';
 
-const pageVariants = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: -50 },
-};
+const pageVariants = { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -50 } };
 
 const ArchivePage = () => {
   const router = useRouter();
@@ -26,7 +22,7 @@ const ArchivePage = () => {
         variants={pageVariants}
         transition={{ duration: 0.3 }}
       >
-        <Group className="w-max cursor-pointer text-[#5eead4] group" gap={4} onClick={() => router.back()}>
+        <Group className="w-max cursor-pointer text-[#5eead4] group" gap={4} onClick={() => router.push('/')}>
           <IconArrowLeft className="transition-all group-hover:-translate-x-2" size={16} color="#5eead4" />
           <Text>Fatih Muhamad Ridho</Text>
         </Group>
