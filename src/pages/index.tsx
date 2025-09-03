@@ -7,6 +7,8 @@ import { motion } from 'motion/react';
 import { CONST_EXPERIENCES, CONST_PROJECTS } from '@/shared/constants';
 import { GetStaticPropsContext } from 'next';
 import { useTranslations } from 'next-intl';
+import { useUserProfile } from '@/hooks/user.hook';
+import { CONST_PROFILE_USERNAME } from '@/configs/base.config';
 
 const pageVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -28,6 +30,7 @@ const HomePage = () => {
   const tProject = useTranslations('project');
   const tFooter = useTranslations('footer');
   const [activeSection, setActiveSection] = useState<string>('about');
+  const { data: profileData } = useUserProfile({ u: CONST_PROFILE_USERNAME });
   const aboutRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);
   const projectRef = useRef<HTMLDivElement>(null);
@@ -82,9 +85,15 @@ const HomePage = () => {
 
   return (
     <Layout title="Fatih Muhamad Ridho">
-      <motion.div initial="hidden" animate="visible" exit="exit" variants={pageVariants} transition={{ duration: 0.5, ease: 'easeInOut' }}>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        variants={pageVariants}
+        transition={{ duration: 0.5, ease: 'easeInOut' }}
+      >
         <Flex gap={16} direction={{ base: 'column', lg: 'row' }}>
-          <ProfileSection activeSection={activeSection} scrollToSection={scrollToSection} />
+          <ProfileSection activeSection={activeSection} scrollToSection={scrollToSection} profileData={profileData} />
           <Stack className="pt-[30px] pb-[96px] w-full lg:w-1/2 lg:py-[96px]">
             <section ref={aboutRef} className="mb-[144px]">
               <div dangerouslySetInnerHTML={{ __html: tAbout.raw('biodata') }} />
@@ -123,9 +132,19 @@ const HomePage = () => {
                 .map((item, index) => {
                   if (index < 4 && item.isFavorite)
                     return (
-                      <Box key={index} className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group">
+                      <Box
+                        key={index}
+                        className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group"
+                      >
                         <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
-                        <Image className="col-span-2 z-10 rounded" src={item.image} alt={item.project} width={200} height={48} loading="lazy" />
+                        <Image
+                          className="col-span-2 z-10 rounded"
+                          src={item.image}
+                          alt={item.project}
+                          width={200}
+                          height={48}
+                          loading="lazy"
+                        />
                         <Stack className="col-span-6 z-10" gap={12}>
                           <Text className="!leading-tight">
                             {item.role} - {item.madeAt}
@@ -135,7 +154,13 @@ const HomePage = () => {
                           </Text>
                           <Group>
                             {item.buildWith.map((badge) => (
-                              <Box key={badge} className="text-[#5eead4] bg-[#2dd4bf1a] rounded-full" py={2} px={12} fz={12}>
+                              <Box
+                                key={badge}
+                                className="text-[#5eead4] bg-[#2dd4bf1a] rounded-full"
+                                py={2}
+                                px={12}
+                                fz={12}
+                              >
                                 {badge}
                               </Box>
                             ))}

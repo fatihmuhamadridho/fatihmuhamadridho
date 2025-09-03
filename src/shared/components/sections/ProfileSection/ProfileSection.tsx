@@ -1,3 +1,4 @@
+import { User } from '@/core/domains/models/user.model';
 import { Box, Divider, Flex, Group, Stack, Text, UnstyledButton } from '@mantine/core';
 import { Icon, IconBrandGithub, IconBrandInstagram, IconBrandLinkedin, IconProps } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
@@ -8,6 +9,7 @@ import React from 'react';
 interface ProfileSectionProps {
   activeSection: string;
   scrollToSection: (sectionName: string) => void;
+  profileData?: User;
 }
 
 interface listMediaSocialProps {
@@ -16,7 +18,7 @@ interface listMediaSocialProps {
 }
 
 const ProfileSection = (props: ProfileSectionProps) => {
-  const { activeSection, scrollToSection } = props;
+  const { activeSection, scrollToSection, profileData } = props;
   const router = useRouter();
   const tData = useTranslations('profile');
   const menuItems = ['about', 'experience', 'project'];
@@ -46,19 +48,25 @@ const ProfileSection = (props: ProfileSectionProps) => {
         <Stack gap={64}>
           <Box>
             <Text fz={48} fw={700} lh={1}>
-              Fatih M. Ridho
+              {profileData?.fullname}
             </Text>
 
             <Text mt={12} fz={20}>
-              Software Engineer
+              {profileData?.detail.role}
             </Text>
             <Text className="!text-ui-secondary" mt={16} maw={320} fz={16}>
-              {tData('short_about')}
+              {/* {tData('short_about')} */}
+              {profileData?.detail.short_description}
             </Text>
           </Box>
           <Box visibleFrom="md">
             {menuItems.map((item) => (
-              <Group key={item} className="max-w-max group cursor-pointer" py={12} onClick={() => scrollToSection(item)}>
+              <Group
+                key={item}
+                className="max-w-max group cursor-pointer"
+                py={12}
+                onClick={() => scrollToSection(item)}
+              >
                 <Divider
                   className={`${activeSection === item ? 'w-[64px]' : 'w-[32px]'} transition-all group-hover:!w-[64px] group-hover:!border-[white]`}
                   color="#94a3b8"
