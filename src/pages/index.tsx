@@ -20,12 +20,13 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
       messages: (await import(`@/locales/${locale}.json`)).default,
+      locale: locale,
     },
   };
 }
 
-const HomePage = () => {
-  const tAbout = useTranslations('about');
+const HomePage = (props: any) => {
+  const { locale = 'id' } = props;
   const tResume = useTranslations('resume');
   const tProject = useTranslations('project');
   const tFooter = useTranslations('footer');
@@ -93,10 +94,19 @@ const HomePage = () => {
         transition={{ duration: 0.5, ease: 'easeInOut' }}
       >
         <Flex gap={16} direction={{ base: 'column', lg: 'row' }}>
-          <ProfileSection activeSection={activeSection} scrollToSection={scrollToSection} profileData={profileData} />
+          <ProfileSection
+            activeSection={activeSection}
+            scrollToSection={scrollToSection}
+            profileData={profileData}
+            locale={locale}
+          />
           <Stack className="pt-[30px] pb-[96px] w-full lg:w-1/2 lg:py-[96px]">
             <section ref={aboutRef} className="mb-[144px]">
-              <div dangerouslySetInnerHTML={{ __html: tAbout.raw('biodata') }} />
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: profileData?.detail.long_description[locale] || '',
+                }}
+              />
             </section>
             <section ref={experienceRef} className="mb-[144px]">
               {CONST_EXPERIENCES.map((item, index) => (

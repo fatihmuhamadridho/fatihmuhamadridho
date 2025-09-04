@@ -10,6 +10,7 @@ interface ProfileSectionProps {
   activeSection: string;
   scrollToSection: (sectionName: string) => void;
   profileData?: User;
+  locale?: string;
 }
 
 interface listMediaSocialProps {
@@ -18,7 +19,7 @@ interface listMediaSocialProps {
 }
 
 const ProfileSection = (props: ProfileSectionProps) => {
-  const { activeSection, scrollToSection, profileData } = props;
+  const { activeSection, scrollToSection, profileData, locale = 'id' } = props;
   const router = useRouter();
   const tData = useTranslations('profile');
   const menuItems = ['about', 'experience', 'project'];
@@ -56,7 +57,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
             </Text>
             <Text className="!text-ui-secondary" mt={16} maw={320} fz={16}>
               {/* {tData('short_about')} */}
-              {profileData?.detail.short_description}
+              {profileData?.detail.short_description[locale]}
             </Text>
           </Box>
           <Box visibleFrom="md">

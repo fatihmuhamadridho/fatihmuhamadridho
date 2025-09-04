@@ -3,6 +3,10 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
+  devIndicators: false,
+  env: {
+    ENABLE_ENCODING: process.env.ENABLE_ENCODING,
+  },
   sassOptions: {
     silenceDeprecations: ['legacy-js-api'],
   },
