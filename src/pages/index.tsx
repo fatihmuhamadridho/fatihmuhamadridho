@@ -104,7 +104,7 @@ const HomePage = (props: any) => {
             <section ref={aboutRef} className="mb-[144px]">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: '',
+                  __html: profileData?.data?.detail.long_description[locale] || '',
                 }}
               />
             </section>

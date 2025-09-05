@@ -13,34 +13,30 @@ interface ProfileSectionProps {
   locale?: string;
 }
 
-interface listMediaSocialProps {
-  href: string;
-  icon: React.ForwardRefExoticComponent<IconProps & React.RefAttributes<Icon>>;
-}
-
 const ProfileSection = (props: ProfileSectionProps) => {
   const { activeSection, scrollToSection, profileData, locale = 'id' } = props;
   const router = useRouter();
   const tData = useTranslations('profile');
   const menuItems = ['about', 'experience', 'project'];
-  const listMediaSocial: listMediaSocialProps[] = [
-    {
-      href: 'https://github.com/fatihmuhamadridho',
-      icon: IconBrandGithub,
-    },
-    {
-      href: 'https://www.linkedin.com/in/fatihmuhamadridho/',
-      icon: IconBrandLinkedin,
-    },
-    {
-      href: 'https://www.instagram.com/fatihmuhamadridho/',
-      icon: IconBrandInstagram,
-    },
-  ];
 
   const handleChangeLocale = (locale: 'id' | 'en') => {
     document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000`;
     router.push('/', undefined, { locale: locale, scroll: false });
+  };
+
+  const mappingSocialMedia = (value: string) => {
+    switch (value) {
+      case 'linkedin':
+        return (
+          <IconBrandLinkedin className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
+        );
+      case 'instagram':
+        return (
+          <IconBrandInstagram className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
+        );
+      default:
+        return <IconBrandGithub className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />;
+    }
   };
 
   return (
@@ -56,7 +52,6 @@ const ProfileSection = (props: ProfileSectionProps) => {
               {profileData?.detail.role}
             </Text>
             <Text className="!text-ui-secondary" mt={16} maw={320} fz={16}>
-              {/* {tData('short_about')} */}
               {profileData?.detail.short_description[locale]}
             </Text>
           </Box>
@@ -86,9 +81,9 @@ const ProfileSection = (props: ProfileSectionProps) => {
         </Stack>
         <Flex mt={{ base: 20, md: 0 }} gap={16} maw={270} justify={'space-between'}>
           <Group gap={20}>
-            {listMediaSocial.map((item) => (
-              <Link key={item.href} href={item.href} target="__blank">
-                <item.icon className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
+            {profileData?.detail.social_media.map((item) => (
+              <Link key={item.url} href={item.url} target="__blank">
+                {mappingSocialMedia(item.icon)}
               </Link>
             ))}
           </Group>
