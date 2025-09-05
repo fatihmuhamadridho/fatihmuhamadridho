@@ -15,6 +15,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .setHeader(...BASE_RESPONSE_CONTENT_TYPE)
       .send(response);
   } catch (error: any) {
-    res.status(404).json(error);
+    const statusCode = error.statusCode;
+    delete error.statusCode;
+    res.status(statusCode).json(error);
   }
 }

@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   env: {
     BASE_API_URL: process.env.BASE_API_URL,
+    CONST_PROFILE_USERNAME: process.env.CONST_PROFILE_USERNAME,
     ENABLE_ENCODING: process.env.ENABLE_ENCODING,
   },
   sassOptions: {

@@ -1,6 +1,5 @@
-import { User } from '../models/user.model';
-import { GetProfileUserQueryParams } from '../types/user.type';
+import { GetProfileUserQueryParams, GetProfileUserResponseDTO } from '../types/user.type';
 
 export interface UserFERepository {
-  getProfileUser(params?: GetProfileUserQueryParams): Promise<User>;
+  getProfileUser(params?: GetProfileUserQueryParams): Promise<GetProfileUserResponseDTO>;
 }

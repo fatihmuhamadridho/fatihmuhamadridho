@@ -17,22 +17,6 @@ export class User {
     },
   ) {}
 
-  static encodeValue(value: string): string {
-    if (ENABLE_ENCODING) {
-      return Buffer.from(Buffer.from(value).toString('base64')).toString('hex');
-    } else {
-      return value;
-    }
-  }
-
-  static decodeValue(value: string): string {
-    if (ENABLE_ENCODING) {
-      return Buffer.from(Buffer.from(value, 'hex').toString('utf-8'), 'base64').toString('utf-8');
-    } else {
-      return value;
-    }
-  }
-
   static toModelData(data: UserModelData): User {
     const id = data.id || '',
       username = data.username || '',
@@ -49,7 +33,7 @@ export class User {
     return new User(id, username, email, password, fullname, phone, detail);
   }
 
-  static toTupleData(data: User): string {
+  static toTupleData(data: User): any {
     const response = [
       data.id,
       data.username,
@@ -64,14 +48,6 @@ export class User {
         [data.detail.social_media.map((item) => [item.icon, item.url])],
       ],
     ];
-    return ")]}',\n" + JSON.stringify(response);
-  }
-
-  static fromTupleData(response: any) {
-    if (!String(response).startsWith(")]}',")) {
-      throw new Error('Something went wrong!');
-    }
-    const rawData = JSON.parse(String(response).slice(5));
-    return rawData;
+    return response;
   }
 }

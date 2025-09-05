@@ -1,7 +1,7 @@
 import { UserFERepositoryImpl } from '@/core/infrastructures/repositories/user.fe.repository.impl';
 import { GetProfileUserUseCase } from '../usecases/user.fe.usecase';
 import { HttpService } from '@/core/infrastructures/services/http.service';
-import { GetProfileUserQueryParams } from '../types/user.type';
+import { GetProfileUserQueryParams, GetProfileUserResponseDTO } from '../types/user.type';
 
 export class UserFEController {
   private getProfileUserUseCase: GetProfileUserUseCase;
@@ -11,7 +11,7 @@ export class UserFEController {
     this.getProfileUserUseCase = new GetProfileUserUseCase(impl);
   }
 
-  getProfileUser(params?: GetProfileUserQueryParams) {
+  getProfileUser(params?: GetProfileUserQueryParams): Promise<GetProfileUserResponseDTO> {
     return this.getProfileUserUseCase.execute(params);
   }
 }
