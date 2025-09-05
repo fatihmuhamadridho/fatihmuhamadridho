@@ -9,6 +9,7 @@ import { GetStaticPropsContext } from 'next';
 import { useTranslations } from 'next-intl';
 import { useProfileUser } from '@/hooks/user.hook';
 import { CONST_PROFILE_USERNAME } from '@/configs/base.config';
+import { NextSeo } from 'next-seo';
 
 const pageVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -85,7 +86,19 @@ const HomePage = (props: any) => {
   }, [sections]);
 
   return (
-    <Layout title="Fatih Muhamad Ridho">
+    <Layout>
+      <NextSeo
+        title="Fatih Muhamad Ridho"
+        description="Portofolio resmi Fatih Muhamad Ridho, seorang Web Developer dan Software Engineer berpengalaman di bidang Next.js, React, TypeScript, dan arsitektur aplikasi modern. Temukan project, pengalaman, dan artikel terbaru di sini."
+        canonical="https://fatihmuhamadridho.vercel.app/"
+        openGraph={{
+          url: 'https://fatihmuhamadridho.vercel.app/',
+          title: 'Fatih Muhamad Ridho',
+          description:
+            'Website resmi Fatih Muhamad Ridho. Seorang Web Developer dan Software Engineer berfokus pada Next.js, React, TypeScript, dan solusi digital modern.',
+          siteName: 'Fatih Muhamad Ridho',
+        }}
+      />
       <motion.div
         initial="hidden"
         animate="visible"

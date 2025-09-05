@@ -6,6 +6,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { CONST_PROJECTS } from '@/shared/constants';
 import Link from 'next/link';
+import { NextSeo } from 'next-seo';
 
 const pageVariants = { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -50 } };
 
@@ -13,7 +14,19 @@ const ArchivePage = () => {
   const router = useRouter();
 
   return (
-    <Layout title="Archive | Fatih Muhamad Ridho">
+    <Layout>
+      <NextSeo
+        title="Archive | Fatih Muhamad Ridho"
+        description="Portofolio resmi Fatih Muhamad Ridho, seorang Web Developer dan Software Engineer berpengalaman di bidang Next.js, React, TypeScript, dan arsitektur aplikasi modern. Temukan project, pengalaman, dan artikel terbaru di sini."
+        canonical="https://fatihmuhamadridho.vercel.app/"
+        openGraph={{
+          url: 'https://fatihmuhamadridho.vercel.app/',
+          title: 'Fatih Muhamad Ridho',
+          description:
+            'Website resmi Fatih Muhamad Ridho. Seorang Web Developer dan Software Engineer berfokus pada Next.js, React, TypeScript, dan solusi digital modern.',
+          siteName: 'Fatih Muhamad Ridho',
+        }}
+      />
       <motion.div
         className="py-[96px] w-full max-w-7xl min-h-screen"
         initial="hidden"

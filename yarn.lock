@@ -4858,6 +4858,11 @@ next-intl@^4.1.0:
     negotiator "^1.0.0"
     use-intl "^4.1.0"
 
+next-seo@^6.8.0:
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-6.8.0.tgz#0265ec75ad5ddca3d2a11dd86534a15065043651"
+  integrity sha512-zcxaV67PFXCSf8e6SXxbxPaOTgc8St/esxfsYXfQXMM24UESUVSXFm7f2A9HMkAwa0Gqn4s64HxYZAGfdF4Vhg==
+
 next@15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/next/-/next-15.3.2.tgz#97510629e38a058dd154782a5c2ec9c9ab94d0d8"

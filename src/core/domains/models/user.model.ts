@@ -1,4 +1,3 @@
-import { ENABLE_ENCODING } from '@/configs/base.config';
 import { UserModelData } from '../types/user.type';
 
 export class User {
