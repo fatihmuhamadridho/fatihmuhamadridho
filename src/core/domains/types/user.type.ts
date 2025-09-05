@@ -1,26 +1,40 @@
-export type UserQueryParams = {
-  u?: string; // username
-  al?: string; // en-US | id-ID, ini niatnya mao ditaro di header sih as accept-language
+export type FindOneProfileQueryParams = {
+  u?: string;
 };
 
-export type UserProfileWebResponseItem = [
-  // obj:data
-  string, // id
-  string, // fullname
-  [
-    // obj:detail
-    string, // lang:role
-    string[], // lang:short_description
-    string[], // lang:long_description
-    [
-      // array:social_media
-      string, // icon
-      string, // url
-    ][],
-  ],
-];
+export type GetProfileUserQueryParams = FindOneProfileQueryParams;
 
-export type UserProfileWebResponseDTO = [
-  boolean, // status
-  UserProfileWebResponseItem,
-];
+export type UserModelData = {
+  id: string;
+  username: string;
+  email: string;
+  password: string;
+  fullname: string;
+  phone: string;
+  detail: {
+    role: string;
+    short_description: Record<string, string>;
+    long_description: Record<string, string>;
+    social_media: Array<{ icon: string; url: string }>;
+  };
+};
+
+export interface User {
+  detail: FindOneProfileDatabaseItemDetailResponse;
+  user_id: string;
+  username: string;
+  email: string;
+  password: string;
+  fullname: string;
+  phone: string;
+}
+
+export interface FindOneProfileDatabaseItemDetailResponse {
+  role: string;
+  short_description: string;
+  long_description: string;
+  social_media: Array<{
+    icon: string;
+    url: string;
+  }>;
+}

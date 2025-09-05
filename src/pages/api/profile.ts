@@ -1,18 +1,20 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { BASE_RESPONSE_CONTENT_TYPE } from '@/configs/base.config';
-import { UserController } from '@/core/domains/controllers/user.controller';
-import { UserRepositoryBackendImpl } from '@/core/infrastructures/repositories/user.repository.impl';
+import { UserBEController } from '@/core/domains/controllers/user.be.controller';
+import { FindOneProfileQueryParams } from '@/core/domains/types/user.type';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const userRepositoryBackendImpl = new UserRepositoryBackendImpl();
-const userController = new UserController(userRepositoryBackendImpl);
+const userBEController = new UserBEController();
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const response = await userController.getProfileWeb();
+    const query = req.query as FindOneProfileQueryParams;
+    const response = await userBEController.findOneProfile({ u: query?.u });
     res
       .status(200)
       .setHeader(...BASE_RESPONSE_CONTENT_TYPE)
       .send(response);
-  } catch (Errro) {}
+  } catch (error: any) {
+    res.status(404).json(error);
+  }
 }

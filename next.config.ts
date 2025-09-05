@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   devIndicators: false,
   env: {
+    BASE_API_URL: process.env.BASE_API_URL,
     ENABLE_ENCODING: process.env.ENABLE_ENCODING,
   },
   sassOptions: {

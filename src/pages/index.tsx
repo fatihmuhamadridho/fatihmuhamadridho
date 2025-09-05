@@ -7,8 +7,7 @@ import { motion } from 'motion/react';
 import { CONST_EXPERIENCES, CONST_PROJECTS } from '@/shared/constants';
 import { GetStaticPropsContext } from 'next';
 import { useTranslations } from 'next-intl';
-import { useUserProfile } from '@/hooks/user.hook';
-import { CONST_PROFILE_USERNAME } from '@/configs/base.config';
+import { UserFEController } from '@/core/domains/controllers/user.fe.controller';
 
 const pageVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -31,7 +30,6 @@ const HomePage = (props: any) => {
   const tProject = useTranslations('project');
   const tFooter = useTranslations('footer');
   const [activeSection, setActiveSection] = useState<string>('about');
-  const { data: profileData } = useUserProfile({ u: CONST_PROFILE_USERNAME });
   const aboutRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);
   const projectRef = useRef<HTMLDivElement>(null);
@@ -55,6 +53,19 @@ const HomePage = (props: any) => {
       });
     }
   };
+
+  useEffect(() => {
+    async function testingFetching() {
+      try {
+        const userFEController = new UserFEController();
+        const response = await userFEController.getProfileUser({ u: 'test2' });
+        console.log({ response });
+      } catch (error: unknown) {
+        console.log({ error });
+      }
+    }
+    testingFetching();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -97,14 +108,14 @@ const HomePage = (props: any) => {
           <ProfileSection
             activeSection={activeSection}
             scrollToSection={scrollToSection}
-            profileData={profileData}
+            // profileData={profileData}
             locale={locale}
           />
           <Stack className="pt-[30px] pb-[96px] w-full lg:w-1/2 lg:py-[96px]">
             <section ref={aboutRef} className="mb-[144px]">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: profileData?.detail.long_description[locale] || '',
+                  __html: '',
                 }}
               />
             </section>

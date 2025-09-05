@@ -12,7 +12,7 @@ export type Meta = {
 };
 
 export type BaseResponse<D = any, M = Meta> = {
-  status?: Status;
+  status?: boolean;
   data: D | null;
   meta?: M | null;
 };
