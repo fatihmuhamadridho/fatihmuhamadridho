@@ -1,7 +1,6 @@
 import { Layout } from '@/shared/components';
 import { Group, Text } from '@mantine/core';
 import { IconArrowLeft } from '@tabler/icons-react';
-import { useRouter } from 'next/router';
 import React from 'react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
@@ -38,7 +37,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 
 const ArchivePage = (props: any) => {
   const { locale = 'id' } = props;
-  const router = useRouter();
   const { data: profileData } = useProfileUser({ u: CONST_PROFILE_USERNAME });
 
   return (
