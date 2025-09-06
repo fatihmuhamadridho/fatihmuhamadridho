@@ -11,7 +11,9 @@ const Layout = (props: LayoutProps) => {
   return (
     <Center className="h-full bg-ui-primary">
       <Cursor />
-      <Box className="px-[24px] w-full max-w-7xl min-h-screen md:px-[48px] lg:px-[96px]">{children}</Box>
+      <Box className="px-[24px] w-full max-w-7xl min-h-screen transition-all md:px-[48px] lg:px-[6.7vw]">
+        {children}
+      </Box>
     </Center>
   );
 };

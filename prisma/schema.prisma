@@ -15,18 +15,57 @@ datasource db {
 }
 
 model User {
-  user_id  String @id @default(auto()) @map("_id") @db.ObjectId
-  username String @unique
-  email    String @unique
-  password String
-  fullname String
-  phone    String @unique
-  detail   Detail
+  user_id    String       @id @default(auto()) @map("_id") @db.ObjectId
+  username   String       @unique
+  email      String       @unique
+  password   String
+  fullname   String
+  phone      String       @unique
+  detail     UserDetail
+  Experience Experience[]
+  Project    Project[]    @relation(fields: [project_id], references: [project_id])
+  project_id String[]     @db.ObjectId
 }
 
-type Detail {
+type UserDetail {
   role              String
   short_description Json
   long_description  Json
   social_media      Json
+}
+
+model Experience {
+  experience_id String         @id @default(auto()) @map("_id") @db.ObjectId
+  role          String
+  company       String
+  type          ExperienceType
+  description   String
+  tools         String[]
+  start_date    String
+  end_date      String
+  is_present    Boolean
+  is_show       Boolean
+  User          User?          @relation(fields: [user_id], references: [user_id])
+  user_id       String?        @db.ObjectId
+}
+
+enum ExperienceType {
+  internship
+  contract
+  fulltime
+}
+
+model Project {
+  project_id  String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  role        String
+  description String
+  thumbnail   String
+  tools       String[]
+  made_at     String
+  links       Json?
+  is_favorite Boolean
+  date        String
+  User        User[]   @relation(fields: [user_id], references: [user_id])
+  user_id     String[] @db.ObjectId
 }

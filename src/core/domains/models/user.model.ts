@@ -1,4 +1,5 @@
 import { UserModelData } from '../types/user.type';
+import { Experience } from './experience.model';
 
 export class User {
   constructor(
@@ -14,6 +15,7 @@ export class User {
       long_description: Record<string, string>;
       social_media: Array<{ icon: string; url: string }>;
     },
+    public experiences?: Experience[],
   ) {}
 
   static toModelData(data: UserModelData): User {
@@ -28,8 +30,9 @@ export class User {
         short_description: { id: '' },
         long_description: { id: '' },
         social_media: '',
-      };
-    return new User(id, username, email, password, fullname, phone, detail);
+      },
+      experiences = (data.experiences as Experience[]) || [];
+    return new User(id, username, email, password, fullname, phone, detail, experiences);
   }
 
   static toTupleData(data: User): any {
@@ -45,6 +48,20 @@ export class User {
         [data.detail.short_description.id, data.detail.short_description.en],
         [data.detail.long_description.id, data.detail.long_description.en],
         [data.detail.social_media.map((item) => [item.icon, item.url])],
+      ],
+      [
+        data.experiences?.map((item) => [
+          item.id,
+          item.company,
+          item.role,
+          item.type,
+          item.description,
+          item.tools,
+          item.start_date,
+          item.end_date,
+          item.is_present,
+          item.is_show,
+        ]),
       ],
     ];
     return response;
