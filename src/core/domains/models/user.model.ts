@@ -1,6 +1,7 @@
 import { UserModelData } from '../types/user.type';
 import { Experience } from './experience.model';
 import { Project } from './project.model';
+import { Security } from './security.model';
 import { TupleMapper } from './tupleMapper.model';
 
 export class User {
@@ -21,33 +22,60 @@ export class User {
     public projects?: Project[],
   ) {}
 
-  static userTupleMapper = new TupleMapper<User>([
-    'id',
-    'username',
-    'email',
-    'password',
-    'fullname',
-    'phone',
+  static userTupleMapper = new TupleMapper<User>(
     [
-      'detail',
+      'id',
+      'username',
+      'email',
+      'password',
+      'fullname',
+      'phone',
       [
-        'role',
-        ['short_description', ['id', 'en']],
-        ['long_description', ['id', 'en']],
-        ['social_media', ['icon', 'url'], { isArray: true }],
+        'detail',
+        [
+          'role',
+          ['short_description', ['id', 'en']],
+          ['long_description', ['id', 'en']],
+          ['social_media', ['icon', 'url'], { isArray: true }],
+        ],
+      ],
+      [
+        'experiences',
+        [
+          'id',
+          'company',
+          'role',
+          'type',
+          'description',
+          ['tools', { isArrayOfString: true }],
+          'start_date',
+          'end_date',
+          'is_present',
+          'is_show',
+        ],
+        { isArray: true },
+      ],
+      [
+        'projects',
+        [
+          'id',
+          'title',
+          'description',
+          'role',
+          'thumbnail',
+          ['tools', { isArrayOfString: true }],
+          'made_at',
+          'date',
+          ['link', ['title', 'url']],
+        ],
+        { isArray: true },
       ],
     ],
-    [
-      'experiences',
-      ['id', 'company', 'role', 'type', 'description', 'tools', 'start_date', 'end_date', 'is_present', 'is_show'],
-      { isArray: true },
-    ],
-    [
-      'projects',
-      ['id', 'title', 'description', 'role', 'thumbnail', 'tools', 'made_at', 'date', ['link', ['title', 'url']]],
-      { isArray: true },
-    ],
-  ]);
+    {
+      beforeWrite: (val) => (typeof val === 'string' ? Security.encodeValue(val) : val),
+      afterRead: (val) => (typeof val === 'string' ? Security.decodeValue(val) : val),
+    },
+  );
 
   static toModelData(data: UserModelData): User {
     const id = data.id || '',
@@ -69,46 +97,5 @@ export class User {
           link: item.link?.title || item.link?.url ? item.link : undefined,
         })) || [];
     return new User(id, username, email, password, fullname, phone, detail, experiences, projects);
-  }
-
-  static toTupleData(data: User): any {
-    const response = [
-      data.id,
-      data.username,
-      data.email,
-      data.password,
-      data.fullname,
-      data.phone,
-      [
-        data.detail.role,
-        [data.detail.short_description.id, data.detail.short_description.en],
-        [data.detail.long_description.id, data.detail.long_description.en],
-        [data.detail.social_media.map((item) => [item.icon, item.url])],
-      ],
-      data.experiences?.map((item) => [
-        item.id,
-        item.company,
-        item.role,
-        item.type,
-        item.description,
-        item.tools,
-        item.start_date,
-        item.end_date,
-        item.is_present,
-        item.is_show,
-      ]),
-      data.projects?.map((item) => [
-        item.id,
-        item.title,
-        item.description,
-        item.role,
-        item.thumbnail,
-        item.tools,
-        item.made_at,
-        item.date,
-        [item.link?.title, item.link?.url],
-      ]),
-    ];
-    return response;
   }
 }
