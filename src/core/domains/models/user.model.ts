@@ -46,7 +46,7 @@ export class User {
           'company',
           'role',
           'type',
-          'description',
+          ['description', ['id', 'en']],
           ['tools', { isArrayOfString: true }],
           'start_date',
           'end_date',
@@ -60,7 +60,7 @@ export class User {
         [
           'id',
           'title',
-          'description',
+          ['description', ['id', 'en']],
           'role',
           'thumbnail',
           ['tools', { isArrayOfString: true }],
