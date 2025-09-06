@@ -1,5 +1,5 @@
 import { User } from '@/core/domains/models/user.model';
-import { Box, Divider, Flex, Group, Stack, Text, UnstyledButton } from '@mantine/core';
+import { Box, Divider, Flex, Group, Skeleton, Stack, Text, UnstyledButton } from '@mantine/core';
 import { IconBrandGithub, IconBrandInstagram, IconBrandLinkedin, IconBrandWhatsapp } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
@@ -11,10 +11,11 @@ interface ProfileSectionProps {
   scrollToSection: (sectionName: string) => void;
   profileData?: User;
   locale?: string;
+  isLoading?: boolean;
 }
 
 const ProfileSection = (props: ProfileSectionProps) => {
-  const { activeSection, scrollToSection, profileData, locale = 'id' } = props;
+  const { activeSection, scrollToSection, profileData, locale = 'id', isLoading = false } = props;
   const router = useRouter();
   const tData = useTranslations('profile');
   const menuItems = ['about', 'experience', 'project'];
@@ -48,16 +49,27 @@ const ProfileSection = (props: ProfileSectionProps) => {
       <Flex h={'100%'} direction={'column'} justify={'space-between'}>
         <Stack gap={64}>
           <Box>
-            <Text fz={48} fw={700} lh={1}>
-              {profileData?.fullname}
-            </Text>
-
-            <Text mt={12} fz={20}>
-              {profileData?.detail.role}
-            </Text>
-            <Text className="!text-ui-secondary" mt={16} maw={320} fz={16}>
-              {profileData?.detail.short_description[locale]}
-            </Text>
+            {isLoading ? (
+              <Skeleton w={'100%'} maw={350} h={48} radius={'md'} />
+            ) : (
+              <Text fz={48} fw={700} lh={1}>
+                {profileData?.fullname}
+              </Text>
+            )}
+            {isLoading ? (
+              <Skeleton mt={12} w={'100%'} maw={180} h={31} radius={'md'} />
+            ) : (
+              <Text mt={12} fz={20}>
+                {profileData?.detail.role}
+              </Text>
+            )}
+            {isLoading ? (
+              <Skeleton mt={12} w={'100%'} maw={320} h={75} radius={'md'} />
+            ) : (
+              <Text className="!text-ui-secondary" mt={16} maw={320} fz={16}>
+                {profileData?.detail.short_description[locale]}
+              </Text>
+            )}
           </Box>
           <Box visibleFrom="md">
             {menuItems.map((item) => (
@@ -85,11 +97,13 @@ const ProfileSection = (props: ProfileSectionProps) => {
         </Stack>
         <Flex mt={{ base: 20, md: 0 }} gap={16} maw={300} justify={'space-between'}>
           <Group gap={20}>
-            {profileData?.detail.social_media.map((item) => (
-              <Link key={item.url} href={item.url} target="__blank">
-                {mappingSocialMedia(item.icon)}
-              </Link>
-            ))}
+            {isLoading
+              ? Array.from({ length: 3 }).map((item, index) => <Skeleton key={index} w={28} h={28} radius={'md'} />)
+              : profileData?.detail.social_media.map((item) => (
+                  <Link key={item.url} href={item.url} target="__blank">
+                    {mappingSocialMedia(item.icon)}
+                  </Link>
+                ))}
           </Group>
           <Flex gap={16} align={'center'}>
             {router?.locales?.map((item) => (
