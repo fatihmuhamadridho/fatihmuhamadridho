@@ -63,7 +63,7 @@ export class UserBERepositoryImpl implements UserBERepository {
         })),
       };
       const dataModel = User.toModelData(encodeData);
-      const response = User.toTupleData(dataModel);
+      const response = User.userTupleMapper.toTuple(dataModel);
       return Security.toXXSIProtection([true, response]);
     } catch (err: unknown) {
       const error = err as PrismaClientKnownRequestError;
@@ -77,7 +77,7 @@ export class UserBERepositoryImpl implements UserBERepository {
       throw {
         statusCode: 500,
         code: error?.code || 'SERVER_ERROR',
-        message: error?.meta?.cause || 'Something went wrong!',
+        message: error?.meta?.cause || error?.message || 'Something went wrong!',
       };
     }
   }

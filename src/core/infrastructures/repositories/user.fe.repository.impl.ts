@@ -10,52 +10,53 @@ export class UserFERepositoryImpl implements UserFERepository {
     try {
       const response = await this.httpService.get('/profile', { params: { u: Security.encodeValue(params?.u || '') } });
       const rawData = Security.fromXXSIProtection(response);
+      const rawDataFromTuple = User.userTupleMapper.toObject(rawData[1]);
       const decodeData: UserModelData = {
-        id: Security.decodeValue(rawData[1][0]),
-        username: Security.decodeValue(rawData[1][1]),
-        email: Security.decodeValue(rawData[1][2]),
-        password: Security.decodeValue(rawData[1][3]),
-        fullname: Security.decodeValue(rawData[1][4]),
-        phone: Security.decodeValue(rawData[1][5]),
+        id: Security.decodeValue(rawDataFromTuple.id),
+        username: Security.decodeValue(rawDataFromTuple.username),
+        email: Security.decodeValue(rawDataFromTuple.email),
+        password: '',
+        fullname: Security.decodeValue(rawDataFromTuple.fullname),
+        phone: Security.decodeValue(rawDataFromTuple.phone),
         detail: {
-          role: Security.decodeValue(rawData[1][6][0]),
+          role: Security.decodeValue(rawDataFromTuple.detail.role),
           short_description: {
-            id: Security.decodeValue(rawData[1][6][1][0]),
-            en: Security.decodeValue(rawData[1][6][1][1]),
+            id: Security.decodeValue(rawDataFromTuple.detail.short_description.id),
+            en: Security.decodeValue(rawDataFromTuple.detail.short_description.en),
           },
           long_description: {
-            id: Security.decodeValue(rawData[1][6][2][0]),
-            en: Security.decodeValue(rawData[1][6][2][1]),
+            id: Security.decodeValue(rawDataFromTuple.detail.long_description.id),
+            en: Security.decodeValue(rawDataFromTuple.detail.long_description.id),
           },
-          social_media: rawData[1][6][3][0].map((item: any[]) => ({
-            icon: Security.decodeValue(item[0]),
-            url: Security.decodeValue(item[1]),
+          social_media: rawDataFromTuple.detail.social_media.map((item) => ({
+            icon: Security.decodeValue(item.icon),
+            url: Security.decodeValue(item.url),
           })),
         },
-        experiences: (rawData[1][7] as any[]).map((item) => ({
-          id: Security.decodeValue(item[0]),
-          company: Security.decodeValue(item[1]),
-          role: Security.decodeValue(item[2]),
-          type: Security.decodeValue(item[3]),
-          description: Security.decodeValue(item[4]),
-          tools: (item[5] as any[]).map((tool) => Security.decodeValue(tool)),
-          start_date: Security.decodeValue(item[6]),
-          end_date: Security.decodeValue(item[7]),
-          is_present: item[8],
-          is_show: item[9],
+        experiences: rawDataFromTuple.experiences?.map((item) => ({
+          id: Security.decodeValue(item.id),
+          company: Security.decodeValue(item.company),
+          role: Security.decodeValue(item.role),
+          type: Security.decodeValue(item.type),
+          description: Security.decodeValue(item.description),
+          tools: item.tools.map((tool) => Security.decodeValue(tool)),
+          start_date: Security.decodeValue(item.start_date),
+          end_date: Security.decodeValue(item.end_date),
+          is_present: item.is_present,
+          is_show: item.is_show,
         })),
-        projects: (rawData[1][8] as any[]).map((item) => ({
-          id: Security.decodeValue(item[0]),
-          title: Security.decodeValue(item[1]),
-          description: Security.decodeValue(item[2]),
-          role: Security.decodeValue(item[3]),
-          thumbnail: Security.decodeValue(item[4]),
-          tools: (item[5] as any[]).map((tool) => Security.decodeValue(tool)),
-          made_at: Security.decodeValue(item[6]),
-          date: Security.decodeValue(item[7]),
+        projects: rawDataFromTuple.projects?.map((item) => ({
+          id: Security.decodeValue(item.id),
+          title: Security.decodeValue(item.title),
+          description: Security.decodeValue(item.description),
+          role: Security.decodeValue(item.role),
+          thumbnail: Security.decodeValue(item.thumbnail),
+          tools: item.tools.map((tool) => Security.decodeValue(tool)),
+          made_at: Security.decodeValue(item.made_at),
+          date: Security.decodeValue(item.date),
           link: {
-            title: Security.decodeValue(item[8][0] || ''),
-            url: Security.decodeValue(item[8][1] || ''),
+            title: Security.decodeValue(item.link?.title || ''),
+            url: Security.decodeValue(item.link?.url || ''),
           },
         })),
       };
@@ -66,8 +67,8 @@ export class UserFERepositoryImpl implements UserFERepository {
       };
     } catch (error: any) {
       throw {
-        code: error?.response?.data?.code || 'SERVER_ERROR',
-        message: error?.response?.data?.message || 'Something went wrong!',
+        code: error?.response?.data?.code || 'CLIENT_ERROR',
+        message: error?.response?.data?.message || error?.message || 'Something went wrong!',
       };
     }
   }

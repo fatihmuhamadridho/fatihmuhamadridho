@@ -1,6 +1,7 @@
 import { UserModelData } from '../types/user.type';
 import { Experience } from './experience.model';
 import { Project } from './project.model';
+import { TupleMapper } from './tupleMapper.model';
 
 export class User {
   constructor(
@@ -19,6 +20,34 @@ export class User {
     public experiences?: Experience[],
     public projects?: Project[],
   ) {}
+
+  static userTupleMapper = new TupleMapper<User>([
+    'id',
+    'username',
+    'email',
+    'password',
+    'fullname',
+    'phone',
+    [
+      'detail',
+      [
+        'role',
+        ['short_description', ['id', 'en']],
+        ['long_description', ['id', 'en']],
+        ['social_media', ['icon', 'url'], { isArray: true }],
+      ],
+    ],
+    [
+      'experiences',
+      ['id', 'company', 'role', 'type', 'description', 'tools', 'start_date', 'end_date', 'is_present', 'is_show'],
+      { isArray: true },
+    ],
+    [
+      'projects',
+      ['id', 'title', 'description', 'role', 'thumbnail', 'tools', 'made_at', 'date', ['link', ['title', 'url']]],
+      { isArray: true },
+    ],
+  ]);
 
   static toModelData(data: UserModelData): User {
     const id = data.id || '',

@@ -33,6 +33,7 @@ const HomePage = (props: any) => {
   const tProject = useTranslations('project');
   const tFooter = useTranslations('footer');
   const { data: profileData } = useProfileUser({ u: CONST_PROFILE_USERNAME });
+  console.log({ profileData });
   const [activeSection, setActiveSection] = useState<string>('about');
   const aboutRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);
@@ -116,18 +117,18 @@ const HomePage = (props: any) => {
         transition={{ duration: 0.5, ease: 'easeInOut' }}
       >
         <Flex gap={16} direction={{ base: 'column', lg: 'row' }}>
-          <ProfileSection
+          {/* <ProfileSection
             activeSection={activeSection}
             scrollToSection={scrollToSection}
             profileData={profileData?.data || undefined}
             locale={locale}
-          />
+          /> */}
           <Stack className="pt-[30px] pb-[96px] w-full lg:w-1/2 lg:py-[96px]">
             <section ref={aboutRef} className="mb-[144px]">
               <div
-                dangerouslySetInnerHTML={{
-                  __html: profileData?.data?.detail.long_description[locale] || '',
-                }}
+              // dangerouslySetInnerHTML={{
+              //   __html: profileData?.data?.detail.long_description[locale] || '',
+              // }}
               />
             </section>
             <section ref={experienceRef} className="mb-[144px]">
