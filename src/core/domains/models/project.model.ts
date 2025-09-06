@@ -3,14 +3,15 @@ export class Project {
     public readonly id: string,
     public title: string,
     public description: string,
+    public role: string,
     public thumbnail: string,
     public tools: string[],
     public made_at: string,
-    public year: number,
-    public links?: Array<{
+    public date: string,
+    public link?: {
       title: string;
       url: string;
-    }>,
+    },
   ) {}
 
   static getDateMonthYear(date: number, month: number, year: number) {

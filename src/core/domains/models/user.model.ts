@@ -1,5 +1,6 @@
 import { UserModelData } from '../types/user.type';
 import { Experience } from './experience.model';
+import { Project } from './project.model';
 
 export class User {
   constructor(
@@ -16,6 +17,7 @@ export class User {
       social_media: Array<{ icon: string; url: string }>;
     },
     public experiences?: Experience[],
+    public projects?: Project[],
   ) {}
 
   static toModelData(data: UserModelData): User {
@@ -31,8 +33,9 @@ export class User {
         long_description: { id: '' },
         social_media: '',
       },
-      experiences = (data.experiences as Experience[]) || [];
-    return new User(id, username, email, password, fullname, phone, detail, experiences);
+      experiences = (data.experiences as Experience[]) || [],
+      projects = (data.projects as Project[]) || [];
+    return new User(id, username, email, password, fullname, phone, detail, experiences, projects);
   }
 
   static toTupleData(data: User): any {
@@ -61,6 +64,19 @@ export class User {
           item.end_date,
           item.is_present,
           item.is_show,
+        ]),
+      ],
+      [
+        data.projects?.map((item) => [
+          item.id,
+          item.title,
+          item.description,
+          item.role,
+          item.thumbnail,
+          item.tools,
+          item.made_at,
+          item.date,
+          [item.link?.title, item.link?.url],
         ]),
       ],
     ];

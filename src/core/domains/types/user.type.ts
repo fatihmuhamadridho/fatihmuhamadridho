@@ -34,4 +34,18 @@ export type UserModelData = {
     is_present: boolean;
     is_show: boolean;
   }>;
+  projects?: Array<{
+    readonly id: string;
+    title: string;
+    description: string;
+    role: string;
+    thumbnail: string;
+    tools: string[];
+    made_at: string;
+    date: string;
+    link?: {
+      title: string;
+      url: string;
+    };
+  }>;
 };

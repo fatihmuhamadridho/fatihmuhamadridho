@@ -11,7 +11,7 @@ export class UserBERepositoryImpl implements UserBERepository {
     try {
       const data = await this.prisma.user.findUniqueOrThrow({
         where: { username: Security.decodeValue(params?.u || '') },
-        include: { Experience: { orderBy: { start_date: 'desc' } }, Project: true },
+        include: { Experience: { orderBy: { start_date: 'desc' } }, Project: { orderBy: { date: 'desc' } } },
       });
       const encodeData: UserModelData = {
         id: Security.encodeValue(data.user_id),
@@ -46,6 +46,20 @@ export class UserBERepositoryImpl implements UserBERepository {
           end_date: Security.encodeValue(item.end_date),
           is_present: item.is_present,
           is_show: item.is_show,
+        })),
+        projects: data.Project.map((item) => ({
+          id: Security.encodeValue(item.project_id),
+          title: Security.encodeValue(item.title),
+          description: Security.encodeValue(item.description),
+          role: Security.encodeValue(item.role),
+          thumbnail: Security.encodeValue(item.thumbnail),
+          tools: item.tools.map((tool) => Security.encodeValue(tool)),
+          made_at: Security.encodeValue(item.made_at),
+          date: Security.encodeValue(item.date),
+          link: {
+            title: Security.encodeValue(item.link?.alias || ''),
+            url: Security.encodeValue(item.link?.href || ''),
+          },
         })),
       };
       const dataModel = User.toModelData(encodeData);
