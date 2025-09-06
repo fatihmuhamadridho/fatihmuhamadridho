@@ -1,5 +1,6 @@
+import { User } from '@/core/domains/models/user.model';
 import { Box, Divider, Flex, Group, Stack, Text, UnstyledButton } from '@mantine/core';
-import { Icon, IconBrandGithub, IconBrandInstagram, IconBrandLinkedin, IconProps } from '@tabler/icons-react';
+import { IconBrandGithub, IconBrandInstagram, IconBrandLinkedin, IconBrandWhatsapp } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,36 +9,38 @@ import React from 'react';
 interface ProfileSectionProps {
   activeSection: string;
   scrollToSection: (sectionName: string) => void;
-}
-
-interface listMediaSocialProps {
-  href: string;
-  icon: React.ForwardRefExoticComponent<IconProps & React.RefAttributes<Icon>>;
+  profileData?: User;
+  locale?: string;
 }
 
 const ProfileSection = (props: ProfileSectionProps) => {
-  const { activeSection, scrollToSection } = props;
+  const { activeSection, scrollToSection, profileData, locale = 'id' } = props;
   const router = useRouter();
   const tData = useTranslations('profile');
   const menuItems = ['about', 'experience', 'project'];
-  const listMediaSocial: listMediaSocialProps[] = [
-    {
-      href: 'https://github.com/fatihmuhamadridho',
-      icon: IconBrandGithub,
-    },
-    {
-      href: 'https://www.linkedin.com/in/fatihmuhamadridho/',
-      icon: IconBrandLinkedin,
-    },
-    {
-      href: 'https://www.instagram.com/fatihmuhamadridho/',
-      icon: IconBrandInstagram,
-    },
-  ];
 
   const handleChangeLocale = (locale: 'id' | 'en') => {
     document.cookie = `NEXT_LOCALE=${locale}; path=/; max-age=31536000`;
     router.push('/', undefined, { locale: locale, scroll: false });
+  };
+
+  const mappingSocialMedia = (value: string) => {
+    switch (value) {
+      case 'linkedin':
+        return (
+          <IconBrandLinkedin className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
+        );
+      case 'instagram':
+        return (
+          <IconBrandInstagram className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
+        );
+      case 'whatsapp':
+        return (
+          <IconBrandWhatsapp className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
+        );
+      default:
+        return <IconBrandGithub className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />;
+    }
   };
 
   return (
@@ -46,19 +49,24 @@ const ProfileSection = (props: ProfileSectionProps) => {
         <Stack gap={64}>
           <Box>
             <Text fz={48} fw={700} lh={1}>
-              Fatih M. Ridho
+              {profileData?.fullname}
             </Text>
 
             <Text mt={12} fz={20}>
-              Software Engineer
+              {profileData?.detail.role}
             </Text>
             <Text className="!text-ui-secondary" mt={16} maw={320} fz={16}>
-              {tData('short_about')}
+              {profileData?.detail.short_description[locale]}
             </Text>
           </Box>
           <Box visibleFrom="md">
             {menuItems.map((item) => (
-              <Group key={item} className="max-w-max group cursor-pointer" py={12} onClick={() => scrollToSection(item)}>
+              <Group
+                key={item}
+                className="max-w-max group cursor-pointer"
+                py={12}
+                onClick={() => scrollToSection(item)}
+              >
                 <Divider
                   className={`${activeSection === item ? 'w-[64px]' : 'w-[32px]'} transition-all group-hover:!w-[64px] group-hover:!border-[white]`}
                   color="#94a3b8"
@@ -75,11 +83,11 @@ const ProfileSection = (props: ProfileSectionProps) => {
             ))}
           </Box>
         </Stack>
-        <Flex mt={{ base: 20, md: 0 }} gap={16} maw={270} justify={'space-between'}>
+        <Flex mt={{ base: 20, md: 0 }} gap={16} maw={300} justify={'space-between'}>
           <Group gap={20}>
-            {listMediaSocial.map((item) => (
-              <Link key={item.href} href={item.href} target="__blank">
-                <item.icon className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
+            {profileData?.detail.social_media.map((item) => (
+              <Link key={item.url} href={item.url} target="__blank">
+                {mappingSocialMedia(item.icon)}
               </Link>
             ))}
           </Group>

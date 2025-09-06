@@ -1,14 +1,10 @@
 {
   "profile": {
-    "short_about": "Saya membangun pengalaman digital yang mudah diakses dan sempurna hingga ke piksel untuk web.",
     "tabs": {
       "about": "TENTANG",
       "experience": "PENGALAMAN",
       "project": "PROYEK"
     }
-  },
-  "about": {
-    "biodata": "<p>Saya adalah seorang Frontend Developer yang memiliki semangat tinggi dalam menciptakan aplikasi responsif dan dinamis dengan pengalaman pengguna yang mulus. Dengan keahlian dalam teknologi modern seperti React.js, Next.js, dan React Native, saya menikmati proses membangun solusi digital yang menggabungkan desain yang matang dengan fungsionalitas yang kuat. Komitmen saya terhadap kode yang bersih dan mudah dirawat memastikan setiap proyek yang saya kerjakan dapat diskalakan dan memiliki performa tinggi.</p><br /><p>Sepanjang karier saya, saya telah menangani berbagai proyek mulai dari aplikasi mobile, sistem manajemen konten, hingga platform marketplace. Bekerja sama dengan tim lintas fungsi, saya telah berhasil menghadirkan fitur-fitur inovatif yang sesuai dengan kebutuhan pengguna dan mengikuti praktik terbaik industri. Pengalaman saya mencakup integrasi REST API, penerapan prinsip clean architecture, serta optimalisasi performa aplikasi untuk platform web dan mobile.</p><br /><p>Saya bangga terus mengembangkan keterampilan melalui sertifikasi dan proyek-proyek praktis. Dengan selalu mengikuti perkembangan teknologi terbaru, saya memastikan hasil kerja saya mencerminkan standar dan tren pengembangan modern. Keahlian saya mencakup tidak hanya aspek teknis, tetapi juga kolaborasi dan pemecahan masalah secara efektif—dua hal yang sangat penting untuk menghasilkan solusi yang berdampak.</p><br /><p>Di waktu luang, saya senang mengeksplorasi teknologi baru dan berkontribusi pada proyek-proyek open-source. Saya berupaya menciptakan pengalaman digital yang tidak hanya fungsional, tetapi juga bermakna bagi para pengguna.</p>"
   },
   "resume": {
     "button": "Lihat Resume Lengkap"
