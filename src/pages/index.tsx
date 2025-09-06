@@ -135,7 +135,7 @@ const HomePage = (props: any) => {
             scrollToSection={scrollToSection}
             profileData={profileData?.data || undefined}
             locale={locale}
-            // isLoading={isLoading}
+            isLoading={isLoading}
           />
           <Stack className="pt-[30px] pb-[96px] w-full lg:w-1/2 lg:py-[96px]">
             <section ref={aboutRef} className="mb-[144px]">
