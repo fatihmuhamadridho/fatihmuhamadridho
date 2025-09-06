@@ -35,7 +35,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     props: {
       messages: (await import(`@/locales/${locale}.json`)).default,
       locale: locale,
-      // dehydratedState: dehydrate(queryClient),
+      dehydratedState: dehydrate(queryClient),
     },
     revalidate: 60,
   };
@@ -250,7 +250,7 @@ const HomePage = (props: any) => {
             </section>
             <section>
               <Text className="!text-ui-secondary" fz={14} maw={{ lg: 448 }}>
-                {tFooter('description') + ` Versi ${APP_VERSION}`}
+                {tFooter('description') + ` v${APP_VERSION}`}
               </Text>
             </section>
           </Stack>
