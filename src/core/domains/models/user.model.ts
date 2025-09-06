@@ -34,7 +34,11 @@ export class User {
         social_media: '',
       },
       experiences = (data.experiences as Experience[]) || [],
-      projects = (data.projects as Project[]) || [];
+      projects =
+        (data.projects as Project[]).map((item) => ({
+          ...item,
+          link: item.link?.title || item.link?.url ? item.link : undefined,
+        })) || [];
     return new User(id, username, email, password, fullname, phone, detail, experiences, projects);
   }
 
@@ -52,33 +56,29 @@ export class User {
         [data.detail.long_description.id, data.detail.long_description.en],
         [data.detail.social_media.map((item) => [item.icon, item.url])],
       ],
-      [
-        data.experiences?.map((item) => [
-          item.id,
-          item.company,
-          item.role,
-          item.type,
-          item.description,
-          item.tools,
-          item.start_date,
-          item.end_date,
-          item.is_present,
-          item.is_show,
-        ]),
-      ],
-      [
-        data.projects?.map((item) => [
-          item.id,
-          item.title,
-          item.description,
-          item.role,
-          item.thumbnail,
-          item.tools,
-          item.made_at,
-          item.date,
-          [item.link?.title, item.link?.url],
-        ]),
-      ],
+      data.experiences?.map((item) => [
+        item.id,
+        item.company,
+        item.role,
+        item.type,
+        item.description,
+        item.tools,
+        item.start_date,
+        item.end_date,
+        item.is_present,
+        item.is_show,
+      ]),
+      data.projects?.map((item) => [
+        item.id,
+        item.title,
+        item.description,
+        item.role,
+        item.thumbnail,
+        item.tools,
+        item.made_at,
+        item.date,
+        [item.link?.title, item.link?.url],
+      ]),
     ];
     return response;
   }

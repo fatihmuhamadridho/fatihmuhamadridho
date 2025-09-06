@@ -8,8 +8,9 @@ import { CONST_EXPERIENCES, CONST_PROJECTS } from '@/shared/constants';
 import { GetStaticPropsContext } from 'next';
 import { useTranslations } from 'next-intl';
 import { useProfileUser } from '@/hooks/user.hook';
-import { CONST_PROFILE_USERNAME } from '@/configs/base.config';
+import { APP_VERSION, CONST_PROFILE_USERNAME } from '@/configs/base.config';
 import { NextSeo } from 'next-seo';
+import { Experience } from '@/core/domains/models/experience.model';
 
 const pageVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -85,6 +86,14 @@ const HomePage = (props: any) => {
     };
   }, [sections]);
 
+  const isPresentLocale = (locale: 'id' | 'en') => {
+    if (locale === 'en') {
+      return 'PRESENT';
+    } else {
+      return 'SEKARANG';
+    }
+  };
+
   return (
     <Layout>
       <NextSeo
@@ -122,11 +131,12 @@ const HomePage = (props: any) => {
               />
             </section>
             <section ref={experienceRef} className="mb-[144px]">
-              {CONST_EXPERIENCES.map((item, index) => (
+              {profileData?.data?.experiences?.map((item, index) => (
                 <Box key={index} className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group">
                   <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
-                  <Text className="col-span-2 !text-xs z-10" fw={500}>
-                    {item.from} - {item.to}
+                  <Text className="col-span-2 !text-xs z-10" fw={500} tt={'uppercase'}>
+                    {Experience.getMonthYearText(item.start_date, locale)} -{' '}
+                    {!item.is_present ? Experience.getMonthYearText(item.end_date, locale) : isPresentLocale(locale)}
                   </Text>
                   <Stack className="col-span-6 z-10" gap={12}>
                     <Text className="!leading-tight">
@@ -199,7 +209,7 @@ const HomePage = (props: any) => {
             </section>
             <section>
               <Text className="!text-ui-secondary" fz={14} maw={{ lg: 448 }}>
-                {tFooter('description')}
+                {tFooter('description') + ` Versi ${APP_VERSION}`}
               </Text>
             </section>
           </Stack>

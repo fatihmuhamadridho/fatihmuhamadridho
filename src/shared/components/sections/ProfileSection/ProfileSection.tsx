@@ -1,6 +1,6 @@
 import { User } from '@/core/domains/models/user.model';
 import { Box, Divider, Flex, Group, Stack, Text, UnstyledButton } from '@mantine/core';
-import { Icon, IconBrandGithub, IconBrandInstagram, IconBrandLinkedin, IconProps } from '@tabler/icons-react';
+import { IconBrandGithub, IconBrandInstagram, IconBrandLinkedin, IconBrandWhatsapp } from '@tabler/icons-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -33,6 +33,10 @@ const ProfileSection = (props: ProfileSectionProps) => {
       case 'instagram':
         return (
           <IconBrandInstagram className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
+        );
+      case 'whatsapp':
+        return (
+          <IconBrandWhatsapp className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />
         );
       default:
         return <IconBrandGithub className="transition-all stroke-[gray] cursor-pointer hover:stroke-white" size={28} />;
@@ -79,7 +83,7 @@ const ProfileSection = (props: ProfileSectionProps) => {
             ))}
           </Box>
         </Stack>
-        <Flex mt={{ base: 20, md: 0 }} gap={16} maw={270} justify={'space-between'}>
+        <Flex mt={{ base: 20, md: 0 }} gap={16} maw={300} justify={'space-between'}>
           <Group gap={20}>
             {profileData?.detail.social_media.map((item) => (
               <Link key={item.url} href={item.url} target="__blank">
