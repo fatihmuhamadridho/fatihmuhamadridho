@@ -4,13 +4,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { CONST_EXPERIENCES, CONST_PROJECTS } from '@/shared/constants';
 import { GetStaticPropsContext } from 'next';
 import { useTranslations } from 'next-intl';
 import { useProfileUser } from '@/hooks/user.hook';
 import { APP_VERSION, CONST_PROFILE_USERNAME } from '@/configs/base.config';
 import { NextSeo } from 'next-seo';
 import { Experience } from '@/core/domains/models/experience.model';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { UserFEController } from '@/core/domains/controllers/user.fe.controller';
 
 const pageVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -19,11 +20,24 @@ const pageVariants = {
 };
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  const queryClient = new QueryClient();
+  const userFEController = new UserFEController();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['profile', { u: CONST_PROFILE_USERNAME }],
+    queryFn: async () => {
+      const data = await userFEController.getProfileUser({ u: CONST_PROFILE_USERNAME });
+      return JSON.parse(JSON.stringify(data));
+    },
+  });
+
   return {
     props: {
       messages: (await import(`@/locales/${locale}.json`)).default,
       locale: locale,
+      dehydratedState: dehydrate(queryClient),
     },
+    revalidate: 60,
   };
 }
 
@@ -33,7 +47,6 @@ const HomePage = (props: any) => {
   const tProject = useTranslations('project');
   const tFooter = useTranslations('footer');
   const { data: profileData } = useProfileUser({ u: CONST_PROFILE_USERNAME });
-  console.log({ profileData });
   const [activeSection, setActiveSection] = useState<string>('about');
   const aboutRef = useRef<HTMLDivElement>(null);
   const experienceRef = useRef<HTMLDivElement>(null);

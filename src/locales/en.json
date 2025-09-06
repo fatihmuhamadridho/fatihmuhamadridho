@@ -1,14 +1,10 @@
 {
   "profile": {
-    "short_about": "I build accessible, pixel-perfect digital experiences for the web.",
     "tabs": {
       "about": "ABOUT",
       "experience": "EXPERIENCE",
       "project": "PROJECT"
     }
-  },
-  "about": {
-    "biodata": "<p>I’m a Frontend Developer passionate about creating responsive and dynamic applications that provide seamless user experiences. With expertise in modern technologies like React.js, Next.js, and React Native, I enjoy building digital solutions that combine thoughtful design with robust functionality. My commitment to clean and maintainable code ensures every project is both scalable and high-performing.</p><br /><p>Throughout my career, I have worked on diverse projects ranging from mobile applications to content management systems and marketplace platforms. Collaborating with cross-functional teams, I’ve delivered innovative features that meet user needs while adhering to industry best practices. My experience includes integrating REST APIs, implementing clean architecture principles, and optimizing application performance for both web and mobile environments.</p><br /><p>I take pride in continuously developing my skills through certifications and practical projects. By staying up-to-date with the latest technologies, I ensure that my work reflects modern development standards and trends. My expertise spans not only technical implementation but also effective collaboration and problem-solving, which are crucial for delivering impactful results.</p><br /><p>In my free time, I enjoy exploring new technologies and contributing to open-source projects. I strive to create digital experiences that are both functional and meaningful for users.</p>"
   },
   "resume": {
     "button": "View Full Resume"
