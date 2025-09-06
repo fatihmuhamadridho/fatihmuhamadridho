@@ -32,12 +32,20 @@ export class UserBERepositoryImpl implements UserBERepository {
           })),
         },
         experiences: data.Experience.map((item) => ({
-          id: item.experience_id,
           ...item,
+          id: item.experience_id,
+          description: {
+            id: (item.description as any)?.id,
+            en: (item.description as any)?.en,
+          },
         })),
         projects: data.Project.map((item) => ({
           ...item,
           id: item.project_id,
+          description: {
+            id: (item.description as any)?.id,
+            en: (item.description as any)?.en,
+          },
           link: {
             title: item.link?.alias || '',
             url: item.link?.href || '',

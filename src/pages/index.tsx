@@ -144,7 +144,7 @@ const HomePage = (props: any) => {
                       {item.role} - {item.company}
                     </Text>
                     <Text className="!text-ui-secondary" fz={14}>
-                      {item.description}
+                      {item.description[locale]}
                     </Text>
                     <Group>
                       {item.tools.map((badge) => (
@@ -156,15 +156,16 @@ const HomePage = (props: any) => {
                   </Stack>
                 </Box>
               ))}
-              <Link href={'/Fatih Muhamad Ridho-resume.pdf'} target="__blank">
+              <Link href={'/Fatih Muhamad Ridho-resume.pdf'} locale={false} target="__blank">
                 <Box className="cursor-pointer hover:text-[#5eead4]">{tResume('button')}</Box>
               </Link>
             </section>
             <section ref={projectRef} className="mb-[144px]">
-              {CONST_PROJECTS.filter((data) => data.isFavorite)
+              {profileData?.data?.projects
+                ?.filter((data) => data.is_favorite)
                 .slice(0, 4)
                 .map((item, index) => {
-                  if (index < 4 && item.isFavorite)
+                  if (index < 4 && item.is_favorite)
                     return (
                       <Box
                         key={index}
@@ -173,21 +174,21 @@ const HomePage = (props: any) => {
                         <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
                         <Image
                           className="col-span-2 z-10 rounded"
-                          src={item.image}
-                          alt={item.project}
+                          src={item.thumbnail}
+                          alt={item.title}
                           width={200}
                           height={48}
                           loading="lazy"
                         />
                         <Stack className="col-span-6 z-10" gap={12}>
                           <Text className="!leading-tight">
-                            {item.role} - {item.madeAt}
+                            {item.role} - {item.made_at}
                           </Text>
                           <Text className="!text-ui-secondary" fz={14}>
-                            {item.description}
+                            {item.description[locale]}
                           </Text>
                           <Group>
-                            {item.buildWith.map((badge) => (
+                            {item.tools.map((badge) => (
                               <Box
                                 key={badge}
                                 className="text-[#5eead4] bg-[#2dd4bf1a] rounded-full"

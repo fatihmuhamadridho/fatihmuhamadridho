@@ -67,6 +67,7 @@ export class User {
           'made_at',
           'date',
           ['link', ['title', 'url']],
+          'is_favorite',
         ],
         { isArray: true },
       ],

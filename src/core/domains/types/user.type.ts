@@ -27,7 +27,7 @@ export type UserModelData = {
     company: string;
     role: string;
     type: string;
-    description: string;
+    description: Record<string, string>;
     tools: string[];
     start_date: string;
     end_date: string;
@@ -37,7 +37,7 @@ export type UserModelData = {
   projects?: Array<{
     readonly id: string;
     title: string;
-    description: string;
+    description: Record<string, string>;
     role: string;
     thumbnail: string;
     tools: string[];

@@ -4,7 +4,7 @@ export class Experience {
     public company: string,
     public role: string,
     public type: 'internship' | 'contract' | 'fulltime',
-    public description: string,
+    public description: Record<string, string>,
     public tools: string[],
     public start_date: string,
     public end_date: string,

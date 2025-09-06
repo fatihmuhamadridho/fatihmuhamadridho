@@ -7,10 +7,20 @@ import { motion } from 'motion/react';
 import { CONST_PROJECTS } from '@/shared/constants';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
+import { GetStaticPropsContext } from 'next';
 
 const pageVariants = { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -50 } };
 
-const ArchivePage = () => {
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+  return {
+    props: {
+      locale: locale,
+    },
+  };
+}
+
+const ArchivePage = (props: any) => {
+  const { locale = 'id' } = props;
   const router = useRouter();
 
   return (
@@ -40,7 +50,7 @@ const ArchivePage = () => {
           <Text>Fatih Muhamad Ridho</Text>
         </Group>
         <Text fz={48} fw={700}>
-          Archive
+          {locale === 'en' ? 'Archive' : 'Arsip'}
         </Text>
         <table className="mt-12 w-full border-collapse text-left">
           <thead className="sticky top-0 backdrop-blur border-b border-slate-300/10 bg-slate-900/75">

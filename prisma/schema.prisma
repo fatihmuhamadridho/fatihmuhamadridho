@@ -39,7 +39,7 @@ model Experience {
   role          String
   company       String
   type          ExperienceType
-  description   String
+  description   Json
   tools         String[]
   start_date    String
   end_date      String
@@ -59,7 +59,7 @@ model Project {
   project_id  String       @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   role        String
-  description String
+  description Json
   thumbnail   String
   tools       String[]
   made_at     String
