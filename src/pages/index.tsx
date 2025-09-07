@@ -1,7 +1,5 @@
 import { Layout, ProfileSection } from '@/shared/components';
-import { Box, Flex, Group, Skeleton, Stack, Text } from '@mantine/core';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Flex, Stack } from '@mantine/core';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { GetStaticPropsContext } from 'next';
@@ -9,9 +7,12 @@ import { useTranslations } from 'next-intl';
 import { useProfileUser } from '@/hooks/user.hook';
 import { APP_VERSION, CONST_PROFILE_USERNAME } from '@/configs/base.config';
 import { NextSeo } from 'next-seo';
-import { Experience } from '@/core/domains/models/experience.model';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { UserFEController } from '@/core/domains/controllers/user.fe.controller';
+import LongDescriptionSection from '@/shared/components/sections/LongDescriptionSection/LongDescriptionSection';
+import ExperienceSection from '@/shared/components/sections/ExperienceSection/ExperienceSection';
+import ProjectSection from '@/shared/components/sections/ProjectSection/ProjectSection';
+import FooterSection from '@/shared/components/sections/FooterSection/FooterSection';
 
 const pageVariants = {
   hidden: { opacity: 0, x: -50 },
@@ -100,14 +101,6 @@ const HomePage = (props: any) => {
     };
   }, [sections]);
 
-  const isPresentLocale = (locale: 'id' | 'en') => {
-    if (locale === 'en') {
-      return 'PRESENT';
-    } else {
-      return 'SEKARANG';
-    }
-  };
-
   return (
     <Layout>
       <NextSeo
@@ -138,121 +131,26 @@ const HomePage = (props: any) => {
             isLoading={isLoading}
           />
           <Stack className="pt-[30px] pb-[96px] w-full lg:w-1/2 lg:py-[96px]">
-            <section ref={aboutRef} className="mb-[144px]">
-              {isLoading ? (
-                Array.from({ length: 4 }).map((item, index) => (
-                  <Skeleton key={index} mt={24} w={'100%'} h={120} radius={'md'} />
-                ))
-              ) : (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: profileData?.data?.detail.long_description[locale] || '',
-                  }}
-                />
-              )}
-            </section>
-            <section ref={experienceRef} className="mb-[144px]">
-              {isLoading
-                ? Array.from({ length: 4 }).map((item, index) => (
-                    <Skeleton key={index} mt={24} w={'100%'} h={250} radius={'md'} />
-                  ))
-                : profileData?.data?.experiences?.map((item, index) => (
-                    <Box
-                      key={index}
-                      className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group"
-                    >
-                      <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
-                      <Text className="col-span-2 !text-xs z-10" fw={500} tt={'uppercase'}>
-                        {Experience.getMonthYearText(item.start_date, locale)} -{' '}
-                        {!item.is_present
-                          ? Experience.getMonthYearText(item.end_date, locale)
-                          : isPresentLocale(locale)}
-                      </Text>
-                      <Stack className="col-span-6 z-10" gap={12}>
-                        <Text className="!leading-tight">
-                          {item.role} - {item.company}
-                        </Text>
-                        <Text className="!text-ui-secondary" fz={14}>
-                          {item.description[locale]}
-                        </Text>
-                        <Group>
-                          {item.tools.map((badge) => (
-                            <Box
-                              key={badge}
-                              className="text-[#5eead4] bg-[#2dd4bf1a] rounded-full"
-                              py={2}
-                              px={12}
-                              fz={12}
-                            >
-                              {badge}
-                            </Box>
-                          ))}
-                        </Group>
-                      </Stack>
-                    </Box>
-                  ))}
-              <Link href={'/Fatih Muhamad Ridho-resume.pdf'} locale={false} target="__blank">
-                <Box className="cursor-pointer hover:text-[#5eead4]">{tResume('button')}</Box>
-              </Link>
-            </section>
-            <section ref={projectRef} className="mb-[144px]">
-              {isLoading
-                ? Array.from({ length: 4 }).map((item, index) => (
-                    <Skeleton key={index} mt={24} w={'100%'} h={200} radius={'md'} />
-                  ))
-                : profileData?.data?.projects
-                    ?.filter((data) => data.is_favorite)
-                    .slice(0, 4)
-                    .map((item, index) => {
-                      if (index < 4 && item.is_favorite)
-                        return (
-                          <Box
-                            key={index}
-                            className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group"
-                          >
-                            <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
-                            <Image
-                              className="col-span-2 z-10 rounded"
-                              src={item.thumbnail}
-                              alt={item.title}
-                              width={200}
-                              height={48}
-                              loading="lazy"
-                            />
-                            <Stack className="col-span-6 z-10" gap={12}>
-                              <Text className="!leading-tight">
-                                {item.role} - {item.made_at}
-                              </Text>
-                              <Text className="!text-ui-secondary" fz={14}>
-                                {item.description[locale]}
-                              </Text>
-                              <Group>
-                                {item.tools.map((badge) => (
-                                  <Box
-                                    key={badge}
-                                    className="text-[#5eead4] bg-[#2dd4bf1a] rounded-full"
-                                    py={2}
-                                    px={12}
-                                    fz={12}
-                                  >
-                                    {badge}
-                                  </Box>
-                                ))}
-                              </Group>
-                            </Stack>
-                          </Box>
-                        );
-                      return null;
-                    })}
-              <Link href={'/archive'}>
-                <Box className="cursor-pointer hover:text-[#5eead4]">{tProject('button')}</Box>
-              </Link>
-            </section>
-            <section>
-              <Text className="!text-ui-secondary" fz={14} maw={{ lg: 448 }}>
-                {tFooter('description') + ` v${APP_VERSION}`}
-              </Text>
-            </section>
+            <LongDescriptionSection
+              ref={aboutRef}
+              isLoading={isLoading}
+              __html={profileData?.data?.detail.long_description[locale]}
+            />
+            <ExperienceSection
+              ref={experienceRef}
+              isLoading={isLoading}
+              data={profileData?.data?.experiences}
+              locale={locale}
+              buttonText={tResume('button')}
+            />
+            <ProjectSection
+              ref={projectRef}
+              isLoading={isLoading}
+              data={profileData?.data?.projects}
+              locale={locale}
+              buttonText={tProject('button')}
+            />
+            <FooterSection text={tFooter('description') + ` v${APP_VERSION}`} />
           </Stack>
         </Flex>
       </motion.div>
