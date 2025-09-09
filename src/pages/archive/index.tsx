@@ -10,7 +10,7 @@ import { useProfileUser } from '@/hooks/user.hook';
 import { CONST_PROFILE_USERNAME } from '@/configs/base.config';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { UserFEController } from '@/core/domains/controllers/user.fe.controller';
-import { Project } from '@/core/domains/models/project.model';
+import { DateUtil } from '@/utils/date.util';
 
 const pageVariants = { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -50 } };
 
@@ -84,7 +84,7 @@ const ArchivePage = (props: any) => {
             {profileData?.data?.projects?.map((item, index) => (
               <tr key={index} className="border-b border-slate-300/10 last:border-none">
                 <td className="py-4 pr-8 table-cell">
-                  {isLoading ? <Skeleton w={35} h={35} radius={'md'} /> : Project.getYear(item.date)}
+                  {isLoading ? <Skeleton w={35} h={35} radius={'md'} /> : DateUtil.getYear(item.date)}
                 </td>
                 <td className="py-4 pr-8 leading-snug table-cell">
                   {isLoading ? <Skeleton w={150} h={35} radius={'md'} /> : item.title}
