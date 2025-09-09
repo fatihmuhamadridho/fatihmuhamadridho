@@ -70,4 +70,5 @@ const ProjectSection = forwardRef<HTMLElement, ProjectSectionProps>((props, ref)
   );
 });
 
+ProjectSection.displayName = 'ProjectSection';
 export default ProjectSection;
