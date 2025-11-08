@@ -30,10 +30,10 @@ const ProjectSection = forwardRef<HTMLElement, ProjectSectionProps>((props, ref)
   return (
     <section ref={ref} className="mb-[144px]">
       {data
-        ?.filter((data) => data.is_favorite)
+        ?.filter((data) => data.is_favorite && data.is_show)
         .slice(0, 4)
         .map((item, index) => {
-          if (item.is_show && Boolean(index < 4 && item.is_favorite))
+          if (index < 4 && item.is_favorite)
             return (
               <Box key={index} className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group">
                 <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
