@@ -5,16 +5,21 @@ import React from 'react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { NextSeo } from 'next-seo';
-import { GetStaticPropsContext } from 'next';
+import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { useProfileUser } from '@/hooks/user.hook';
 import { CONST_PROFILE_USERNAME } from '@/configs/base.config';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { UserFEController } from '@/core/domains/controllers/user.fe.controller';
 import { DateUtil } from '@/utils/date.util';
 
+interface ArchivePageProps {
+  locale?: 'id' | 'en' | string;
+  dehydratedState?: unknown;
+}
+
 const pageVariants = { hidden: { opacity: 0, x: 50 }, visible: { opacity: 1, x: 0 }, exit: { opacity: 0, x: -50 } };
 
-export async function getStaticProps({ locale }: GetStaticPropsContext) {
+export const getStaticProps: GetStaticProps<ArchivePageProps> = async ({ locale }: GetStaticPropsContext) => {
   const queryClient = new QueryClient();
   const userFEController = new UserFEController();
 
@@ -29,14 +34,13 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
   return {
     props: {
       locale: locale,
-      dehydratedState: dehydrate(queryClient),
+      // dehydratedState: dehydrate(queryClient),
     },
     revalidate: 60,
   };
-}
+};
 
-const ArchivePage = (props: any) => {
-  const { locale = 'id' } = props;
+const ArchivePage = ({ locale = 'en' }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { data: profileData, isLoading } = useProfileUser({ u: CONST_PROFILE_USERNAME });
 
   return (

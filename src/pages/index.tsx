@@ -2,7 +2,7 @@ import { Layout, ProfileSection } from '@/shared/components';
 import { Flex, Stack } from '@mantine/core';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { GetStaticPropsContext } from 'next';
+import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import { useTranslations } from 'next-intl';
 import { useProfileUser } from '@/hooks/user.hook';
 import { APP_VERSION, CONST_PROFILE_USERNAME } from '@/configs/base.config';
@@ -14,13 +14,19 @@ import ExperienceSection from '@/shared/components/sections/ExperienceSection/Ex
 import ProjectSection from '@/shared/components/sections/ProjectSection/ProjectSection';
 import FooterSection from '@/shared/components/sections/FooterSection/FooterSection';
 
+interface HomePageProps {
+  messages: Record<string, string>;
+  locale?: 'id' | 'en' | string;
+  dehydratedState?: unknown;
+}
+
 const pageVariants = {
   hidden: { opacity: 0, x: -50 },
   visible: { opacity: 1, x: 0 },
   exit: { opacity: 0, x: 50 },
 };
 
-export async function getStaticProps({ locale }: GetStaticPropsContext) {
+export const getStaticProps: GetStaticProps<HomePageProps> = async ({ locale }: GetStaticPropsContext) => {
   const queryClient = new QueryClient();
   const userFEController = new UserFEController();
 
@@ -36,14 +42,13 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
     props: {
       messages: (await import(`@/locales/${locale}.json`)).default,
       locale: locale,
-      dehydratedState: dehydrate(queryClient),
+      // dehydratedState: dehydrate(queryClient),
     },
     revalidate: 60,
   };
-}
+};
 
-const HomePage = (props: any) => {
-  const { locale = 'id' } = props;
+const HomePage = ({ locale = 'en' }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const tResume = useTranslations('resume');
   const tProject = useTranslations('project');
   const tFooter = useTranslations('footer');
