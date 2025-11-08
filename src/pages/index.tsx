@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async ({ locale }: 
     props: {
       messages: (await import(`@/locales/${locale}.json`)).default,
       locale: locale,
-      // dehydratedState: dehydrate(queryClient),
+      dehydratedState: dehydrate(queryClient),
     },
     revalidate: 60,
   };

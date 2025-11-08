@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps<ArchivePageProps> = async ({ locale 
   return {
     props: {
       locale: locale,
-      // dehydratedState: dehydrate(queryClient),
+      dehydratedState: dehydrate(queryClient),
     },
     revalidate: 60,
   };
@@ -85,45 +85,48 @@ const ArchivePage = ({ locale = 'en' }: InferGetStaticPropsType<typeof getStatic
             </tr>
           </thead>
           <tbody>
-            {profileData?.data?.projects?.map((item, index) => (
-              <tr key={index} className="border-b border-slate-300/10 last:border-none">
-                <td className="py-4 pr-8 table-cell">
-                  {isLoading ? <Skeleton w={35} h={35} radius={'md'} /> : DateUtil.getYear(item.date)}
-                </td>
-                <td className="py-4 pr-8 leading-snug table-cell">
-                  {isLoading ? <Skeleton w={150} h={35} radius={'md'} /> : item.title}
-                </td>
-                <td className="hidden py-4 pr-8 lg:table-cell">
-                  {isLoading ? <Skeleton w={100} h={35} radius={'md'} /> : item.made_at}
-                </td>
-                <td className="hidden py-4 pr-8 lg:table-cell">
-                  <ul className="w-full flex flex-wrap -translate-y-1.5">
-                    {isLoading
-                      ? Array.from({ length: 2 }).map((item, index) => (
-                          <Skeleton key={index} ml={12} w={100} h={35} radius={'md'} />
-                        ))
-                      : item.tools.map((badge, index) => (
-                          <li key={index} className="my-1 mr-1.5">
-                            <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">
-                              {badge}
-                            </div>
-                          </li>
-                        ))}
-                  </ul>
-                </td>
-                {isLoading ? (
-                  <Skeleton w={200} h={35} radius={'md'} />
-                ) : (
-                  item?.link && (
-                    <td className="py-4 pr-8 lg:table-cell">
-                      <Link href={item.link.url} target="__blank">
-                        {item.link.title}
-                      </Link>
-                    </td>
-                  )
-                )}
-              </tr>
-            ))}
+            {profileData?.data?.projects?.map((item, index) => {
+              if (!item.is_show) return null;
+              return (
+                <tr key={index} className="border-b border-slate-300/10 last:border-none">
+                  <td className="py-4 pr-8 table-cell">
+                    {isLoading ? <Skeleton w={35} h={35} radius={'md'} /> : DateUtil.getYear(item.date)}
+                  </td>
+                  <td className="py-4 pr-8 leading-snug table-cell">
+                    {isLoading ? <Skeleton w={150} h={35} radius={'md'} /> : item.title}
+                  </td>
+                  <td className="hidden py-4 pr-8 lg:table-cell">
+                    {isLoading ? <Skeleton w={100} h={35} radius={'md'} /> : item.made_at}
+                  </td>
+                  <td className="hidden py-4 pr-8 lg:table-cell">
+                    <ul className="w-full flex flex-wrap -translate-y-1.5">
+                      {isLoading
+                        ? Array.from({ length: 2 }).map((item, index) => (
+                            <Skeleton key={index} ml={12} w={100} h={35} radius={'md'} />
+                          ))
+                        : item.tools.map((badge, index) => (
+                            <li key={index} className="my-1 mr-1.5">
+                              <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">
+                                {badge}
+                              </div>
+                            </li>
+                          ))}
+                    </ul>
+                  </td>
+                  {isLoading ? (
+                    <Skeleton w={200} h={35} radius={'md'} />
+                  ) : (
+                    item?.link && (
+                      <td className="py-4 pr-8 lg:table-cell">
+                        <Link href={item.link.url} target="__blank">
+                          {item.link.title}
+                        </Link>
+                      </td>
+                    )
+                  )}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </motion.div>

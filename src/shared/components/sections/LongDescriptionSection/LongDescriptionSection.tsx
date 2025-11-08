@@ -9,6 +9,7 @@ interface LongDescriptionSectionProps {
 const LongDescriptionSection = forwardRef<HTMLElement, LongDescriptionSectionProps>((props, ref) => {
   const { isLoading = false, __html = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.' } =
     props;
+
   return (
     <section ref={ref} className="mb-[144px]">
       {Array.from({ length: isLoading ? 4 : 1 }).map((_, index) => (

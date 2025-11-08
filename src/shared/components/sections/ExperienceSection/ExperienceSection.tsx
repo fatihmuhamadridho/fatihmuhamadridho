@@ -1,3 +1,4 @@
+import { Experience } from '@/core/domains/models/experience.model';
 import { DateUtil } from '@/utils/date.util';
 import { Box, Group, Skeleton, Stack, Text } from '@mantine/core';
 import Link from 'next/link';
@@ -5,7 +6,7 @@ import React, { forwardRef } from 'react';
 
 interface ExperienceSectionProps {
   isLoading?: boolean;
-  data?: any[];
+  data?: Experience[];
   locale?: string;
   buttonText?: string;
 }
