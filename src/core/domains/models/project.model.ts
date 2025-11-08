@@ -9,6 +9,7 @@ export class Project {
     public made_at: string,
     public date: string,
     public is_favorite: boolean,
+    public is_show: boolean,
     public link?: {
       title: string;
       url: string;

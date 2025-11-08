@@ -68,6 +68,7 @@ model Project {
   date        String
   User        User[]       @relation(fields: [user_id], references: [user_id])
   user_id     String[]     @db.ObjectId
+  is_show     Boolean      @default(true)
 }
 
 type ProjectLink {

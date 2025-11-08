@@ -68,6 +68,7 @@ export class User {
           'date',
           ['link', ['title', 'url']],
           'is_favorite',
+          'is_show',
         ],
         { isArray: true },
       ],

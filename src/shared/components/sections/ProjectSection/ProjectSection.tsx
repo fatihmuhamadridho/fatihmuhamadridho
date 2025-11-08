@@ -1,3 +1,4 @@
+import { Project } from '@/core/domains/models/project.model';
 import { Box, Group, Skeleton, Stack, Text } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -5,7 +6,7 @@ import React, { forwardRef } from 'react';
 
 interface ProjectSectionProps {
   isLoading?: boolean;
-  data?: any[];
+  data?: Project[];
   locale?: string;
   buttonText?: string;
 }
@@ -32,7 +33,7 @@ const ProjectSection = forwardRef<HTMLElement, ProjectSectionProps>((props, ref)
         ?.filter((data) => data.is_favorite)
         .slice(0, 4)
         .map((item, index) => {
-          if (index < 4 && item.is_favorite)
+          if (item.is_show && Boolean(index < 4 && item.is_favorite))
             return (
               <Box key={index} className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group">
                 <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
