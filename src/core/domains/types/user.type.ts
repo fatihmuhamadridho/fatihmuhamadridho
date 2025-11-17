@@ -21,6 +21,7 @@ export type UserModelData = {
     short_description: Record<string, string>;
     long_description: Record<string, string>;
     social_media: Array<{ icon: string; url: string }>;
+    resume_url: string;
   };
   experiences?: Array<{
     readonly id: string;
