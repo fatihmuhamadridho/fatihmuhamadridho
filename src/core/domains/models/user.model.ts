@@ -17,6 +17,7 @@ export class User {
       short_description: Record<string, string>;
       long_description: Record<string, string>;
       social_media: Array<{ icon: string; url: string }>;
+      resume_url: string;
     },
     public experiences?: Experience[],
     public projects?: Project[],
@@ -37,6 +38,7 @@ export class User {
           ['short_description', ['id', 'en']],
           ['long_description', ['id', 'en']],
           ['social_media', ['icon', 'url'], { isArray: true }],
+          'resume_url',
         ],
       ],
       [
@@ -91,6 +93,7 @@ export class User {
         short_description: { id: '' },
         long_description: { id: '' },
         social_media: '',
+        resume_url: '',
       },
       experiences = (data.experiences as Experience[]) || [],
       projects =

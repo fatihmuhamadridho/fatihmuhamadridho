@@ -7,12 +7,13 @@ import React, { forwardRef } from 'react';
 interface ExperienceSectionProps {
   isLoading?: boolean;
   data?: Experience[];
+  resumeUrl?: string;
   locale?: string;
   buttonText?: string;
 }
 
 const ExperienceSection = forwardRef<HTMLElement, ExperienceSectionProps>((props, ref) => {
-  const { isLoading, data = [], locale = 'id', buttonText } = props;
+  const { isLoading, data = [], resumeUrl, locale = 'id', buttonText } = props;
 
   const isPresentLocale = (locale: 'id' | 'en') => {
     if (locale === 'en') {
@@ -63,9 +64,11 @@ const ExperienceSection = forwardRef<HTMLElement, ExperienceSectionProps>((props
             </Stack>
           </Box>
         ))}
-      <Link href={'/Fatih Muhamad Ridho-resume.pdf'} locale={false} target="__blank">
-        <Box className="cursor-pointer hover:text-[#5eead4]">{buttonText}</Box>
-      </Link>
+      {resumeUrl && (
+        <Link href={resumeUrl} locale={false} target="__blank">
+          <Box className="cursor-pointer hover:text-[#5eead4]">{buttonText}</Box>
+        </Link>
+      )}
     </section>
   );
 });

@@ -32,6 +32,7 @@ type UserDetail {
   short_description Json
   long_description  Json
   social_media      Json
+  resume_url        String
 }
 
 model Experience {

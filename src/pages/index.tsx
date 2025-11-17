@@ -145,6 +145,7 @@ const HomePage = ({ locale = 'en' }: InferGetStaticPropsType<typeof getStaticPro
               ref={experienceRef}
               isLoading={isLoading}
               data={profileData?.data?.experiences}
+              resumeUrl={profileData?.data?.detail.resume_url}
               locale={locale}
               buttonText={tResume('button')}
             />
