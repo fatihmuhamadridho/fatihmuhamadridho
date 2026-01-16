@@ -1,6 +1,7 @@
 import React from 'react';
 import Cursor from '../Cursor/Cursor';
 import { Box, Center } from '@mantine/core';
+import { useTrackVisit } from '@/hooks/visitor.hook';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,6 +9,7 @@ interface LayoutProps {
 
 const Layout = (props: LayoutProps) => {
   const { children } = props;
+  useTrackVisit();
   return (
     <Center className="h-full bg-ui-primary">
       <Cursor />

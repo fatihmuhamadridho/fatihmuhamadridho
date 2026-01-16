@@ -72,6 +72,16 @@ model Project {
   is_show     Boolean      @default(true)
 }
 
+model Visitor {
+  visitor_id  String   @id @default(auto()) @map("_id") @db.ObjectId
+  path        String
+  referer     String?
+  user_agent  String?
+  ip          String?
+  locale      String?
+  created_at  DateTime @default(now())
+}
+
 type ProjectLink {
   alias String
   href  String
