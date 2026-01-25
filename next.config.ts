@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     BASE_API_URL: process.env.BASE_API_URL,
     CONST_PROFILE_USERNAME: process.env.CONST_PROFILE_USERNAME,
     ENABLE_ENCODING: process.env.ENABLE_ENCODING,
+    WEBHOOK_API_URL: process.env.WEBHOOK_API_URL,
   },
   sassOptions: {
     silenceDeprecations: ['legacy-js-api'],

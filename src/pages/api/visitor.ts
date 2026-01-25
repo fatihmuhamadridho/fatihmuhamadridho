@@ -1,4 +1,4 @@
-import { BASE_RESPONSE_CONTENT_TYPE } from '@/configs/base.config';
+import { BASE_RESPONSE_CONTENT_TYPE, WEBHOOK_API_URL } from '@/configs/base.config';
 import { VisitorBEController } from '@/core/domains/controllers/visitor.be.controller';
 import { CreateVisitPayload } from '@/core/domains/types/visitor.type';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -24,6 +24,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       path: body.path || req.url || '',
     };
     const response = await visitorBEController.createVisit(payload);
+
+    fetch(WEBHOOK_API_URL as string, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...payload,
+        user_agent: req.headers['user-agent'],
+        referer: req.headers.referer,
+      }),
+    }).catch(() => {});
+
     res
       .status(200)
       .setHeader(...BASE_RESPONSE_CONTENT_TYPE)
