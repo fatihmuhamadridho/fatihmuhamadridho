@@ -6,3 +6,5 @@ export const CONST_PROFILE_USERNAME: string | undefined =
   process.env.NEXT_PUBLIC_CONST_PROFILE_USERNAME ?? process.env.CONST_PROFILE_USERNAME;
 export const ENABLE_ENCODING: boolean =
   (process.env.NEXT_PUBLIC_ENABLE_ENCODING ?? process.env.ENABLE_ENCODING) === 'true' ? true : false;
+export const GOOGLE_ANALYTICS_ID: string | undefined =
+  process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID ?? process.env.GOOGLE_ANALYTICS_ID;

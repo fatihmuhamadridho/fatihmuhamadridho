@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
     CONST_PROFILE_USERNAME: process.env.CONST_PROFILE_USERNAME,
     ENABLE_ENCODING: process.env.ENABLE_ENCODING,
     WEBHOOK_API_URL: process.env.WEBHOOK_API_URL,
+    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
   },
   sassOptions: {
     silenceDeprecations: ['legacy-js-api'],

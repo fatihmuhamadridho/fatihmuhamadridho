@@ -10,6 +10,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { createTheme, MantineProvider } from '@mantine/core';
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import localesEn from '../locales/en.json';
+import { GOOGLE_ANALYTICS_ID } from '@/configs/base.config';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const theme = createTheme({
   breakpoints: { xs: '36em', sm: '40em', md: '48em', lg: '64em', xl: '80em', '2xl': '96em' },
@@ -44,6 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <AnimatePresence mode="wait" initial={false}>
               <MantineProvider theme={theme}>
                 <Component {...pageProps} />
+                {GOOGLE_ANALYTICS_ID && <GoogleAnalytics gaId={GOOGLE_ANALYTICS_ID} />}
               </MantineProvider>
             </AnimatePresence>
           </NextIntlClientProvider>
