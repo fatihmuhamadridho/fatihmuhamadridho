@@ -31,9 +31,12 @@ export const useTrackVisit = () => {
         locale: router.locale,
       };
 
-      visitorFEController.createVisit(payload).then(() => {
-        StorageUtil.setNumber(lastTrackedKey, Date.now());
-      });
+      visitorFEController
+        .createVisit(payload)
+        .then(() => {
+          StorageUtil.setNumber(lastTrackedKey, Date.now());
+        })
+        .catch(() => {});
     }, delayMs);
 
     return () => {
