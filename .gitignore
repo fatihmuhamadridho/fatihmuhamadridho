@@ -43,4 +43,3 @@ next-env.d.ts
 /docs
 /src/core/infrastructures/services/prisma
 yarn.lock
-pnpm-lock.yaml
