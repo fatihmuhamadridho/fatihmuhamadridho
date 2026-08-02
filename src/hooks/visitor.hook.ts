@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { VisitorFEController } from '@/core/domains/controllers/visitor.fe.controller';
+import { StorageUtil } from '@/utils/storage.util';
 
 const visitorFEController = new VisitorFEController();
 
@@ -12,12 +13,12 @@ export const useTrackVisit = () => {
 
     const path = router.asPath;
     const lastTrackedKey = `visit:lastTracked:${path}`;
-    const lastTracked = Number(localStorage.getItem(lastTrackedKey));
+    const lastTracked = StorageUtil.getNumber(lastTrackedKey);
 
     const MIN_TRACK_INTERVAL_MS = 5 * 60 * 1000;
     const now = Date.now();
 
-    if (!Number.isNaN(lastTracked) && now - lastTracked < MIN_TRACK_INTERVAL_MS) {
+    if (lastTracked !== null && now - lastTracked < MIN_TRACK_INTERVAL_MS) {
       return;
     }
 
@@ -30,14 +31,9 @@ export const useTrackVisit = () => {
         locale: router.locale,
       };
 
-      visitorFEController
-        .createVisit(payload)
-        .then(() => {
-          localStorage.setItem(lastTrackedKey, `${Date.now()}`);
-        })
-        .catch(() => {
-          // ignore tracking failures
-        });
+      visitorFEController.createVisit(payload).then(() => {
+        StorageUtil.setNumber(lastTrackedKey, Date.now());
+      });
     }, delayMs);
 
     return () => {
