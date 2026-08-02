@@ -6,6 +6,11 @@ describe('DateUtil', () => {
   });
 
   it('gets year consistently in Asia/Jakarta', () => {
-    expect(DateUtil.getYear('2023-12-31T17:00:00.000Z')).toBe(2024);
+    expect(DateUtil.getYear('2023-12-31T17:00:00.000Z')).toBe('2024');
+  });
+
+  it('returns fallback for invalid date input', () => {
+    expect(DateUtil.getMonthYearText('', 'en')).toBe('');
+    expect(DateUtil.getYear('')).toBe('');
   });
 });

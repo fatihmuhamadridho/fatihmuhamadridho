@@ -44,8 +44,10 @@ const ExperienceSection = forwardRef<HTMLElement, ExperienceSectionProps>((props
           <Box key={index} className="relative mb-[48px] py-2 px-2 grid grid-cols-8 gap-4 cursor-pointer group">
             <Box className="absolute block -inset-x-4 -inset-y-4 z-0 rounded-md group-hover:drop-shadow-lg group-hover:bg-[#1e293b80]"></Box>
             <Text className="col-span-2 !text-xs z-10" fw={500} tt={'uppercase'}>
-              {DateUtil.getMonthYearText(item.start_date, locale)} -{' '}
-              {!item.is_present ? DateUtil.getMonthYearText(item.end_date, locale) : isPresentLocale(locale as any)}
+              {DateUtil.getMonthYearText(item.start_date, locale) || '-'} -{' '}
+              {!item.is_present
+                ? DateUtil.getMonthYearText(item.end_date, locale) || '-'
+                : isPresentLocale(locale as any)}
             </Text>
             <Stack className="col-span-6 z-10" gap={12}>
               <Text className="!leading-tight">

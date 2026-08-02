@@ -91,7 +91,7 @@ const ArchivePage = ({ locale = 'en' }: InferGetStaticPropsType<typeof getStatic
                 return (
                   <tr key={index} className="border-b border-slate-300/10 last:border-none">
                     <td className="py-4 pr-8 table-cell">
-                      {isLoading ? <Skeleton w={35} h={35} radius={'md'} /> : DateUtil.getYear(item.date)}
+                      {isLoading ? <Skeleton w={35} h={35} radius={'md'} /> : DateUtil.getYear(item.date) || '-'}
                     </td>
                     <td className="py-4 pr-8 leading-snug table-cell">
                       {isLoading ? <Skeleton w={150} h={35} radius={'md'} /> : item.title}
