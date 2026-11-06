@@ -131,4 +131,3 @@ const ArchivePage = ({ locale = 'en' }: ArchivePageProps) => {
 };
 
 export default ArchivePage;
-

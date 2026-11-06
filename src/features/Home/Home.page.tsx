@@ -130,7 +130,11 @@ const HomePage = ({ locale = 'en' }: HomePageProps) => {
             isLoading={isLoading}
           />
           <Stack className="pt-[30px] pb-[96px] w-full lg:w-1/2 lg:py-[96px]">
-            <LongDescriptionSection ref={aboutRef} isLoading={isLoading} __html={profileData?.data?.detail.long_description[locale]} />
+            <LongDescriptionSection
+              ref={aboutRef}
+              isLoading={isLoading}
+              __html={profileData?.data?.detail.long_description[locale]}
+            />
             <ExperienceSection
               ref={experienceRef}
               isLoading={isLoading}

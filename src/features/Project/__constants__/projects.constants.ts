@@ -6,7 +6,8 @@ export const projects = [
     type: 'Enterprise',
     category: 'Dashboard',
     imagePosition: '7.9% 32.7%',
-    description: 'Enterprise CMS for digital signage platform, handling campaign, playlist, device management, and billing integration.',
+    description:
+      'Enterprise CMS for digital signage platform, handling campaign, playlist, device management, and billing integration.',
     tools: ['Next.js', 'TypeScript', 'React'],
     year: '2025 - now',
   },
@@ -24,7 +25,8 @@ export const projects = [
     type: 'Mobile / CMS',
     category: 'Mobile App',
     imagePosition: '92.4% 32.7%',
-    description: 'Banking application across mobile, tablet, web, and CMS with features like My Portfolio, Sunlife Report, CR Lending, and CCPL.',
+    description:
+      'Banking application across mobile, tablet, web, and CMS with features like My Portfolio, Sunlife Report, CR Lending, and CCPL.',
     tools: ['React Native', 'React', 'TypeScript'],
     year: '2023 - 2025',
   },
