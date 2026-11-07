@@ -1164,12 +1164,13 @@ $line: #e8ebef;
     width: calc(100% - 36px);
   }
   .homeHero {
-    min-height: 800px;
+    min-height: 0;
   }
   .homeHeroInner {
-    min-height: 734px;
+    min-height: 0;
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
+    row-gap: 16px;
   }
   .experienceSection {
     grid-template-columns: 1fr;
@@ -1227,15 +1228,18 @@ $line: #e8ebef;
     max-width: 360px;
   }
   .portraitStage {
+    position: relative;
     top: auto;
-    right: 10%;
-    bottom: 0;
-    width: 90%;
-    height: 380px;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 360px;
+    grid-column: 1;
+    grid-row: 2;
   }
   .portraitStage img {
-    height: 100%;
-    bottom: -30px;
+    height: 125%;
+    bottom: -55px;
   }
   .heroInfo {
     right: 0;
@@ -1250,7 +1254,7 @@ $line: #e8ebef;
   .heroNote {
     top: auto;
     right: 0;
-    bottom: 280px;
+    bottom: 260px;
     max-width: 90px;
     font-size: 11px;
   }

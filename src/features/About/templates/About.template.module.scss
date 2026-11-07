@@ -612,16 +612,19 @@ $line: #e8ebef;
     opacity: 0.7;
   }
   .aboutHero {
-    min-height: 620px;
+    min-height: 0;
   }
   .aboutHeroInner {
-    min-height: 554px;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 32px;
     align-items: start;
   }
   .aboutHeroCopy {
     max-width: 100%;
     padding-top: 28px;
-    padding-bottom: 280px;
+    padding-bottom: 0;
   }
   .aboutHeroCopy .pageTitle {
     max-width: 360px;
@@ -632,11 +635,14 @@ $line: #e8ebef;
     font-size: 14px;
   }
   .aboutHeroPortrait {
+    position: relative;
     top: auto;
-    right: 4%;
-    bottom: -120px;
+    right: auto;
+    bottom: auto;
     width: 100%;
-    height: 440px;
+    height: 320px;
+    object-fit: cover;
+    object-position: center top;
     opacity: 1;
   }
   .aboutAnnotation {
