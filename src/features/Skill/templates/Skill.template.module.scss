@@ -157,7 +157,7 @@ $line: #e8ebef;
 }
 
 .pageHero {
-  min-height: 330px;
+  min-height: 510px;
   background: radial-gradient(ellipse at 72% 90%, #344d1b 0%, #172317 28%, #0b1010 63%);
 }
 .pageHero::before {
@@ -166,7 +166,8 @@ $line: #e8ebef;
 .skillsVisual {
   position: absolute;
   right: 3%;
-  top: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 42%;
   height: 230px;
 }
@@ -296,7 +297,7 @@ $line: #e8ebef;
 .pageHeroInner {
   position: relative;
   display: flex;
-  min-height: 258px;
+  min-height: 438px;
   align-items: center;
 }
 
@@ -441,7 +442,8 @@ $line: #e8ebef;
 
 .skillStats {
   display: grid;
-  gap: 20px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
   margin-top: 18px;
   padding-top: 16px;
   border-top: 1px solid $line;
@@ -449,10 +451,17 @@ $line: #e8ebef;
 
 .skillStat {
   display: grid;
-  grid-template-columns: 28px 1fr;
+  grid-template-columns: 32px minmax(0, 1fr);
   align-items: center;
-  gap: 9px;
+  gap: 12px;
   color: $ink;
+}
+
+.skillStat > div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
 }
 
 .skillStat strong {
@@ -464,8 +473,45 @@ $line: #e8ebef;
 }
 
 .skillStat span:last-child {
+  display: block;
+  margin-top: 0;
   color: $muted;
   font-size: 11px;
+  line-height: 1.35;
+}
+
+.skillLanguages {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 0;
+}
+
+.skillLanguages > svg {
+  flex-shrink: 0;
+  color: $muted;
+}
+
+.skillLanguages span {
+  display: block;
+  color: $muted;
+  font-size: 11px;
+}
+
+.skillLanguages > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 8px;
+}
+
+.skillLanguages .languageNames {
+  margin: 0;
+  color: $ink;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .skillAsideIcon svg {
@@ -711,27 +757,87 @@ $line: #e8ebef;
   }
 }
 
+@media (min-width: 721px) and (max-width: 980px) {
+  .skillLayout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .skillAside {
+    position: static;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    column-gap: 14px;
+    padding: 24px;
+  }
+  .skillAsideIcon {
+    grid-row: span 2;
+  }
+  .skillAside h2 {
+    margin: 0 0 6px;
+  }
+  .skillAside > p {
+    grid-column: 2;
+    max-width: 560px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .skillStats {
+    grid-column: 1 / -1;
+    grid-template-columns: auto auto minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+  }
+  .skillLanguages {
+    grid-column: auto;
+  }
+  .pageHeroInner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 36px;
+    padding-bottom: 36px;
+  }
+  .pageHeroCopy {
+    max-width: 100%;
+    padding: 32px 0 0;
+  }
+  .skillsVisual {
+    position: relative;
+    inset: auto;
+    transform: none;
+    width: min(90%, 500px);
+    height: 260px;
+    align-self: center;
+  }
+}
+
 @media (max-width: 720px) {
   .frame {
     width: min(100% - 36px, 1320px);
   }
   .pageHero {
-    min-height: 480px;
+    min-height: 0;
   }
   .pageHeroInner {
-    min-height: 414px;
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+    padding-bottom: 32px;
   }
   .pageHeroCopy {
     max-width: 100%;
     align-self: start;
-    padding-block: 35px 190px;
+    padding-block: 28px 0;
     padding-left: 0;
   }
   .skillsVisual {
+    position: relative;
     top: auto;
-    bottom: 22px;
+    transform: none;
+    bottom: auto;
     width: 94%;
-    right: 3%;
+    right: auto;
+    margin-inline: auto;
     height: 210px;
   }
   .editorBody {
@@ -786,14 +892,14 @@ $line: #e8ebef;
   }
   .skillStats {
     grid-column: 1 / -1;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
     margin-top: 16px;
     padding-top: 14px;
   }
   .skillStat {
-    grid-template-columns: 1fr;
-    gap: 3px;
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 10px;
   }
   .skillStat strong {
     font-size: 16px;

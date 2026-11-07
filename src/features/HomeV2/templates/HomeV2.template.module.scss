@@ -1080,6 +1080,74 @@ $line: #e8ebef;
   }
 }
 
+@media (min-width: 721px) and (max-width: 980px) {
+  .skillPreviewGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .aboutPreview {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 28px;
+    padding-bottom: 48px;
+  }
+  .aboutPreview .sectionText {
+    max-width: none;
+  }
+  .aboutPreview img {
+    aspect-ratio: 0.85;
+    max-height: 360px;
+    border-radius: 12px;
+  }
+  .aboutPreview .metricStack {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    padding: 24px;
+  }
+  .aboutPreview .metric {
+    grid-template-columns: 36px minmax(0, 1fr);
+    column-gap: 10px;
+  }
+  .aboutPreview .metricIcon {
+    width: 36px;
+    height: 36px;
+  }
+  .homeHeroInner {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    padding-bottom: 420px;
+  }
+  .heroCopy {
+    max-width: 600px;
+    padding-block: 40px 28px;
+  }
+  .heroText {
+    max-width: 560px;
+  }
+  .heroSocials {
+    margin-top: 24px;
+  }
+  .portraitStage {
+    top: auto;
+    right: 18%;
+    width: 64%;
+    height: 410px;
+  }
+  .portraitStage img {
+    height: 100%;
+    bottom: -35px;
+  }
+  .heroMantra {
+    display: none;
+  }
+  .heroNote {
+    top: auto;
+    bottom: 280px;
+    right: 0;
+    font-size: 17px;
+    max-width: 135px;
+  }
+}
+
 @media (max-width: 720px) {
   .frame {
     width: min(100% - 36px, 1320px);
