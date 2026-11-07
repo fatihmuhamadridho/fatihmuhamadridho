@@ -1,0 +1,168 @@
+$ink: #111515;
+$deep: #0b1010;
+$lime: #a8df18;
+$lime-dark: #7eaf08;
+$paper: #ffffff;
+$muted: #59616a;
+$line: #e8ebef;
+
+.site,
+.site * {
+  box-sizing: border-box;
+}
+
+.frame {
+  width: min(100% - 72px, 1320px);
+  margin-inline: auto;
+}
+
+.buttonOutline {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  color: #f7f8f5;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.buttonOutline:hover {
+  border-color: $lime;
+  background: rgba(168, 223, 24, 0.08);
+}
+
+.buttonLight {
+  display: inline-flex;
+  min-height: 43px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: #f7f8f5;
+  color: $ink;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.buttonLight:hover {
+  background: $lime;
+  transform: translateY(-2px);
+}
+
+.contactActions .buttonLight svg,
+.contactActions .buttonLight svg * {
+  color: $ink;
+}
+
+.eyebrow {
+  margin: 0 0 7px;
+  color: #48515a;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.sectionHeading span,
+.limeText {
+  color: $lime-dark;
+}
+
+.pageHeroCopy .eyebrow {
+  color: #e2e5df;
+}
+
+.contactBanner {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: 205px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  overflow: hidden;
+  margin: 24px auto 34px;
+  padding: 34px clamp(24px, 5vw, 70px);
+  border-radius: 12px;
+  background: $deep;
+  color: #f8faf8;
+}
+
+.contactCopy {
+  position: relative;
+  z-index: 2;
+  max-width: 570px;
+}
+
+.contactCopy .eyebrow {
+  color: #cdd3ce;
+}
+
+.contactCopy h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(23px, 3vw, 34px);
+  letter-spacing: -0.05em;
+  line-height: 1.12;
+}
+
+.contactCopy > p:last-child {
+  max-width: 470px;
+  margin: 8px 0 0;
+  color: #d5dad5;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.contactActions {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 11px;
+}
+
+.contactActions .buttonOutline {
+  min-height: 43px;
+  padding: 0 17px;
+}
+
+.contactGlow {
+  position: absolute;
+  z-index: -1;
+  right: -30px;
+  bottom: -180px;
+  width: 380px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(133, 180, 20, 0.26), transparent 68%);
+}
+
+@media (max-width: 720px) {
+  .frame {
+    width: min(100% - 36px, 1320px);
+  }
+  .contactBanner {
+    align-items: start;
+    flex-direction: column;
+    padding: 27px 22px;
+  }
+  .contactActions {
+    width: 100%;
+  }
+}

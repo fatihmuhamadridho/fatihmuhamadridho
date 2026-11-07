@@ -2,4 +2,3 @@
   "installCommand": "corepack enable && corepack prepare pnpm@10.33.2 --activate && pnpm install --frozen-lockfile",
   "buildCommand": "pnpm push:db && pnpm build"
 }
-
