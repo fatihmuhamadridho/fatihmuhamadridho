@@ -1,4 +1,23 @@
-import { IconCloud, IconCode, IconDeviceDesktop, IconServer, IconShieldCheck, IconTools } from '@tabler/icons-react';
+import {
+  IconCloud,
+  IconCode,
+  IconDeviceDesktop,
+  IconServer,
+  IconShieldCheck,
+  IconTools,
+  IconBrandAngular,
+  IconBrandJavascript,
+  IconBrandHtml5,
+  IconBrandCss3,
+  IconBrandAzure,
+  IconHexagon,
+  IconHierarchy,
+  IconChecklist,
+  IconCircleLetterE,
+  IconAlignLeft,
+  IconHexagonLetterE,
+  IconLanguage,
+} from '@tabler/icons-react';
 import {
   IconBrandReact,
   IconBrandNextjs,
@@ -32,10 +51,24 @@ import PageMeta from '@/shared/components/PageMeta/PageMeta';
 import SiteFooter from '@/shared/components/SiteFooter/SiteFooter';
 import { Header } from '@/shared/components';
 import styles from './Skill.template.module.scss';
-import { skillGroups, skillPageIntro } from '../__constants__/skills.constants';
+import { skillGroups, skillPageIntro, skillIndicatorDots } from '../__constants__/skills.constants';
 
-const groupIcons = [IconDeviceDesktop, IconServer, IconTools, IconShieldCheck, IconCloud];
+const groupIcons = [IconDeviceDesktop, IconServer, IconShieldCheck, IconTools];
 const skillIcons = {
+  'React.js': [IconBrandReact, '#00bce5'],
+  'React Native': [IconBrandReact, '#00bce5'],
+  Angular: [IconBrandAngular, '#dd0031'],
+  JavaScript: [IconBrandJavascript, '#c5a000'],
+  HTML: [IconBrandHtml5, '#e34f26'],
+  CSS: [IconBrandCss3, '#1572b6'],
+  'Express.js': [IconCircleLetterE, '#252a30'],
+  'Clean Code': [IconChecklist, '#438a47'],
+  'Clean Architecture': [IconHierarchy, '#526a8b'],
+  'Hexagonal Architecture': [IconHexagon, '#7756ad'],
+  'Bit Cloud': [IconCloud, '#1684d9'],
+  ESLint: [IconHexagonLetterE, '#4b32c3'],
+  Prettier: [IconAlignLeft, '#bc8845'],
+  'Microsoft Azure AI': [IconBrandAzure, '#0078d4'],
   React: [IconBrandReact, '#00bce5'],
   'Next.js': [IconBrandNextjs, '#111515'],
   TypeScript: [IconBrandTypescript, '#1675d5'],
@@ -81,7 +114,67 @@ export default function SkillTemplate() {
               </Title>
               <Text className={styles.pageSubtitle}>{skillPageIntro.description}</Text>
             </Box>
-            <Box className={styles.heroLaptop} role="img" aria-label="Laptop displaying code" />
+            <div
+              className={styles.skillsVisual}
+              role="img"
+              aria-label="Code editor with React, TypeScript, and Next.js technology cards"
+            >
+              <div className={styles.editor} aria-hidden="true">
+                <div className={styles.editorBar}>
+                  <span />
+                  <span />
+                  <span />
+                  <small>portfolio.tsx</small>
+                  <IconCode size={16} />
+                </div>
+                <div className={styles.editorBody}>
+                  <div>
+                    <i>01</i>
+                    <span className={styles.codePurple}>const</span> developer = {'{'}
+                  </div>
+                  <div>
+                    <i>02</i>
+                    {'  '}role: <span className={styles.codeGreen}>'Frontend Developer'</span>,
+                  </div>
+                  <div>
+                    <i>03</i>
+                    {'  '}stack: [<span className={styles.codeGreen}>'React'</span>,{' '}
+                    <span className={styles.codeGreen}>'Next.js'</span>],
+                  </div>
+                  <div>
+                    <i>04</i>
+                    {'  '}language: <span className={styles.codeGreen}>'TypeScript'</span>,
+                  </div>
+                  <div>
+                    <i>05</i>
+                    {'  '}focus: <span className={styles.codeGreen}>'Web & Mobile'</span>
+                  </div>
+                  <div>
+                    <i>06</i>
+                    {'};'}
+                  </div>
+                  <div className={styles.codeComment}>
+                    <i>07</i>// Build. Test. Improve.
+                  </div>
+                </div>
+                <div className={styles.editorStatus}>
+                  <span>✓ Ready to build</span>
+                  <span>TypeScript React</span>
+                </div>
+              </div>
+              <div className={`${styles.techFloat} ${styles.reactFloat}`} aria-hidden="true">
+                <IconBrandReact size={28} />
+                <span>React</span>
+              </div>
+              <div className={`${styles.techFloat} ${styles.tsFloat}`} aria-hidden="true">
+                <IconBrandTypescript size={27} />
+                <span>TypeScript</span>
+              </div>
+              <div className={`${styles.techFloat} ${styles.nextFloat}`} aria-hidden="true">
+                <IconBrandNextjs size={26} />
+                <span>Next.js</span>
+              </div>
+            </div>
           </Box>
         </Box>
       </Box>
@@ -112,10 +205,10 @@ export default function SkillTemplate() {
               </Box>
             </Box>
             <Box className={styles.skillStat}>
-              <IconInfinity size={30} />
+              <IconLanguage size={30} />
               <Box>
-                <Text component="strong">{skillPageIntro.learning}</Text>
-                <Text component="span">Learning &amp; Improving</Text>
+                <Text component="strong">{skillPageIntro.languages}</Text>
+                <Text component="span">Languages</Text>
               </Box>
             </Box>
           </Box>
@@ -148,15 +241,11 @@ export default function SkillTemplate() {
                         </Box>
                         <Box className={styles.skillItemCopy}>
                           <Text component="strong">{skill.name}</Text>
-                          <Text component="span" className={styles.skillDots} aria-label={`${skill.level} out of 5`}>
-                            {Array.from({ length: 5 }, (_, dot) => (
-                              <Box
-                                component="i"
-                                key={dot}
-                                style={{ background: dot < skill.level ? '#99cf08' : '#dfe3e7' }}
-                              />
+                          <Box component="span" className={styles.skillDots} aria-hidden="true">
+                            {Array.from({ length: skillIndicatorDots }, (_, dot) => (
+                              <Box component="i" key={dot} />
                             ))}
-                          </Text>
+                          </Box>
                         </Box>
                       </Box>
                     );

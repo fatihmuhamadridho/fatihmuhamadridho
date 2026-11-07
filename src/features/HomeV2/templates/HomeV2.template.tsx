@@ -6,11 +6,12 @@ import {
   IconMapPin,
   IconUsers,
   IconBrandGithub,
-  IconBrandLinkedin,
   IconMail,
   IconCalendar,
   IconAward,
 } from '@tabler/icons-react';
+import { resumeProfile } from '@/shared/constants/resume.constants';
+import { projectHref } from '@/features/Project/__constants__/projectDetail.constants';
 import { Anchor, Box, Image, Text, Title } from '@mantine/core';
 import ContactBanner from '@/shared/components/ContactBanner/ContactBanner';
 import PageMeta from '@/shared/components/PageMeta/PageMeta';
@@ -40,37 +41,21 @@ export default function HomeV2Template() {
                 {homeIntro.name}
               </Title>
               <Text className={styles.heroRole}>{homeIntro.role}</Text>
-              <Text className={styles.heroText}>
-                I build responsive, scalable, and user-friendly web and mobile applications using React, Next.js,
-                Angular, and React Native. Passionate about turning ideas into real products and delivering great user
-                experiences.
-              </Text>
+              <Text className={styles.heroText}>{resumeProfile.heroDescription}</Text>
               <Box className={styles.heroActions}>
                 <Anchor className={styles.buttonLight} href="#featured-projects">
                   View my work <IconArrowRight size={17} />
                 </Anchor>
-                <Anchor className={styles.textLink} href="mailto:fatihmuhamadridho1@gmail.com?subject=CV%20request">
-                  Request CV <IconArrowDown size={14} />
+                <Anchor className={styles.textLink} href={resumeProfile.resumeUrl} download>
+                  Download CV <IconArrowDown size={14} />
                 </Anchor>
               </Box>
               <Box className={styles.heroSocials} aria-label="Social links">
-                <Anchor
-                  href="https://github.com/fatihmuhamadridho"
-                  aria-label="GitHub"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Anchor href={resumeProfile.github} aria-label="GitHub" target="_blank" rel="noreferrer">
                   <IconBrandGithub size={20} />
                 </Anchor>
-                <Anchor
-                  href="https://www.linkedin.com/in/fatihmuhamadridho"
-                  aria-label="LinkedIn"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <IconBrandLinkedin size={20} />
-                </Anchor>
-                <Anchor href="mailto:fatihmuhamadridho1@gmail.com" aria-label="Email">
+
+                <Anchor href={`mailto:${resumeProfile.email}`} aria-label="Email">
                   <IconMail size={20} />
                 </Anchor>
               </Box>
@@ -109,13 +94,13 @@ export default function HomeV2Template() {
                 <Text component="span">
                   {homeIntro.location}
                   <Text component="span" className={styles.heroInfoCaption}>
-                    Open to Remote
+                    {resumeProfile.role}
                   </Text>
                 </Text>
               </Box>
               <Box className={styles.heroInfoRow}>
                 <Box component="span" className={styles.availabilityDot} />
-                <Text component="span">Available for Opportunity</Text>
+                <Text component="span">{resumeProfile.focus}</Text>
               </Box>
             </Box>
           </Box>
@@ -156,7 +141,7 @@ export default function HomeV2Template() {
                   </Box>
                   <Text component="span">
                     <Text component="strong">{homeIntro.projects}</Text>
-                    <Text component="span">Projects Delivered</Text>
+                    <Text component="span">Projects in Resume</Text>
                   </Text>
                 </Box>
                 <Box className={styles.metric}>
@@ -232,7 +217,11 @@ export default function HomeV2Template() {
                       className={styles.miniProjectImage}
                       role="img"
                       aria-label={`${project.title} preview`}
-                      style={{ backgroundPosition: project.imagePosition }}
+                      style={{
+                        backgroundImage: `url('${project.image}')`,
+                        backgroundPosition: 'top center',
+                        backgroundSize: 'cover',
+                      }}
                     />
                     <Box className={styles.miniProjectBody}>
                       <Title order={3}>{project.title}</Title>
@@ -244,7 +233,11 @@ export default function HomeV2Template() {
                         ))}
                       </Box>
                       <Text>{project.description}</Text>
-                      <Anchor href="/projects" className={styles.projectArrow} aria-label={`View ${project.title}`}>
+                      <Anchor
+                        href={projectHref(project.title)}
+                        className={styles.projectArrow}
+                        aria-label={`View ${project.title}`}
+                      >
                         <IconArrowRight size={17} stroke={1.8} />
                       </Anchor>
                     </Box>
@@ -297,11 +290,11 @@ export default function HomeV2Template() {
                 {homeEducation.map((item) => (
                   <Box component="article" className={styles.educationCard} key={item.school}>
                     <Box className={styles.educationHeader}>
-                      <Box
+                      <Image
                         className={styles.educationLogo}
-                        role="img"
-                        aria-label={`${item.school} logo`}
-                        style={{ backgroundPosition: item.logoPosition }}
+                        src={item.logo}
+                        alt={`${item.school} logo`}
+                        fit="contain"
                       />
                       <Box>
                         <Title order={3}>{item.school}</Title>

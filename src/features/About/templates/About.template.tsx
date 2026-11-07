@@ -4,9 +4,7 @@ import {
   IconCode,
   IconTrendingUp,
   IconDeviceGamepad2,
-  IconBook,
-  IconPlaneTilt,
-  IconHeart,
+  IconMovie,
 } from '@tabler/icons-react';
 import ContactBanner from '@/shared/components/ContactBanner/ContactBanner';
 import PageMeta from '@/shared/components/PageMeta/PageMeta';
@@ -16,7 +14,7 @@ import styles from './About.template.module.scss';
 import { aboutIntro, outsideInterests, workPrinciples } from '../__constants__/about.constants';
 
 const principleSymbols = { layers: IconStack2, code: IconCode, trend: IconTrendingUp };
-const interestSymbols = { gamepad: IconDeviceGamepad2, book: IconBook, plane: IconPlaneTilt, heart: IconHeart };
+const interestSymbols = { gamepad: IconDeviceGamepad2, movie: IconMovie, code: IconCode };
 
 export default function AboutTemplate() {
   return (
@@ -52,9 +50,9 @@ export default function AboutTemplate() {
         <Box component="section" className={styles.storySection}>
           <Image className={styles.storyImage} src={aboutIntro.image} alt="Fatih at work in a modern office" />
           <Box className={styles.storyCopy}>
-            <Text className={styles.eyebrow}>My story</Text>
+            <Text className={styles.eyebrow}>Professional background</Text>
             <Title order={2} className={styles.sectionHeading}>
-              How It All <Text component="span">Started.</Text>
+              {aboutIntro.storyTitle}
             </Title>
             {aboutIntro.story.map((paragraph) => (
               <Text key={paragraph}>{paragraph}</Text>
@@ -64,9 +62,9 @@ export default function AboutTemplate() {
 
         <Box component="section" className={styles.principleSection}>
           <Box>
-            <Text className={styles.eyebrow}>My work philosophy</Text>
+            <Text className={styles.eyebrow}>Areas of experience</Text>
             <Title order={2} className={styles.sectionHeading}>
-              The Principles <Box component="br" />I <Text component="span">Work With.</Text>
+              What I <Text component="span">Work On.</Text>
             </Title>
           </Box>
           <Box className={styles.principleGrid}>
@@ -85,27 +83,29 @@ export default function AboutTemplate() {
           </Box>
         </Box>
 
-        <Box component="section" className={styles.interestSection}>
-          <Box>
-            <Text className={styles.eyebrow}>Beyond the code</Text>
-            <Title order={2} className={styles.sectionHeading}>
-              Things I Enjoy <Text component="span">Outside of Work.</Text>
-            </Title>
-          </Box>
-          <Box className={styles.interestList}>
-            {outsideInterests.map((interest) => {
-              const Icon = interestSymbols[interest.icon as keyof typeof interestSymbols];
-              return (
-                <Text component="span" className={styles.interest} key={interest.title}>
-                  <Text component="span" aria-hidden="true">
-                    <Icon size={30} stroke={1.8} />
+        {outsideInterests.length > 0 && (
+          <Box component="section" className={styles.interestSection}>
+            <Box>
+              <Text className={styles.eyebrow}>Beyond the code</Text>
+              <Title order={2} className={styles.sectionHeading}>
+                Things I Enjoy <Text component="span">Outside of Work.</Text>
+              </Title>
+            </Box>
+            <Box className={styles.interestList}>
+              {outsideInterests.map((interest) => {
+                const Icon = interestSymbols[interest.icon as keyof typeof interestSymbols];
+                return (
+                  <Text component="span" className={styles.interest} key={interest.title}>
+                    <Text component="span" aria-hidden="true">
+                      <Icon size={30} stroke={1.8} />
+                    </Text>
+                    {interest.title}
                   </Text>
-                  {interest.title}
-                </Text>
-              );
-            })}
+                );
+              })}
+            </Box>
           </Box>
-        </Box>
+        )}
         <ContactBanner
           title={
             <>

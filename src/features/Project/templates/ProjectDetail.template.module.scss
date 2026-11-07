@@ -1,0 +1,471 @@
+.site {
+  background: #fff;
+  color: #111515;
+  min-height: 100vh;
+  font:
+    15px/1.5 Arial,
+    Helvetica,
+    sans-serif;
+}
+.site * {
+  box-sizing: border-box;
+  color: inherit;
+}
+.site a {
+  text-decoration: none;
+}
+.site h2 {
+  margin: 0 0 12px;
+  font-size: clamp(25px, 2.4vw, 31px);
+  letter-spacing: -0.045em;
+  line-height: 1.2;
+}
+.site h2 span,
+.lime {
+  color: #83b908;
+}
+.site p {
+  margin: 0;
+  color: #343c4b;
+}
+.site a:focus-visible,
+.site button:focus-visible {
+  outline: 3px solid #83b908;
+  outline-offset: 5px;
+}
+.frame {
+  width: min(100% - 112px, 1320px);
+  margin-inline: auto;
+}
+.hero {
+  overflow: hidden;
+  background: radial-gradient(ellipse at 73% 80%, #3e5b15, #111b13 38%, #0b1010 72%);
+  color: #fff;
+}
+.heroInner {
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+}
+.heroCopy {
+  position: relative;
+  z-index: 1;
+  width: 48%;
+  padding: 27px 0 66px;
+}
+.back {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 28px;
+  font-size: 14px;
+}
+.badge {
+  display: table;
+  background: #fff;
+  color: #111;
+  border-radius: 30px;
+  padding: 3px 14px;
+  font-size: 12px;
+  margin-bottom: 9px;
+}
+.hero h1 {
+  font-size: clamp(36px, 4.2vw, 58px);
+  letter-spacing: -0.05em;
+  line-height: 1.08;
+  margin: 0 0 15px;
+}
+.hero h1 span {
+  color: #a8df18;
+}
+.heroCopy p {
+  color: #fff;
+  font-size: 17px;
+  max-width: 490px;
+  line-height: 1.6;
+}
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  color: #111;
+  border-radius: 30px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 26px;
+}
+.primaryButton:hover {
+  background: #a8df18;
+}
+.heroLaptop {
+  clip-path: inset(0 0 0 18%);
+  position: absolute;
+  width: 64%;
+  right: -6%;
+  bottom: 0;
+  aspect-ratio: 1.78;
+  background: url('/images/project-detail-reference.png') 90% 4.7% / 166% 490% no-repeat;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 98%);
+}
+.overview {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 45px;
+  padding-block: 34px;
+}
+.overview > div {
+  padding-right: 20px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0;
+  padding-left: 35px;
+  border-left: 1px solid #e8ebef;
+  gap: 20px 24px;
+}
+.facts > div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.facts > div > svg {
+  box-sizing: content-box;
+  padding: 9px;
+  border: 1px solid #edf0f3;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+.facts dt {
+  font-weight: 700;
+  font-size: 14px;
+}
+.facts dd {
+  margin: 2px 0 0;
+  color: #343c4b;
+  font-size: 13px;
+}
+.summaryCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.summaryCards article {
+  padding: 23px 24px;
+  border: 1px solid #e7eaf0;
+  border-radius: 15px;
+  background: linear-gradient(125deg, #fff, #f9fafb);
+}
+.summaryCards h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  letter-spacing: -0.04em;
+  margin: 0 0 12px;
+}
+.summaryCards h3 svg {
+  box-sizing: content-box;
+  flex-shrink: 0;
+  background: #edffd0;
+  padding: 5px;
+  border-radius: 10px;
+}
+.site ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.site li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 9px;
+}
+.site li svg {
+  color: #83bb08;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.summaryCards ul {
+  font-size: 13px;
+}
+.gallery {
+  padding-top: 40px;
+}
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+.sectionHead h2 {
+  margin: 0;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+.controls > span {
+  margin-right: 5px;
+}
+.controls button {
+  display: grid;
+  place-items: center;
+  border: 1px solid #111;
+  background: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.controls button:disabled {
+  border-color: #e4e8ee;
+  color: #a0a8b5;
+  cursor: default;
+}
+.screens {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 16px;
+}
+.screenshot {
+  aspect-ratio: 1.3;
+  border-radius: 15px;
+  background-color: #f5f6f8;
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.screenshot:first-child {
+  aspect-ratio: 2.08;
+}
+.caption {
+  font-size: 11px;
+  margin-top: 10px !important;
+  color: #737b84 !important;
+}
+.contributions {
+  display: grid;
+  grid-template-columns: 1fr 1.18fr;
+  gap: 50px;
+  padding-block: 38px 30px;
+}
+.contributions > div + div {
+  border-left: 1px solid #e8ebef;
+  padding-left: 50px;
+}
+.contributions li {
+  font-size: 14px;
+}
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+.techGrid > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 8px;
+  border: 1px solid #e8ebef;
+  border-radius: 14px;
+  box-shadow: 0 3px 6px #10203003;
+}
+.techGrid span {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.techGrid svg {
+  flex-shrink: 0;
+}
+.related {
+  border-top: 1px solid #e8ebef;
+  padding-block: 24px 40px;
+}
+.sectionHead > a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+}
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.relatedCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px;
+  border: 1px solid #e8ebef;
+  border-radius: 15px;
+  box-shadow: 0 5px 10px #10203006;
+}
+.relatedCard:hover {
+  border-color: #83b908;
+}
+.relatedCard h3 {
+  font-size: 15px;
+  margin: 0 0 6px;
+  letter-spacing: -0.03em;
+}
+.relatedCard > svg {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.projectPreview {
+  display: grid;
+  place-items: center;
+  background-color: #e8ecee;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+.relatedImage {
+  width: 110px;
+  height: 84px;
+  flex-shrink: 0;
+}
+.otherHero {
+  width: 46%;
+  height: 270px;
+  margin-left: auto;
+  background-size: contain;
+  background-color: #fff;
+  box-shadow: 0 12px 35px #0003;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.tags span {
+  border-radius: 20px;
+  background: #f0f2f5;
+  padding: 2px 9px;
+  font-size: 10px;
+}
+@media (max-width: 1100px) {
+  .frame {
+    width: calc(100% - 64px);
+  }
+  .techGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .relatedImage {
+    width: 80px;
+  }
+  .relatedCard {
+    gap: 8px;
+  }
+  .relatedCard h3 {
+    font-size: 13px;
+  }
+}
+@media (max-width: 720px) {
+  .frame {
+    width: calc(100% - 36px);
+  }
+  .heroInner {
+    display: block;
+    padding-bottom: 240px;
+  }
+  .heroCopy {
+    width: 100%;
+    padding: 24px 0;
+  }
+  .heroCopy p {
+    font-size: 15px;
+  }
+  .heroLaptop {
+    width: 115%;
+    right: -10%;
+    max-height: 250px;
+  }
+  .hero h1 {
+    font-size: 42px;
+  }
+  .back {
+    margin-bottom: 23px;
+  }
+  .overview,
+  .contributions {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .facts {
+    padding: 20px 0 0;
+    border-left: 0;
+    border-top: 1px solid #e8ebef;
+    gap: 20px 10px;
+  }
+  .facts > div {
+    gap: 9px;
+  }
+  .facts dd {
+    font-size: 12px;
+  }
+  .summaryCards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .summaryCards article {
+    padding: 22px;
+  }
+  .screens {
+    grid-template-columns: 1fr;
+  }
+  .screenshot {
+    display: none;
+  }
+  .screenshot:first-child {
+    display: block;
+    aspect-ratio: 2.08;
+  }
+  .contributions > div + div {
+    padding: 25px 0 0;
+    border-left: 0;
+    border-top: 1px solid #e8ebef;
+  }
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+  .relatedImage {
+    width: 110px;
+  }
+  .relatedCard h3 {
+    font-size: 16px;
+  }
+  .sectionHead {
+    gap: 10px;
+  }
+  .sectionHead h2 {
+    font-size: 24px;
+  }
+  .controls {
+    gap: 6px;
+  }
+  .controls button {
+    width: 32px;
+    height: 32px;
+  }
+  .otherHero {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    height: 210px;
+  }
+}

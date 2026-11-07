@@ -228,14 +228,14 @@ $line: #e8ebef;
 .aboutHeroCopy {
   position: relative;
   z-index: 2;
-  max-width: 540px;
-  padding-block: 50px 65px;
+  max-width: 460px;
+  padding-block: 38px 46px;
 }
 
 .aboutHeroCopy .eyebrow {
   color: #f0f2ef;
-  font-size: 14px;
-  margin-bottom: 18px;
+  font-size: 11px;
+  margin-bottom: 16px;
 }
 
 .aboutHeroCopy .limeText {
@@ -244,33 +244,35 @@ $line: #e8ebef;
 }
 
 .aboutHeroCopy .pageTitle {
-  max-width: 520px;
+  max-width: 440px;
+  font-size: clamp(38px, 4vw, 52px);
+  line-height: 1.06;
 }
 
 .aboutHeroCopy .pageSubtitle {
-  max-width: 480px;
-  font-size: 20px;
-  line-height: 1.4;
-  margin-top: 24px;
+  max-width: 430px;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-top: 18px;
 }
 
 .aboutHeroPortrait {
   position: absolute;
-  right: 12%;
-  bottom: -360px;
-  width: 60%;
-  height: 185%;
+  right: 17%;
+  top: -12px;
+  width: 46%;
+  height: auto;
   object-fit: contain;
   object-position: bottom center;
 }
 
 .aboutAnnotation {
   position: absolute;
-  top: 23%;
-  right: 1%;
+  top: 20%;
+  right: 2%;
   color: #f6f8f3;
   font-family: 'Segoe Print', 'Comic Sans MS', cursive;
-  font-size: 25px;
+  font-size: 18px;
   font-style: italic;
   line-height: 1.45;
   transform: rotate(-4deg);
@@ -278,10 +280,10 @@ $line: #e8ebef;
 
 .aboutAnnotation::before {
   position: absolute;
-  top: 48px;
-  left: -90px;
-  width: 75px;
-  height: 70px;
+  top: 30px;
+  left: -50px;
+  width: 40px;
+  height: 42px;
   border-top: 1px solid #e1e7da;
   border-left: 1px solid #e1e7da;
   border-radius: 100% 0 0;
@@ -291,9 +293,9 @@ $line: #e8ebef;
 
 .aboutAnnotation::after {
   display: block;
-  width: 135px;
+  width: 100px;
   height: 2px;
-  margin: 10px 0 0 40px;
+  margin: 10px 0 0 20px;
   background: $lime;
   content: '';
   transform: rotate(-9deg);
@@ -308,6 +310,11 @@ $line: #e8ebef;
   gap: 70px;
   padding-block: 40px 32px;
   border-bottom: 1px solid $line;
+}
+
+.storyCopy .eyebrow {
+  text-transform: none;
+  letter-spacing: 0.04em;
 }
 
 .storyImage {
@@ -547,24 +554,27 @@ $line: #e8ebef;
     opacity: 0.7;
   }
   .aboutHero {
-    min-height: 740px;
+    min-height: 620px;
   }
   .aboutHeroInner {
-    min-height: 674px;
+    min-height: 554px;
     align-items: start;
   }
   .aboutHeroCopy {
     max-width: 100%;
-    padding-top: 36px;
+    padding-top: 28px;
+    padding-bottom: 280px;
   }
   .aboutHeroCopy .pageTitle {
     max-width: 360px;
+    font-size: 38px;
   }
   .aboutHeroCopy .pageSubtitle {
     max-width: 340px;
-    font-size: 16px;
+    font-size: 14px;
   }
   .aboutHeroPortrait {
+    top: auto;
     right: 4%;
     bottom: -120px;
     width: 100%;
@@ -574,7 +584,7 @@ $line: #e8ebef;
   .aboutAnnotation {
     top: auto;
     right: 0;
-    bottom: 210px;
+    bottom: 140px;
     font-size: 13px;
   }
   .aboutAnnotation::before {

@@ -792,7 +792,6 @@ $line: #e8ebef;
 }
 
 .educationCard {
-  min-height: 260px;
   padding: 18px 20px 24px;
   border: 1px solid $line;
   border-radius: 6px;
@@ -822,9 +821,9 @@ $line: #e8ebef;
   width: 80px;
   height: 80px;
   border-radius: 10px;
-  background-image: url('/images/education-reference.png');
-  background-size: 1536% 490%;
-  background-repeat: no-repeat;
+  padding: 8px;
+  object-fit: contain;
+  background: #fff;
   box-shadow: 0 5px 14px rgba(16, 24, 32, 0.08);
 }
 

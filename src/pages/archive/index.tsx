@@ -1,2 +1,2 @@
-export { default } from '@/features/Archive/Archive.page';
-export { getStaticProps } from '@/features/Archive/Archive.page';
+// The archive shares the same temporary resume constants as the projects page.
+export { default } from '@/features/Project/pages/Project.page';

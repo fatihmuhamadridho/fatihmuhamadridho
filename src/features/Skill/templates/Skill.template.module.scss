@@ -163,20 +163,134 @@ $line: #e8ebef;
 .pageHero::before {
   display: none;
 }
-.heroLaptop {
+.skillsVisual {
   position: absolute;
-  right: 5%;
-  bottom: 0;
-  width: 36%;
-  aspect-ratio: 1.85;
-  background-image: url('/images/skills-page-reference.png');
-  background-size: 329% 604%;
-  background-position: 83.8% 5%;
-  background-repeat: no-repeat;
-  mask-image:
-    linear-gradient(90deg, transparent, #000 12%, #000 94%, transparent),
-    linear-gradient(180deg, transparent, #000 12%, #000 96%, transparent);
-  mask-composite: intersect;
+  right: 3%;
+  top: 12px;
+  width: 42%;
+  height: 230px;
+}
+.editor {
+  position: absolute;
+  inset: 14px 18px 5px 12px;
+  overflow: hidden;
+  border: 1px solid #ffffff26;
+  border-radius: 12px;
+  background: #111b1b;
+  color: #dde6e4;
+  box-shadow:
+    0 20px 45px #0005,
+    0 0 60px #a8df1810;
+  transform: perspective(1000px) rotateY(-8deg) rotateZ(-3deg);
+}
+.editorBar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 13px;
+  border-bottom: 1px solid #ffffff10;
+  background: #ffffff04;
+  color: #8b9b98;
+  > span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #53625a;
+  }
+  > span:first-child {
+    background: #bd7370;
+  }
+  > span:nth-child(2) {
+    background: #b7a867;
+  }
+  > span:nth-child(3) {
+    background: #87a968;
+  }
+  small {
+    margin-left: 12px;
+    font-size: 10px;
+  }
+  svg {
+    margin-left: auto;
+  }
+}
+.editorBody {
+  padding: 15px 12px;
+  font:
+    11px/1.9 Consolas,
+    monospace;
+  white-space: pre;
+  i {
+    display: inline-block;
+    width: 27px;
+    color: #556760;
+    font-style: normal;
+  }
+}
+.editorBody .codePurple {
+  color: #c6a0f6;
+}
+.editorBody .codeGreen {
+  color: #b4d982;
+}
+.editorBody .codeComment {
+  color: #7b9080;
+}
+.editorStatus {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 12px;
+  border-top: 1px solid #ffffff0d;
+  color: #a5c77e;
+  font-size: 9px;
+}
+.techFloat {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  border: 1px solid #ffffff26;
+  border-radius: 12px;
+  background: #1b2725;
+  box-shadow: 0 8px 24px #0004;
+  span {
+    color: #f0f5ed;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+.reactFloat {
+  left: -28px;
+  top: -4px;
+  color: #61dafb;
+  transform: rotate(-6deg);
+}
+.tsFloat {
+  right: -12px;
+  top: 68px;
+  color: #5ca8ed;
+  transform: rotate(5deg);
+}
+.nextFloat {
+  left: 25px;
+  bottom: -12px;
+  color: #f4f7f1;
+  transform: rotate(-3deg);
+}
+@media (min-width: 721px) and (max-width: 1000px) {
+  .skillsVisual {
+    right: 0;
+    width: 40%;
+  }
+  .editorBody {
+    font-size: 9px;
+    padding-inline: 6px;
+  }
+  .pageHeroCopy {
+    max-width: 53%;
+    padding-left: 0;
+  }
 }
 
 .pageHeroInner {
@@ -613,9 +727,28 @@ $line: #e8ebef;
     padding-block: 35px 190px;
     padding-left: 0;
   }
-  .heroLaptop {
-    width: 90%;
-    right: 0;
+  .skillsVisual {
+    top: auto;
+    bottom: 22px;
+    width: 94%;
+    right: 3%;
+    height: 210px;
+  }
+  .editorBody {
+    font-size: 9px;
+  }
+  .techFloat {
+    padding: 7px 10px;
+    gap: 6px;
+  }
+  .techFloat span {
+    font-size: 10px;
+  }
+  .reactFloat {
+    left: -5px;
+  }
+  .tsFloat {
+    right: -5px;
   }
   .pageTitle {
     font-size: clamp(42px, 12vw, 60px);

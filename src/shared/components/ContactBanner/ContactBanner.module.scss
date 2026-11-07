@@ -61,6 +61,11 @@ $line: #e8ebef;
   transform: translateY(-2px);
 }
 
+.contactActions .buttonLight svg,
+.contactActions .buttonLight svg * {
+  color: $ink;
+}
+
 .eyebrow {
   margin: 0 0 7px;
   color: #48515a;

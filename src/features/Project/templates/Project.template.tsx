@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
+import Link from 'next/link';
 import { Anchor, Box, Image, Text, TextInput, Title, UnstyledButton } from '@mantine/core';
 import {
   IconArrowUpRight,
   IconArrowRight,
   IconSearch,
-  IconStack2,
   IconChevronLeft,
   IconChevronRight,
 } from '@tabler/icons-react';
@@ -14,6 +14,7 @@ import SiteFooter from '@/shared/components/SiteFooter/SiteFooter';
 import { Header } from '@/shared/components';
 import styles from './Project.template.module.scss';
 import { projectCategories, projects } from '../__constants__/projects.constants';
+import { projectHref } from '../__constants__/projectDetail.constants';
 
 export default function ProjectTemplate() {
   const [category, setCategory] = useState(projectCategories[0]);
@@ -28,8 +29,8 @@ export default function ProjectTemplate() {
       return matchesCategory && matchesSearch;
     });
   }, [category, search]);
-  const pageCount = Math.max(1, Math.ceil(filteredProjects.length / 5));
-  const visibleProjects = filteredProjects.slice((page - 1) * 5, page * 5);
+  const pageCount = Math.max(1, Math.ceil(filteredProjects.length / 6));
+  const visibleProjects = filteredProjects.slice((page - 1) * 6, page * 6);
 
   return (
     <Box className={styles.site} id="top">
@@ -90,7 +91,12 @@ export default function ProjectTemplate() {
 
         <Box className={styles.projectGrid}>
           {visibleProjects.map((project) => (
-            <Box component="article" className={styles.projectCard} key={project.title}>
+            <Box
+              component={Link}
+              href={projectHref(project.title)}
+              className={`${styles.projectCard} ${styles.clickableCard}`}
+              key={project.title}
+            >
               <Box className={styles.projectImageWrap}>
                 {project.imagePosition ? (
                   <Box
@@ -125,36 +131,15 @@ export default function ProjectTemplate() {
                   ))}
                 </Box>
                 <Text>{project.description}</Text>
-                <Anchor className={styles.projectLink} href="/#contact">
+                <Box component="span" className={styles.projectLink}>
                   View Details <IconArrowRight size={18} />
-                </Anchor>
-                <Anchor className={styles.cardArrow} href="/#contact" aria-label={`Discuss ${project.title}`}>
+                </Box>
+                <Box component="span" className={styles.cardArrow} aria-hidden="true">
                   <IconArrowUpRight size={20} />
-                </Anchor>
+                </Box>
               </Box>
             </Box>
           ))}
-          {category === 'All Projects' && !search.trim() && page === 1 && (
-            <Box component="article" className={styles.projectCard}>
-              <Box className={styles.projectImageWrap}>
-                <Box className={styles.moreProjectsVisual}>
-                  <IconStack2 size={64} stroke={1.5} />
-                </Box>
-                <Text component="span" className={styles.projectType}>
-                  Other
-                </Text>
-              </Box>
-              <Box className={styles.projectCardBody}>
-                <Title order={2}>More Projects</Title>
-                <Text>
-                  Explore other projects I’ve worked on, including internal tools, prototypes, and experiments.
-                </Text>
-                <Anchor className={styles.projectLink} href="/archive">
-                  View All <IconArrowRight size={18} />
-                </Anchor>
-              </Box>
-            </Box>
-          )}
           {filteredProjects.length === 0 && (
             <Text className={styles.emptyProjects}>No projects match this search. Try another name or category.</Text>
           )}

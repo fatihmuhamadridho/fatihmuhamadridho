@@ -1,3 +1,4 @@
+import { resumeProfile } from '@/shared/constants/resume.constants';
 import { Anchor, Box, Burger } from '@mantine/core';
 import { IconDownload } from '@tabler/icons-react';
 import Link from 'next/link';
@@ -17,9 +18,9 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <Box component="header" className={styles.header}>
-      <Anchor component={Link} className={styles.wordmark} href="/" aria-label="Fatih Ridho, home">
+      <Anchor component={Link} className={styles.wordmark} href="/" aria-label={`${resumeProfile.name}, home`}>
         <Box component="span" className={styles.wordmarkMark} />
-        <Box component="span">Fatih Ridho</Box>
+        <Box component="span">{resumeProfile.shortName}</Box>
       </Anchor>
       <Box component="nav" aria-label="Main navigation" className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
         {navigation.map((item) => {
@@ -39,9 +40,9 @@ export default function Header() {
           );
         })}
       </Box>
-      <Anchor className={styles.headerAction} href="mailto:fatihmuhamadridho1@gmail.com?subject=CV%20request">
+      <Anchor className={styles.headerAction} href={resumeProfile.resumeUrl} download>
         <IconDownload size={15} stroke={1.8} />
-        <Box component="span">Request CV</Box>
+        <Box component="span">Download CV</Box>
       </Anchor>
       <Burger
         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
