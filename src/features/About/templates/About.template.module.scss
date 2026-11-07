@@ -533,6 +533,64 @@ $line: #e8ebef;
   outline-offset: 3px;
 }
 
+@media (min-width: 981px) and (max-width: 1200px) {
+  .aboutHeroCopy {
+    max-width: 41%;
+  }
+  .aboutHeroCopy .pageSubtitle {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 980px) {
+  .principleSection,
+  .interestSection {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    padding-block: 32px;
+  }
+  .principleCard {
+    min-height: 0;
+    padding: 20px;
+  }
+  .principleCard h3 {
+    overflow-wrap: anywhere;
+  }
+  .interestList {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .interest > svg {
+    flex-shrink: 0;
+  }
+  .aboutHeroInner {
+    flex-direction: column;
+    align-items: stretch;
+    padding-bottom: 380px;
+  }
+  .aboutHeroCopy {
+    max-width: 100%;
+    padding-block: 32px;
+  }
+  .aboutHeroCopy .pageSubtitle {
+    max-width: 560px;
+  }
+  .aboutHeroPortrait {
+    top: auto;
+    bottom: 0;
+    right: 18%;
+    width: 64%;
+    height: 380px;
+  }
+  .aboutAnnotation {
+    top: auto;
+    bottom: 180px;
+    right: 0;
+    font-size: 17px;
+  }
+}
+
 @media (max-width: 720px) {
   .frame {
     width: min(100% - 36px, 1320px);

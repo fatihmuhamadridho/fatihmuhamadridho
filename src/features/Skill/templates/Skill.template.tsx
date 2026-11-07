@@ -204,11 +204,11 @@ export default function SkillTemplate() {
                 <Text component="span">Technologies &amp; Tools</Text>
               </Box>
             </Box>
-            <Box className={styles.skillStat}>
-              <IconLanguage size={30} />
+            <Box className={styles.skillLanguages}>
+              <IconLanguage size={20} />
               <Box>
-                <Text component="strong">{skillPageIntro.languages}</Text>
                 <Text component="span">Languages</Text>
+                <Text className={styles.languageNames}>{skillPageIntro.languages}</Text>
               </Box>
             </Box>
           </Box>

@@ -174,7 +174,7 @@ $line: #e8ebef;
 }
 
 .pageHero {
-  min-height: 390px;
+  min-height: 510px;
   background: radial-gradient(ellipse at 72% 75%, #293b1d 0%, #131e15 32%, #0b1010 68%);
 }
 .pageHero::before {
@@ -184,13 +184,14 @@ $line: #e8ebef;
 .pageHeroInner {
   position: relative;
   display: flex;
-  min-height: 318px;
+  min-height: 438px;
   align-items: center;
 }
 
 .pageHeroCopy {
   position: relative;
   z-index: 2;
+  width: 50%;
   max-width: 560px;
   padding-block: 40px 56px;
 }
@@ -493,7 +494,8 @@ $line: #e8ebef;
 .heroLaptop {
   position: absolute;
   right: -1%;
-  bottom: 4px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 45%;
   aspect-ratio: 1.875;
   border: 6px solid #303936;
@@ -699,24 +701,54 @@ $line: #e8ebef;
   }
 }
 
+@media (min-width: 721px) and (max-width: 980px) {
+  .pageHeroInner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 28px;
+    padding-bottom: 32px;
+  }
+  .pageHeroCopy {
+    max-width: 100%;
+    width: 100%;
+    padding-block: 32px 0;
+  }
+  .heroLaptop {
+    position: relative;
+    inset: auto;
+    transform: none;
+    width: min(100%, 560px);
+    align-self: center;
+  }
+}
+
 @media (max-width: 720px) {
   .frame {
     width: min(100% - 36px, 1320px);
   }
   .pageHero {
-    min-height: 480px;
+    min-height: 0;
   }
   .pageHeroInner {
-    min-height: 414px;
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    padding-bottom: 24px;
   }
   .pageHeroCopy {
     max-width: 100%;
+    width: 100%;
     align-self: start;
-    padding-block: 35px 190px;
+    padding-block: 28px 0;
   }
   .heroLaptop {
-    width: 95%;
-    right: 0;
+    position: relative;
+    top: auto;
+    bottom: auto;
+    transform: none;
+    width: 100%;
+    right: auto;
   }
   .pageTitle {
     font-size: clamp(42px, 12vw, 60px);
