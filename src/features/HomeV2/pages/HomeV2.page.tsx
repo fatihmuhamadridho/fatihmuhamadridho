@@ -1,5 +1,7 @@
 import HomeV2Template from '../templates/HomeV2.template';
 
-const HomeV2Page = () => <HomeV2Template />;
+import type { ResumeExperience } from '@/core/infrastructures/services/rxresu.service';
+
+const HomeV2Page = (props: { description: string; experience: ResumeExperience[] }) => <HomeV2Template {...props} />;
 
 export default HomeV2Page;

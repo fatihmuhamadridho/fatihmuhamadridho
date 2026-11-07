@@ -12,7 +12,7 @@ export const resumeProfile = {
   github: 'https://github.com/fatihmuhamadridho',
   location: 'Tangerang, Banten, Indonesia',
   experience: '4+',
-  resumeUrl: '/documents/fatih-muhamad-ridho-resume.pdf',
+  resumeUrl: '/api/resume',
   summary:
     'Frontend Developer with 4+ years of experience building enterprise web and mobile applications using React, Next.js, Angular, React Native, and TypeScript. Skilled in frontend architecture, API integration, reusable UI development, testing, deployment, and technical solution analysis across banking, telecommunications, and digital platforms. Experienced in owning features from implementation through UAT and production release while collaborating with cross-functional teams.',
   languages: ['Bahasa Indonesia', 'English'],

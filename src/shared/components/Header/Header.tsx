@@ -32,6 +32,7 @@ export default function Header() {
               component={Link}
               key={item.label}
               href={item.href}
+              prefetch={true}
               className={`${styles.navLink} ${active ? styles.navActive : ''}`}
               onClick={() => setMenuOpen(false)}
             >

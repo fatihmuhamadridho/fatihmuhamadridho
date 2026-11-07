@@ -8,3 +8,6 @@ export const ENABLE_ENCODING: boolean =
   (process.env.NEXT_PUBLIC_ENABLE_ENCODING ?? process.env.ENABLE_ENCODING) === 'true' ? true : false;
 export const GOOGLE_ANALYTICS_ID: string | undefined =
   process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID ?? process.env.GOOGLE_ANALYTICS_ID;
+export const RXRESU_URL: string | undefined = process.env.NEXT_RXRESU_URL ?? process.env.RXRESU_URL;
+export const RXRESU_API_KEY: string | undefined = process.env.NEXT_RXRESU_API_KEY ?? process.env.RXRESU_API_KEY;
+export const RXRESU_RESUME_ID: string | undefined = process.env.NEXT_RXRESU_RESUME_ID ?? process.env.RXRESU_RESUME_ID;
