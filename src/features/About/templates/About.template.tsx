@@ -1,11 +1,5 @@
 import { Box, Image, Text, Title } from '@mantine/core';
-import {
-  IconStack2,
-  IconCode,
-  IconTrendingUp,
-  IconDeviceGamepad2,
-  IconMovie,
-} from '@tabler/icons-react';
+import { IconStack2, IconCode, IconTrendingUp, IconDeviceGamepad2, IconMovie } from '@tabler/icons-react';
 import ContactBanner from '@/shared/components/ContactBanner/ContactBanner';
 import PageMeta from '@/shared/components/PageMeta/PageMeta';
 import SiteFooter from '@/shared/components/SiteFooter/SiteFooter';
@@ -16,10 +10,10 @@ import { aboutIntro, outsideInterests, workPrinciples } from '../__constants__/a
 const principleSymbols = { layers: IconStack2, code: IconCode, trend: IconTrendingUp };
 const interestSymbols = { gamepad: IconDeviceGamepad2, movie: IconMovie, code: IconCode };
 
-export default function AboutTemplate() {
+export default function AboutTemplate({ description }: { description: string }) {
   return (
     <Box className={styles.site} id="top">
-      <PageMeta title="About" description={aboutIntro.description} />
+      <PageMeta title="About" description={description} />
       <Box component="section" className={`${styles.darkField} ${styles.aboutHero}`}>
         <Box className={styles.frame}>
           <Header />
@@ -32,7 +26,7 @@ export default function AboutTemplate() {
                   About Me.
                 </Text>
               </Title>
-              <Text className={styles.pageSubtitle}>{aboutIntro.description}</Text>
+              {description && <Text className={styles.pageSubtitle}>{description}</Text>}
             </Box>
             <Image className={styles.aboutHeroPortrait} src={aboutIntro.heroImage} alt="Fatih in a black outfit" />
             <Text className={styles.aboutAnnotation}>

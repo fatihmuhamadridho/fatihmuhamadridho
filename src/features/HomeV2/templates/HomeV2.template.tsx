@@ -27,7 +27,50 @@ import {
   homeSkillGroups,
 } from '../__constants__/home.constants';
 
-export default function HomeV2Template() {
+import Link from 'next/link';
+
+export default function HomeV2Template({
+  description,
+  experience,
+}: {
+  description: string;
+  experience: {
+    company: string;
+    date: string;
+    location: string;
+    role: string;
+    points: string[];
+    start: string | null;
+    end: string | null;
+  }[];
+}) {
+  const months = new Set<number>();
+  const monthIndex = (value: string) => {
+    const [year, month] = value.split('-').map(Number);
+    return year * 12 + month - 1;
+  };
+  for (const item of experience) {
+    if (!item.start || !item.end) continue;
+    const start = monthIndex(item.start);
+    const end = monthIndex(item.end);
+    for (let month = start; month < end; month++) months.add(month);
+  }
+  const yearsExperience = experience.length ? `${Math.floor(months.size / 12)}+` : '—';
+  const workDuration = (start: string | null, end: string | null) => {
+    if (!start || !end) return '';
+    const totalMonths = monthIndex(end) - monthIndex(start);
+    if (!Number.isFinite(totalMonths) || totalMonths < 0) return '';
+    const years = Math.floor(totalMonths / 12);
+    const remainingMonths = totalMonths % 12;
+    return (
+      [
+        years ? `${years} ${years === 1 ? 'year' : 'years'}` : '',
+        remainingMonths ? `${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}` : '',
+      ]
+        .filter(Boolean)
+        .join(' ') || 'Less than a month'
+    );
+  };
   return (
     <Box className={styles.site} id="top">
       <PageMeta title="Home" description={homeIntro.description} />
@@ -41,9 +84,9 @@ export default function HomeV2Template() {
                 {homeIntro.name}
               </Title>
               <Text className={styles.heroRole}>{homeIntro.role}</Text>
-              <Text className={styles.heroText}>{resumeProfile.heroDescription}</Text>
+              {description && <Text className={styles.heroText}>{description}</Text>}
               <Box className={styles.heroActions}>
-                <Anchor className={styles.buttonLight} href="#featured-projects">
+                <Anchor component={Link} prefetch={true} className={styles.buttonLight} href="/projects">
                   View my work <IconArrowRight size={17} />
                 </Anchor>
                 <Anchor className={styles.textLink} href={resumeProfile.resumeUrl} download>
@@ -83,7 +126,7 @@ export default function HomeV2Template() {
               <Box className={styles.heroInfoRow}>
                 <IconMail size={17} stroke={1.8} aria-hidden="true" />
                 <Text component="span">
-                  <Text component="strong">{homeIntro.experience}</Text>
+                  <Text component="strong">{yearsExperience}</Text>
                   <Text component="span" className={styles.heroInfoCaption}>
                     Years Experience
                   </Text>
@@ -100,7 +143,7 @@ export default function HomeV2Template() {
               </Box>
               <Box className={styles.heroInfoRow}>
                 <Box component="span" className={styles.availabilityDot} />
-                <Text component="span">{resumeProfile.focus}</Text>
+                <Text component="span">Open to opportunities</Text>
               </Box>
             </Box>
           </Box>
@@ -131,7 +174,7 @@ export default function HomeV2Template() {
                     <IconBriefcase size={24} stroke={1.8} aria-hidden="true" />
                   </Box>
                   <Text component="span">
-                    <Text component="strong">{homeIntro.experience}</Text>
+                    <Text component="strong">{yearsExperience}</Text>
                     <Text component="span">Years Experience</Text>
                   </Text>
                 </Box>
@@ -169,10 +212,13 @@ export default function HomeV2Template() {
                 </Box>
               </Box>
               <Box className={styles.timeline}>
-                {homeExperience.map((item) => (
+                {experience.map((item) => (
                   <Box component="article" className={styles.timelineItem} key={item.company}>
                     <Text component="span" className={styles.timelineDate}>
                       {item.date}
+                      <Text component="span" className={styles.timelineDuration}>
+                        {workDuration(item.start, item.end)}
+                      </Text>
                     </Text>
                     <Box className={styles.timelineBody}>
                       <Box className={styles.timelineHeading}>

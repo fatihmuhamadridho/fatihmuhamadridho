@@ -524,6 +524,14 @@ $line: #e8ebef;
   text-align: right;
 }
 
+.timelineDuration {
+  display: block;
+  margin-top: 4px;
+  color: $muted;
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+
 .timelineBody {
   min-width: 0;
 }
